@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 // ─── Score counter hook ────────────────────────────────────────────────────
-function useCounter(target, duration = 1200, delay = 800) {
+function useCounter(target: number, duration = 1200, delay = 800): number {
   const [value, setValue] = useState(0)
   useEffect(() => {
     const t = setTimeout(() => {
       const start = performance.now()
-      const ease = (x) => 1 - Math.pow(1 - x, 3)
-      const tick = (now) => {
+      const ease = (x: number) => 1 - Math.pow(1 - x, 3)
+      const tick = (now: number) => {
         const p = Math.min((now - start) / duration, 1)
         setValue(Math.round(ease(p) * target))
         if (p < 1) requestAnimationFrame(tick)
@@ -54,7 +54,8 @@ function MiniChart() {
 }
 
 // ─── Sidebar squad item ────────────────────────────────────────────────────
-function SquadItem({ initials, label, color, active }) {
+interface SquadItemProps { initials: string; label: string; color: string; active?: boolean }
+function SquadItem({ initials, label, color, active }: SquadItemProps) {
   return (
     <div className={`flex items-center gap-2 px-2 py-[5px] rounded-[7px] cursor-pointer transition-colors duration-100 ${active ? 'bg-[#F0FAF6]' : 'hover:bg-[#F7F9FC]'}`}>
       <span className={`w-5 h-5 rounded-[5px] flex items-center justify-center text-[9px] font-bold flex-shrink-0`}
@@ -65,7 +66,8 @@ function SquadItem({ initials, label, color, active }) {
 }
 
 // ─── Stat card ─────────────────────────────────────────────────────────────
-function StatCard({ label, value, unit, change, positive, children }) {
+interface StatCardProps { label: string; value: string | number; unit?: string; change?: string; positive?: boolean; children?: React.ReactNode }
+function StatCard({ label, value, unit, change, positive, children }: StatCardProps) {
   return (
     <div className="bg-white rounded-[12px] border border-[#E8ECF0] p-4 shadow-[0_1px_4px_rgba(0,0,0,0.04)] flex-1 min-w-0">
       <p className="text-[10px] font-semibold uppercase tracking-[0.07em] text-[#9CA3AF] mb-2">{label}</p>
@@ -84,7 +86,8 @@ function StatCard({ label, value, unit, change, positive, children }) {
 }
 
 // ─── Player row ────────────────────────────────────────────────────────────
-function PlayerRow({ initials, name, score, variant, index }) {
+interface PlayerRowProps { initials: string; name: string; score: number; variant: 'high' | 'mid' | 'blue'; index: number }
+function PlayerRow({ initials, name, score, variant, index }: PlayerRowProps) {
   return (
     <div className="flex items-center gap-3 py-[7px] border-b border-[#F3F4F6] last:border-0">
       <div className={`w-7 h-7 rounded-[7px] flex items-center justify-center flex-shrink-0 text-[9px] font-bold ${
@@ -111,7 +114,7 @@ function PlayerRow({ initials, name, score, variant, index }) {
 }
 
 // ─── Main dashboard ────────────────────────────────────────────────────────
-const PLAYERS = [
+const PLAYERS: Omit<PlayerRowProps, 'index'>[] = [
   { initials: 'SR', name: 'S. Robertson',  score: 82, variant: 'high' },
   { initials: 'MC', name: 'M. Clarke',     score: 65, variant: 'mid'  },
   { initials: 'AT', name: 'A. Thompson',   score: 91, variant: 'high' },

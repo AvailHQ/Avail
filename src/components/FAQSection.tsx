@@ -65,7 +65,13 @@ const FAQS = [
 
 // ─── Single FAQ item ──────────────────────────────────────────────────────────
 
-function FAQItem({ q, a, index }) {
+interface FAQItemProps {
+  q: string
+  a: string[]
+  index: number
+}
+
+function FAQItem({ q, a, index }: FAQItemProps) {
   const [open, setOpen] = useState(false)
 
   return (

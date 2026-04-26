@@ -114,13 +114,61 @@ const VALUES = [
   },
 ];
 
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+interface FormState {
+  firstName: string
+  lastName: string
+  email: string
+  org: string
+  role: string
+  level: string
+  message: string
+  consent: boolean
+}
+
+type FormErrors = Partial<Record<keyof FormState, string>>
+
+interface InputProps {
+  label: string
+  name: string
+  placeholder: string
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  error?: string
+  type?: string
+}
+
+interface SelectProps {
+  label: string
+  name: string
+  placeholder: string
+  options: string[]
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
+  error?: string
+}
+
+interface TextareaProps {
+  label: string
+  name: string
+  placeholder: string
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+}
+
+interface FieldStyle {
+  border: string
+  boxShadow: string
+}
+
 // ─── Shared input styles ──────────────────────────────────────────────────────
 const BASE =
   "w-full bg-white text-[13.5px] text-[#111318] placeholder-[#B0B8C4] rounded-lg outline-none transition-all duration-150";
 
-function useField() {
+function useField(): { focused: boolean; borderStyle: FieldStyle; onFocus: () => void; onBlur: () => void } {
   const [focused, setFocused] = useState(false);
-  const borderStyle = {
+  const borderStyle: FieldStyle = {
     border: focused ? "1px solid #74C7A7" : "1px solid #E5E7EB",
     boxShadow: focused ? "0 0 0 3px rgba(116,199,167,0.10)" : "none",
   };
@@ -132,15 +180,7 @@ function useField() {
   };
 }
 
-function Input({
-  label,
-  error,
-  type = "text",
-  placeholder,
-  value,
-  onChange,
-  name,
-}) {
+function Input({ label, error, type = "text", placeholder, value, onChange, name }: InputProps) {
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
@@ -151,7 +191,8 @@ function Input({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        {...f}
+        onFocus={f.onFocus}
+        onBlur={f.onBlur}
         className={`${BASE} h-[42px] px-[14px]`}
         style={f.borderStyle}
       />
@@ -160,7 +201,7 @@ function Input({
   );
 }
 
-function Select({ label, error, options, value, onChange, placeholder, name }) {
+function Select({ label, error, options, value, onChange, placeholder, name }: SelectProps) {
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
@@ -170,7 +211,8 @@ function Select({ label, error, options, value, onChange, placeholder, name }) {
           name={name}
           value={value}
           onChange={onChange}
-          {...f}
+          onFocus={f.onFocus}
+          onBlur={f.onBlur}
           className={`${BASE} h-[42px] pl-[14px] pr-10 appearance-none cursor-pointer`}
           style={{ ...f.borderStyle, color: value ? "#111318" : "#B0B8C4" }}
         >
@@ -203,7 +245,7 @@ function Select({ label, error, options, value, onChange, placeholder, name }) {
   );
 }
 
-function Textarea({ label, placeholder, value, onChange, name }) {
+function Textarea({ label, placeholder, value, onChange, name }: TextareaProps) {
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
@@ -214,7 +256,8 @@ function Textarea({ label, placeholder, value, onChange, name }) {
         onChange={onChange}
         placeholder={placeholder}
         rows={4}
-        {...f}
+        onFocus={f.onFocus}
+        onBlur={f.onBlur}
         className={`${BASE} px-[14px] py-[10px] resize-none leading-[1.65]`}
         style={f.borderStyle}
       />
@@ -224,7 +267,7 @@ function Textarea({ label, placeholder, value, onChange, name }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function BookDemoPage() {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     firstName: "",
     lastName: "",
     email: "",
@@ -234,17 +277,19 @@ export default function BookDemoPage() {
     message: "",
     consent: false,
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
 
-  const set = (k) => (e) =>
-    setForm((f) => ({
-      ...f,
-      [k]: e.target.type === "checkbox" ? e.target.checked : e.target.value,
-    }));
+  const set =
+    (k: keyof FormState) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+      setForm((f) => ({
+        ...f,
+        [k]: e.target.type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value,
+      }));
 
-  function validate() {
-    const e = {};
+  function validate(): FormErrors {
+    const e: FormErrors = {};
     if (!form.firstName.trim()) e.firstName = "Required";
     if (!form.lastName.trim()) e.lastName = "Required";
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email))
@@ -255,7 +300,7 @@ export default function BookDemoPage() {
     return e;
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) {

@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 
 // ─── Brand logo marks (reconstructed from brand identity) ──────────────────
@@ -74,10 +75,9 @@ const IcFitrWoman = () => (
       loading="lazy"
       width="182"
       sizes="182px"
-      viewBox="0 0 253 320"
       alt=""
-      srcset="https://cdn.prod.website-files.com/64dcd735afbf93965ff9356b/64e22c5a3e1459ad41569f7b_Fitr%20logo%20%40%203x-p-500.png 500w, https://cdn.prod.website-files.com/64dcd735afbf93965ff9356b/64e22c5a3e1459ad41569f7b_Fitr%20logo%20%40%203x.png 930w"
-      class="navbar2_logo"
+      srcSet="https://cdn.prod.website-files.com/64dcd735afbf93965ff9356b/64e22c5a3e1459ad41569f7b_Fitr%20logo%20%40%203x-p-500.png 500w, https://cdn.prod.website-files.com/64dcd735afbf93965ff9356b/64e22c5a3e1459ad41569f7b_Fitr%20logo%20%40%203x.png 930w"
+      className="navbar2_logo"
     />
   </div>
 );
@@ -94,7 +94,20 @@ const MH = VH - MT - MB; // 452
 const CX = ML + MW / 2; // 420
 const CY = MT + MH / 2; // 240
 
-function pos(mx, my) {
+interface PosStyle {
+  left: string
+  top: string
+}
+
+interface Competitor {
+  name: string
+  Icon: () => React.ReactElement
+  mx: number
+  my: number
+  desc: string
+}
+
+function pos(mx: number, my: number): PosStyle {
   return {
     left: `${(((ML + mx * MW) / VW) * 100).toFixed(2)}%`,
     top: `${(((MT + (1 - my) * MH) / VH) * 100).toFixed(2)}%`,
@@ -102,7 +115,7 @@ function pos(mx, my) {
 }
 
 // ─── Competitor data ────────────────────────────────────────────────────────
-const COMPETITORS = [
+const COMPETITORS: Competitor[] = [
   {
     name: "WHOOP",
     Icon: IcWHOOP,

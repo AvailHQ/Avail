@@ -1,3 +1,4 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 
 // ─── Input icons ─────────────────────────────────────────────────────────────
@@ -73,7 +74,7 @@ const Sparkline = () => (
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const INPUTS = [
+const INPUTS: InputItem[] = [
   { label: 'Cycle Phase',      sub: 'Menstrual cycle data', color: '#7C3AED', bg: '#F0EDFF', Icon: IcCyclePhase },
   { label: 'Sleep',            sub: 'Duration & quality',   color: '#059669', bg: '#EDFAF4', Icon: IcSleep      },
   { label: 'Fatigue',          sub: 'Daily fatigue score',  color: '#D97706', bg: '#FFF5EB', Icon: IcBolt       },
@@ -83,7 +84,17 @@ const INPUTS = [
 
 const INPUT_COLORS = ['#7C3AED', '#059669', '#D97706', '#2563EB', '#64748B']
 
-const ENGINE_LINES = [
+interface InputItem {
+  label: string
+  sub: string
+  color: string
+  bg: string
+  Icon: () => React.ReactElement
+}
+
+type EngineLine = [() => React.ReactElement, string]
+
+const ENGINE_LINES: EngineLine[] = [
   [IcLoop,   'Cycle-aware AI model'   ],
   [IcLayers, 'Multi-signal integration'],
   [IcTrend,  'Load calculation'        ],

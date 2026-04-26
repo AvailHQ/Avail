@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -170,8 +170,20 @@ const IcPen = () => (
   </svg>
 );
 
+// ─── Types ─────────────────────────────────────────────────────────────────
+interface NavItem {
+  Icon: () => React.ReactElement
+  label: string
+  desc: string
+}
+
+interface NavGroup {
+  heading: string
+  items: NavItem[]
+}
+
 // ─── Chevron ───────────────────────────────────────────────────────────────
-const IcChevron = ({ open }) => (
+const IcChevron = ({ open }: { open: boolean }) => (
   <svg
     width="10"
     height="10"
@@ -188,7 +200,7 @@ const IcChevron = ({ open }) => (
 );
 
 // ─── Mega-menu data (mirrors footer content) ───────────────────────────────
-const MEGA_MENU = [
+const MEGA_MENU: NavGroup[] = [
   {
     heading: "PLATFORM",
     items: [
