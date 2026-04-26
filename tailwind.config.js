@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        sans: ['"Martel Sans"', 'Quicksand', '"Noto Serif SC"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        serif: ['"Noto Serif SC"', 'Georgia', 'serif'],
       },
       screens: {
         hero: '920px',

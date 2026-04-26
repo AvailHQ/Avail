@@ -82,11 +82,11 @@ export default function Footer() {
 
             {/* CTA */}
             <Link
-              to="/book-demo"
+              to="/join-pilot-programme"
               className="inline-flex items-center justify-center self-start h-9 px-4 rounded-full text-white text-[12px] font-semibold tracking-[0.01em] shadow-[0_2px_12px_rgba(111,191,158,0.3)] hover:opacity-85 hover:-translate-y-px transition-all duration-150"
               style={{ background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }}
             >
-              Book a Demo
+              Join Pilot Programme
             </Link>
           </div>
 

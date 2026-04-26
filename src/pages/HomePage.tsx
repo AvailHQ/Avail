@@ -15,7 +15,7 @@ export default function HomePage() {
         }}
       >
         <main className="relative z-10 flex flex-col items-center pt-24 pb-0" role="main">
-          <div className="text-center px-6 mb-14 max-w-[740px]">
+          <div className="text-center px-6 mb-14 max-w-[980px]">
             <HeroCopy />
           </div>
           <DeviceMockup />

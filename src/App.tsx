@@ -3,7 +3,7 @@ import Nav from './components/Nav'
 import Footer from './components/Footer'
 
 import HomePage from './pages/HomePage'
-import BookDemoPage from './pages/BookDemoPage'
+import JoinPilotProgrammePage from './pages/JoinPilotProgrammePage'
 
 export default function App() {
   return (
@@ -11,7 +11,7 @@ export default function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/book-demo" element={<BookDemoPage />} />
+        <Route path="/join-pilot-programme" element={<JoinPilotProgrammePage />} />
       </Routes>
       <Footer />
     </div>

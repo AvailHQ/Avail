@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
+import { submitDemoRequest } from "../lib/api";
 
 // ─── Field options ────────────────────────────────────────────────────────────
 const ROLES = ["Coach", "Performance Staff", "Sports Scientist", "Other"];
@@ -117,56 +119,61 @@ const VALUES = [
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface FormState {
-  firstName: string
-  lastName: string
-  email: string
-  org: string
-  role: string
-  level: string
-  message: string
-  consent: boolean
+  firstName: string;
+  lastName: string;
+  email: string;
+  org: string;
+  role: string;
+  level: string;
+  message: string;
+  consent: boolean;
 }
 
-type FormErrors = Partial<Record<keyof FormState, string>>
+type FormErrors = Partial<Record<keyof FormState, string>>;
 
 interface InputProps {
-  label: string
-  name: string
-  placeholder: string
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  error?: string
-  type?: string
+  label: string;
+  name: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
+  type?: string;
 }
 
 interface SelectProps {
-  label: string
-  name: string
-  placeholder: string
-  options: string[]
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
-  error?: string
+  label: string;
+  name: string;
+  placeholder: string;
+  options: string[];
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  error?: string;
 }
 
 interface TextareaProps {
-  label: string
-  name: string
-  placeholder: string
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  label: string;
+  name: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 interface FieldStyle {
-  border: string
-  boxShadow: string
+  border: string;
+  boxShadow: string;
 }
 
 // ─── Shared input styles ──────────────────────────────────────────────────────
 const BASE =
   "w-full bg-white text-[13.5px] text-[#111318] placeholder-[#B0B8C4] rounded-lg outline-none transition-all duration-150";
 
-function useField(): { focused: boolean; borderStyle: FieldStyle; onFocus: () => void; onBlur: () => void } {
+function useField(): {
+  focused: boolean;
+  borderStyle: FieldStyle;
+  onFocus: () => void;
+  onBlur: () => void;
+} {
   const [focused, setFocused] = useState(false);
   const borderStyle: FieldStyle = {
     border: focused ? "1px solid #74C7A7" : "1px solid #E5E7EB",
@@ -180,7 +187,15 @@ function useField(): { focused: boolean; borderStyle: FieldStyle; onFocus: () =>
   };
 }
 
-function Input({ label, error, type = "text", placeholder, value, onChange, name }: InputProps) {
+function Input({
+  label,
+  error,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+  name,
+}: InputProps) {
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
@@ -201,7 +216,15 @@ function Input({ label, error, type = "text", placeholder, value, onChange, name
   );
 }
 
-function Select({ label, error, options, value, onChange, placeholder, name }: SelectProps) {
+function Select({
+  label,
+  error,
+  options,
+  value,
+  onChange,
+  placeholder,
+  name,
+}: SelectProps) {
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
@@ -245,7 +268,13 @@ function Select({ label, error, options, value, onChange, placeholder, name }: S
   );
 }
 
-function Textarea({ label, placeholder, value, onChange, name }: TextareaProps) {
+function Textarea({
+  label,
+  placeholder,
+  value,
+  onChange,
+  name,
+}: TextareaProps) {
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
@@ -266,7 +295,7 @@ function Textarea({ label, placeholder, value, onChange, name }: TextareaProps) 
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
-export default function BookDemoPage() {
+export default function JoinPilotProgrammePage() {
   const [form, setForm] = useState<FormState>({
     firstName: "",
     lastName: "",
@@ -278,14 +307,23 @@ export default function BookDemoPage() {
     consent: false,
   });
   const [errors, setErrors] = useState<FormErrors>({});
+  const [submitError, setSubmitError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const set =
     (k: keyof FormState) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+      >,
+    ) =>
       setForm((f) => ({
         ...f,
-        [k]: e.target.type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value,
+        [k]:
+          e.target.type === "checkbox"
+            ? (e.target as HTMLInputElement).checked
+            : e.target.value,
       }));
 
   function validate(): FormErrors {
@@ -300,15 +338,39 @@ export default function BookDemoPage() {
     return e;
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) {
       setErrors(errs);
       return;
     }
+
     setErrors({});
-    setSubmitted(true);
+    setSubmitError("");
+    setIsSubmitting(true);
+
+    try {
+      await submitDemoRequest(form);
+      setSubmitted(true);
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Something went wrong while submitting your request.";
+      const fieldErrors =
+        error && typeof error === "object" && "fieldErrors" in error
+          ? (error.fieldErrors as FormErrors | undefined)
+          : undefined;
+
+      if (fieldErrors) {
+        setErrors(fieldErrors);
+      }
+
+      setSubmitError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -352,11 +414,11 @@ export default function BookDemoPage() {
             className="font-bold tracking-[-0.035em] text-[#111318] leading-[1.1] mb-3"
             style={{ fontSize: "clamp(28px, 4vw, 46px)" }}
           >
-            Book a Demo
+            Join Pilot Programme
           </h1>
           <p className="text-[15px] text-[#6B7280] leading-[1.65] max-w-[420px] mx-auto">
-            30 minutes. No slides. Just a live walkthrough built around your
-            team.
+            Tell us about your team and we'll confirm whether AVAIL is a strong
+            fit for a 4–6 month pilot programme.
           </p>
         </motion.div>
 
@@ -403,12 +465,22 @@ export default function BookDemoPage() {
                   Request received
                 </h2>
                 <p className="text-[14px] leading-[1.72] text-[#6B7280] max-w-[300px]">
-                  We'll be in touch within 24 hours to confirm your demo time at{" "}
+                  We'll be in touch within 24 hours to confirm next steps for
+                  the pilot programme at{" "}
                   <span className="text-[#111318] font-medium">
                     {form.email}
                   </span>
                   .
                 </p>
+                <Link
+                  to="/"
+                  className="mt-7 inline-flex items-center justify-center h-[42px] px-6 rounded-lg text-white text-[14px] font-semibold tracking-[-0.01em] bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] transition-all duration-150 hover:-translate-y-[1.5px] active:translate-y-0"
+                  style={{
+                    boxShadow: "0 2px 12px rgba(116,199,167,0.35)",
+                  }}
+                >
+                  Back
+                </Link>
               </div>
             ) : (
               <form
@@ -423,11 +495,11 @@ export default function BookDemoPage() {
                 {/* Title inside card */}
                 <div className="mb-1">
                   <h2 className="text-[18px] font-bold text-[#111318] tracking-[-0.02em] mb-1">
-                    Book a Demo
+                    Join Pilot Programme
                   </h2>
                   <p className="text-[13px] leading-[1.65] text-[#6B7280]">
-                    Tell us about your team and we'll show how AVAIL can support
-                    daily load decisions.
+                    Share a few details and we'll assess whether your team is a
+                    good fit for an AVAIL pilot.
                   </p>
                 </div>
 
@@ -498,6 +570,12 @@ export default function BookDemoPage() {
                   onChange={set("message")}
                 />
 
+                {submitError && (
+                  <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-[12.5px] text-red-700">
+                    {submitError}
+                  </div>
+                )}
+
                 {/* Consent */}
                 <div className="flex flex-col gap-[5px]">
                   <label className="flex items-start gap-3 cursor-pointer">
@@ -549,22 +627,26 @@ export default function BookDemoPage() {
                 <div className="flex flex-col gap-2 pt-1">
                   <button
                     type="submit"
+                    disabled={isSubmitting}
                     className="w-full opacity-70 h-[44px] rounded-lg text-white text-[14px] font-semibold tracking-[-0.01em] transition-all bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] duration-150 hover:-translate-y-[1.5px] active:translate-y-0"
                     style={{
                       boxShadow: "0 2px 12px rgba(116,199,167,0.35)",
+                      cursor: isSubmitting ? "wait" : "pointer",
                     }}
                     onMouseEnter={(e) => {
+                      if (isSubmitting) return;
                       e.currentTarget.style.boxShadow =
                         "0 4px 20px rgba(116,199,167,0.45)";
                       e.currentTarget.style.opacity = "1";
                     }}
                     onMouseLeave={(e) => {
+                      if (isSubmitting) return;
                       e.currentTarget.style.boxShadow =
                         "0 2px 12px rgba(116,199,167,0.35)";
                       e.currentTarget.style.opacity = "0.7";
                     }}
                   >
-                    Book Demo
+                    {isSubmitting ? "Submitting..." : "Join Pilot Programme"}
                   </button>
                   <p className="text-center text-[11.5px] text-[#9CA3AF]">
                     We typically respond within 24 hours.

@@ -21,8 +21,8 @@ export default function HeroCopy() {
 
       <motion.h1
         {...fadeUp(0.15)}
-        className="font-bold leading-[1.1] tracking-[-0.035em] text-[#111318] mb-5"
-        style={{ fontSize: 'clamp(30px, 5vw, 52px)' }}
+        className="font-bold leading-[1.06] tracking-[-0.04em] text-[#111318] mb-5 max-w-[1120px] mx-auto"
+        style={{ fontSize: 'clamp(30px, 4.6vw, 50px)' }}
       >
         Cycle-aware load intelligence
         <br />
@@ -41,18 +41,12 @@ export default function HeroCopy() {
         className="flex items-center justify-center gap-3 flex-wrap"
       >
         <Link
-          to="/book-demo"
+          to="/join-pilot-programme"
           className="inline-flex items-center justify-center h-[46px] px-7 rounded-full text-white text-[14px] font-semibold tracking-[-0.01em] shadow-[0_4px_18px_rgba(111,191,158,0.45)] hover:opacity-[0.88] hover:-translate-y-px active:translate-y-0 transition-all duration-150"
           style={{ background: 'linear-gradient(45deg, #6FBF9E, #4FA3C7)' }}
         >
-          Book a Demo
-        </Link>
-        <a
-          href="#pilot"
-          className="inline-flex items-center justify-center h-[46px] px-7 rounded-full bg-white text-[#4B5563] text-[14px] font-semibold tracking-[-0.01em] border border-[#E8ECF0] shadow-sm hover:border-[#74c7a7] hover:text-[#6FBF9E] hover:-translate-y-px active:translate-y-0 transition-all duration-150"
-        >
           Join Pilot Programme
-        </a>
+        </Link>
       </motion.div>
     </>
   )

@@ -1,9 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// ─── Brand logo marks (reconstructed from brand identity) ──────────────────
-
-// Kitman Labs — actual logo (locally cached)
 const IcKitman = () => (
   <div className="w-7 h-7 rounded-full bg-[#111827] shadow-sm flex items-center justify-center">
     <img
@@ -14,7 +11,6 @@ const IcKitman = () => (
   </div>
 );
 
-// WHOOP — black circle, white W
 const IcWHOOP = () => (
   <div className="w-7 h-7 rounded-full bg-[#111827] shadow-sm flex items-center justify-center">
     <svg viewBox="0 0 20 20" aria-hidden="true" className="w-6 h-6">
@@ -31,7 +27,6 @@ const IcWHOOP = () => (
   </div>
 );
 
-// Catapult — dark rounded square, left-pointing chevron
 const IcCatapult = () => (
   <div className="w-7 h-7 rounded-full bg-[#fff] shadow-sm flex items-center justify-center">
     <svg
@@ -49,7 +44,6 @@ const IcCatapult = () => (
   </div>
 );
 
-// Oura Ring — black circle, ring-with-stem (power/ring symbol)
 const IcOura = () => (
   <div className="w-7 h-7 rounded-full bg-black shadow-sm flex items-center justify-center">
     <svg
@@ -67,7 +61,6 @@ const IcOura = () => (
   </div>
 );
 
-// FitrWoman — dark circle, cycle arc + figure mark
 const IcFitrWoman = () => (
   <div className="w-7 h-7 rounded-full bg-[#1A1A2E] shadow-sm flex items-center justify-center">
     <img
@@ -82,29 +75,28 @@ const IcFitrWoman = () => (
   </div>
 );
 
-// ─── Matrix geometry ────────────────────────────────────────────────────────
 const VW = 800,
   VH = 510;
 const ML = 54,
   MR = 14,
   MT = 14,
   MB = 44;
-const MW = VW - ML - MR; // 732
-const MH = VH - MT - MB; // 452
-const CX = ML + MW / 2; // 420
-const CY = MT + MH / 2; // 240
+const MW = VW - ML - MR;
+const MH = VH - MT - MB;
+const CX = ML + MW / 2;
+const CY = MT + MH / 2;
 
 interface PosStyle {
-  left: string
-  top: string
+  left: string;
+  top: string;
 }
 
 interface Competitor {
-  name: string
-  Icon: () => React.ReactElement
-  mx: number
-  my: number
-  desc: string
+  name: string;
+  Icon: () => React.ReactElement;
+  mx: number;
+  my: number;
+  desc: string;
 }
 
 function pos(mx: number, my: number): PosStyle {
@@ -114,43 +106,12 @@ function pos(mx: number, my: number): PosStyle {
   };
 }
 
-// ─── Competitor data ────────────────────────────────────────────────────────
 const COMPETITORS: Competitor[] = [
-  {
-    name: "WHOOP",
-    Icon: IcWHOOP,
-    mx: 0.17,
-    my: 0.26,
-    desc: "Recovery & strain wearable",
-  },
-  {
-    name: "Oura",
-    Icon: IcOura,
-    mx: 0.06,
-    my: 0.1,
-    desc: "Sleep & readiness ring tracker",
-  },
-  {
-    name: "Catapult",
-    Icon: IcCatapult,
-    mx: 0.63,
-    my: 0.18,
-    desc: "GPS load tracking for teams",
-  },
-  {
-    name: "Kitman Labs",
-    Icon: IcKitman,
-    mx: 0.7,
-    my: 0.47,
-    desc: "Load & injury analytics platform",
-  },
-  {
-    name: "FitrWoman",
-    Icon: IcFitrWoman,
-    mx: 0.19,
-    my: 0.77,
-    desc: "Cycle tracking for female athletes",
-  },
+  { name: "WHOOP", Icon: IcWHOOP, mx: 0.17, my: 0.26, desc: "Recovery & strain wearable" },
+  { name: "Oura", Icon: IcOura, mx: 0.06, my: 0.1, desc: "Sleep & readiness ring tracker" },
+  { name: "Catapult", Icon: IcCatapult, mx: 0.63, my: 0.18, desc: "GPS load tracking for teams" },
+  { name: "Kitman Labs", Icon: IcKitman, mx: 0.7, my: 0.47, desc: "Load & injury analytics platform" },
+  { name: "FitrWoman", Icon: IcFitrWoman, mx: 0.19, my: 0.77, desc: "Cycle tracking for female athletes" },
 ];
 
 const inView = (delay = 0) => ({
@@ -160,15 +121,10 @@ const inView = (delay = 0) => ({
   transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay },
 });
 
-// ─── Section ────────────────────────────────────────────────────────────────
 export default function ProblemSection() {
   return (
-    <section
-      className="w-full bg-white py-28 px-6"
-      aria-labelledby="matrix-headline"
-    >
+    <section className="w-full bg-white py-28 px-6" aria-labelledby="matrix-headline">
       <div className="max-w-[860px] mx-auto">
-        {/* ── Label ── */}
         <motion.p
           {...inView(0)}
           className="text-center text-[11px] font-semibold tracking-[0.14em] uppercase text-[#9CA3AF] mb-5"
@@ -176,7 +132,6 @@ export default function ProblemSection() {
           The Load Management Landscape
         </motion.p>
 
-        {/* ── Headline ── */}
         <motion.h2
           {...inView(0.07)}
           id="matrix-headline"
@@ -188,7 +143,6 @@ export default function ProblemSection() {
           built for women's sport
         </motion.h2>
 
-        {/* ── Subtext ── */}
         <motion.p
           {...inView(0.13)}
           className="text-center text-[15px] leading-[1.65] text-[#6B7280] max-w-[460px] mx-auto mb-14"
@@ -197,13 +151,11 @@ export default function ProblemSection() {
           training decisions.
         </motion.p>
 
-        {/* ── Matrix ── */}
         <motion.div
           {...inView(0.2)}
           className="relative w-full select-none"
           style={{ aspectRatio: `${VW} / ${VH}` }}
         >
-          {/* SVG: dot grid, axes, labels */}
           <svg
             className="absolute inset-0 w-full h-full overflow-visible"
             viewBox={`0 0 ${VW} ${VH}`}
@@ -211,12 +163,7 @@ export default function ProblemSection() {
             aria-hidden="true"
           >
             <defs>
-              <pattern
-                id="matrixDots"
-                width="26"
-                height="26"
-                patternUnits="userSpaceOnUse"
-              >
+              <pattern id="matrixDots" width="26" height="26" patternUnits="userSpaceOnUse">
                 <circle cx="13" cy="13" r="1.1" fill="rgba(0,0,0,0.13)" />
               </pattern>
               <radialGradient id="availQuad" cx="75%" cy="30%" r="55%">
@@ -225,16 +172,7 @@ export default function ProblemSection() {
               </radialGradient>
             </defs>
 
-            {/* Dot grid */}
-            <rect
-              x={ML}
-              y={MT}
-              width={MW}
-              height={MH}
-              fill="url(#matrixDots)"
-            />
-
-            {/* Avail quadrant glow */}
+            <rect x={ML} y={MT} width={MW} height={MH} fill="url(#matrixDots)" />
             <rect
               x={CX}
               y={MT}
@@ -243,15 +181,7 @@ export default function ProblemSection() {
               fill="url(#availQuad)"
             />
 
-            {/* Horizontal axis */}
-            <line
-              x1={ML}
-              y1={CY}
-              x2={ML + MW - 2}
-              y2={CY}
-              stroke="#D1D5DB"
-              strokeWidth="1"
-            />
+            <line x1={ML} y1={CY} x2={ML + MW - 2} y2={CY} stroke="#D1D5DB" strokeWidth="1" />
             <path
               d={`M ${ML + MW - 9} ${CY - 4} L ${ML + MW} ${CY} L ${ML + MW - 9} ${CY + 4}`}
               fill="none"
@@ -261,15 +191,7 @@ export default function ProblemSection() {
               strokeLinejoin="round"
             />
 
-            {/* Vertical axis */}
-            <line
-              x1={CX}
-              y1={MT + MH}
-              x2={CX}
-              y2={MT + 2}
-              stroke="#D1D5DB"
-              strokeWidth="1"
-            />
+            <line x1={CX} y1={MT + MH} x2={CX} y2={MT + 2} stroke="#D1D5DB" strokeWidth="1" />
             <path
               d={`M ${CX - 4} ${MT + 9} L ${CX} ${MT} L ${CX + 4} ${MT + 9}`}
               fill="none"
@@ -279,62 +201,21 @@ export default function ProblemSection() {
               strokeLinejoin="round"
             />
 
-            {/* X-axis labels */}
-            <text
-              x={ML + MW * 0.25}
-              y={VH - 10}
-              textAnchor="middle"
-              fontSize="9.5"
-              fill="#B8BEC8"
-              fontFamily="Inter, system-ui, sans-serif"
-              fontWeight="600"
-              letterSpacing="0.07em"
-            >
+            <text x={ML + MW * 0.25} y={VH - 10} textAnchor="middle" fontSize="9.5" fill="#B8BEC8" fontFamily="Inter, system-ui, sans-serif" fontWeight="600" letterSpacing="0.07em">
               Tracking
             </text>
-            <text
-              x={ML + MW * 0.75}
-              y={VH - 10}
-              textAnchor="middle"
-              fontSize="9.5"
-              fill="#B8BEC8"
-              fontFamily="Inter, system-ui, sans-serif"
-              fontWeight="600"
-              letterSpacing="0.07em"
-            >
+            <text x={ML + MW * 0.75} y={VH - 10} textAnchor="middle" fontSize="9.5" fill="#B8BEC8" fontFamily="Inter, system-ui, sans-serif" fontWeight="600" letterSpacing="0.07em">
               Decision Integration
             </text>
 
-            {/* Y-axis labels */}
-            <text
-              transform={`rotate(-90, 20, ${MT + MH * 0.74})`}
-              x="20"
-              y={MT + MH * 0.74 + 4}
-              textAnchor="middle"
-              fontSize="9.5"
-              fill="#B8BEC8"
-              fontFamily="Inter, system-ui, sans-serif"
-              fontWeight="600"
-              letterSpacing="0.07em"
-            >
+            <text transform={`rotate(-90, 20, ${MT + MH * 0.74})`} x="20" y={MT + MH * 0.74 + 4} textAnchor="middle" fontSize="9.5" fill="#B8BEC8" fontFamily="Inter, system-ui, sans-serif" fontWeight="600" letterSpacing="0.07em">
               Data Collection
             </text>
-            <text
-              transform={`rotate(-90, 20, ${MT + MH * 0.26})`}
-              x="20"
-              y={MT + MH * 0.26 + 4}
-              textAnchor="middle"
-              fontSize="9.5"
-              fill="#B8BEC8"
-              fontFamily="Inter, system-ui, sans-serif"
-              fontWeight="600"
-              letterSpacing="0.07em"
-            >
+            <text transform={`rotate(-90, 20, ${MT + MH * 0.26})`} x="20" y={MT + MH * 0.26 + 4} textAnchor="middle" fontSize="9.5" fill="#B8BEC8" fontFamily="Inter, system-ui, sans-serif" fontWeight="600" letterSpacing="0.07em">
               FEMALE-SPECIFIC MODELS
             </text>
           </svg>
 
-          {/* ── Competitor nodes ── */}
           {COMPETITORS.map(({ name, Icon, mx, my, desc }, i) => (
             <motion.div
               key={name}
@@ -353,7 +234,6 @@ export default function ProblemSection() {
                 className="bg-white border border-[#B8C4CF] rounded-[9px] shadow-[0_3px_16px_rgba(0,0,0,0.14)] cursor-default"
                 style={{ padding: "9px 12px" }}
               >
-                {/* Logo mark + Name */}
                 <div className="flex items-center gap-[7px] mb-[5px]">
                   <span className="flex-shrink-0 rounded-[4px] overflow-hidden leading-none">
                     <Icon />
@@ -362,7 +242,6 @@ export default function ProblemSection() {
                     {name}
                   </span>
                 </div>
-                {/* Description — single line */}
                 <p className="text-[9px] leading-none text-[#6B7280] whitespace-nowrap">
                   {desc}
                 </p>
@@ -370,7 +249,6 @@ export default function ProblemSection() {
             </motion.div>
           ))}
 
-          {/* ── Avail node ── */}
           <motion.div
             className="absolute -translate-x-1/2 -translate-y-1/2 z-20"
             style={pos(0.83, 0.92)}
@@ -379,25 +257,20 @@ export default function ProblemSection() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
           >
-            {/* Outer glow pulse ring */}
             <div
               className="absolute -inset-[20px] rounded-[28px] pointer-events-none"
               style={{
-                background:
-                  "radial-gradient(ellipse, rgba(116,199,167,0.18) 0%, transparent 65%)",
+                background: "radial-gradient(ellipse, rgba(116,199,167,0.18) 0%, transparent 65%)",
                 filter: "blur(14px)",
               }}
             />
-            {/* Inner halo */}
             <div
               className="absolute -inset-[6px] rounded-[20px] pointer-events-none"
               style={{
-                background:
-                  "radial-gradient(ellipse, rgba(116,199,167,0.30) 0%, transparent 70%)",
+                background: "radial-gradient(ellipse, rgba(116,199,167,0.30) 0%, transparent 70%)",
                 filter: "blur(5px)",
               }}
             />
-            {/* Card */}
             <div
               className="relative bg-white rounded-[16px] cursor-default"
               style={{
@@ -408,22 +281,16 @@ export default function ProblemSection() {
                   "0 4px 30px rgba(111,191,158,0.40), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
               }}
             >
-              {/* Logo + AVAIL */}
               <div className="flex items-center gap-[8px] mb-[8px]">
-                <img
-                  src="/figure/logo.svg"
-                  alt=""
-                  className="flex-shrink-0"
-                  style={{ width: 22, height: 22 }}
-                  aria-hidden="true"
-                />
+                <img src="/figure/logo.svg" alt="" className="flex-shrink-0" style={{ width: 22, height: 22 }} aria-hidden="true" />
                 <span className="text-[16px] font-bold text-[#1A7A55] tracking-[0.06em] leading-none">
                   AVAIL
                 </span>
               </div>
-              {/* Description */}
               <p className="text-[12px] font-semibold leading-[1.5] text-[#4aaa82]">
-                Cycle-aware load intelligence<br />for elite women's sport
+                Cycle-aware load intelligence
+                <br />
+                for elite women's sport
               </p>
             </div>
           </motion.div>
