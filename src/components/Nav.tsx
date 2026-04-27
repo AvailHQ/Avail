@@ -8,15 +8,24 @@ export default function Nav() {
         className="max-w-[1160px] mx-auto h-full px-8 flex items-center gap-8"
         aria-label="Main navigation"
       >
-        <a href="/" className="flex items-center gap-2 mr-auto" aria-label="Avail home">
-          <img src="/figure/logo.svg" alt="" className="h-10 w-10" aria-hidden="true" />
+        <a
+          href="/"
+          className="flex items-center gap-2 mr-auto"
+          aria-label="Avail home"
+        >
+          <img
+            src="/figure/logo.svg"
+            alt=""
+            className="h-10 w-10"
+            aria-hidden="true"
+          />
           <span className="text-[17px] font-bold tracking-[-0.04em] text-[#111318]">
             Avail
           </span>
         </a>
 
         <ul className="hidden hero:flex items-center gap-6 h-full" role="list">
-          {["Platform", "Science", "Teams"].map((link) => (
+          {["How it works", "Science", "Pricing"].map((link) => (
             <li key={link}>
               <a
                 href={`#${link.toLowerCase()}`}

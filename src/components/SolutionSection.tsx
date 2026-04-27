@@ -138,10 +138,18 @@ export default function SolutionSection() {
             <motion.article
               key={title}
               {...fadeUp(0.08 + index * 0.06)}
-              className="group rounded-[24px] bg-white/92 border border-[#E9EDF2] px-6 py-7 shadow-[0_10px_30px_rgba(15,23,42,0.06)] transition-all duration-200 hover:-translate-y-[4px] hover:shadow-[0_18px_40px_rgba(111,191,158,0.12)]"
+              whileHover={{
+                y: -6,
+                scale: 1.01,
+                boxShadow: "0 22px 44px rgba(111,191,158,0.14)",
+                transition: { duration: 0.12, ease: "linear" },
+              }}
+              className="group rounded-[24px] bg-white/92 border border-[#E9EDF2] px-6 py-7 shadow-[0_10px_30px_rgba(15,23,42,0.06)]"
             >
-              <div className="mb-6 flex items-center justify-center rounded-[20px] bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.98),rgba(240,250,246,0.92))] h-[122px] border border-[#F2F5F8] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+              <div className="mb-6 flex items-center justify-center rounded-[20px] bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.98),rgba(240,250,246,0.92))] h-[122px] border border-[#F2F5F8] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition-all duration-150 group-hover:shadow-[0_14px_34px_rgba(111,191,158,0.10)]">
+                <div className="transition-transform duration-150 group-hover:scale-[1.06]">
                 <Icon />
+                </div>
               </div>
 
               <h3 className="text-[22px] leading-[1.08] tracking-[-0.02em] font-bold text-[#111318] mb-3">

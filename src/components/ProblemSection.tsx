@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const IcKitman = () => (
@@ -99,6 +99,14 @@ interface Competitor {
   desc: string;
 }
 
+type AxisX = "tracking" | "decision";
+type AxisY = "data" | "female";
+
+interface ActiveAxes {
+  x: AxisX;
+  y: AxisY;
+}
+
 function pos(mx: number, my: number): PosStyle {
   return {
     left: `${(((ML + mx * MW) / VW) * 100).toFixed(2)}%`,
@@ -121,7 +129,17 @@ const inView = (delay = 0) => ({
   transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay },
 });
 
+function getAxes(mx: number, my: number): ActiveAxes {
+  return {
+    x: mx < 0.5 ? "tracking" : "decision",
+    y: my < 0.5 ? "data" : "female",
+  };
+}
+
 export default function ProblemSection() {
+  const [activeAxes, setActiveAxes] = useState<ActiveAxes | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
   return (
     <section className="w-full bg-white py-28 px-6" aria-labelledby="matrix-headline">
       <div className="max-w-[860px] mx-auto">
@@ -201,17 +219,55 @@ export default function ProblemSection() {
               strokeLinejoin="round"
             />
 
-            <text x={ML + MW * 0.25} y={VH - 10} textAnchor="middle" fontSize="9.5" fill="#B8BEC8" fontFamily="Inter, system-ui, sans-serif" fontWeight="600" letterSpacing="0.07em">
+            <text
+              x={ML + MW * 0.25}
+              y={VH - 10}
+              textAnchor="middle"
+              fontSize="9.5"
+              fill={activeAxes?.x === "tracking" ? "#1A7A55" : "#B8BEC8"}
+              fontFamily="Inter, system-ui, sans-serif"
+              fontWeight={activeAxes?.x === "tracking" ? "700" : "600"}
+              letterSpacing="0.07em"
+            >
               Tracking
             </text>
-            <text x={ML + MW * 0.75} y={VH - 10} textAnchor="middle" fontSize="9.5" fill="#B8BEC8" fontFamily="Inter, system-ui, sans-serif" fontWeight="600" letterSpacing="0.07em">
+            <text
+              x={ML + MW * 0.75}
+              y={VH - 10}
+              textAnchor="middle"
+              fontSize="9.5"
+              fill={activeAxes?.x === "decision" ? "#1A7A55" : "#B8BEC8"}
+              fontFamily="Inter, system-ui, sans-serif"
+              fontWeight={activeAxes?.x === "decision" ? "700" : "600"}
+              letterSpacing="0.07em"
+            >
               Decision Integration
             </text>
 
-            <text transform={`rotate(-90, 20, ${MT + MH * 0.74})`} x="20" y={MT + MH * 0.74 + 4} textAnchor="middle" fontSize="9.5" fill="#B8BEC8" fontFamily="Inter, system-ui, sans-serif" fontWeight="600" letterSpacing="0.07em">
+            <text
+              transform={`rotate(-90, 20, ${MT + MH * 0.74})`}
+              x="20"
+              y={MT + MH * 0.74 + 4}
+              textAnchor="middle"
+              fontSize="9.5"
+              fill={activeAxes?.y === "data" ? "#1A7A55" : "#B8BEC8"}
+              fontFamily="Inter, system-ui, sans-serif"
+              fontWeight={activeAxes?.y === "data" ? "700" : "600"}
+              letterSpacing="0.07em"
+            >
               Data Collection
             </text>
-            <text transform={`rotate(-90, 20, ${MT + MH * 0.26})`} x="20" y={MT + MH * 0.26 + 4} textAnchor="middle" fontSize="9.5" fill="#B8BEC8" fontFamily="Inter, system-ui, sans-serif" fontWeight="600" letterSpacing="0.07em">
+            <text
+              transform={`rotate(-90, 20, ${MT + MH * 0.26})`}
+              x="20"
+              y={MT + MH * 0.26 + 4}
+              textAnchor="middle"
+              fontSize="9.5"
+              fill={activeAxes?.y === "female" ? "#1A7A55" : "#B8BEC8"}
+              fontFamily="Inter, system-ui, sans-serif"
+              fontWeight={activeAxes?.y === "female" ? "700" : "600"}
+              letterSpacing="0.07em"
+            >
               FEMALE-SPECIFIC MODELS
             </text>
           </svg>
@@ -229,9 +285,31 @@ export default function ProblemSection() {
                 ease: [0.22, 1, 0.36, 1],
                 delay: 0.4 + i * 0.07,
               }}
+              onMouseEnter={() => {
+                setHoveredCard(name);
+                setActiveAxes(getAxes(mx, my));
+              }}
+              onMouseLeave={() => {
+                setHoveredCard(null);
+                setActiveAxes(null);
+              }}
             >
-              <div
-                className="bg-white border border-[#B8C4CF] rounded-[9px] shadow-[0_3px_16px_rgba(0,0,0,0.14)] cursor-default"
+              <motion.div
+                animate={
+                  hoveredCard === name
+                    ? {
+                        scale: 1.035,
+                        y: -4,
+                        boxShadow: "0 10px 28px rgba(0,0,0,0.18)",
+                      }
+                    : {
+                        scale: 1,
+                        y: 0,
+                        boxShadow: "0 3px 16px rgba(0,0,0,0.14)",
+                      }
+                }
+                transition={{ duration: 0.045, ease: "linear" }}
+                className="bg-white border border-[#B8C4CF] rounded-[9px] cursor-default"
                 style={{ padding: "9px 12px" }}
               >
                 <div className="flex items-center gap-[7px] mb-[5px]">
@@ -245,7 +323,7 @@ export default function ProblemSection() {
                 <p className="text-[9px] leading-none text-[#6B7280] whitespace-nowrap">
                   {desc}
                 </p>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
 
@@ -256,6 +334,14 @@ export default function ProblemSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+            onMouseEnter={() => {
+              setHoveredCard("AVAIL");
+              setActiveAxes(getAxes(0.83, 0.92));
+            }}
+            onMouseLeave={() => {
+              setHoveredCard(null);
+              setActiveAxes(null);
+            }}
           >
             <div
               className="absolute -inset-[20px] rounded-[28px] pointer-events-none"
@@ -271,14 +357,28 @@ export default function ProblemSection() {
                 filter: "blur(5px)",
               }}
             />
-            <div
+            <motion.div
+              animate={
+                hoveredCard === "AVAIL"
+                  ? {
+                      scale: 1.025,
+                      y: -5,
+                      boxShadow:
+                        "0 10px 34px rgba(111,191,158,0.42), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
+                    }
+                  : {
+                      scale: 1,
+                      y: 0,
+                      boxShadow:
+                        "0 4px 30px rgba(111,191,158,0.40), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
+                    }
+              }
+              transition={{ duration: 0.045, ease: "linear" }}
               className="relative bg-white rounded-[16px] cursor-default"
               style={{
                 width: 248,
                 padding: "16px 19px",
                 border: "2px solid #74c7a7",
-                boxShadow:
-                  "0 4px 30px rgba(111,191,158,0.40), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
               }}
             >
               <div className="flex items-center gap-[8px] mb-[8px]">
@@ -292,7 +392,7 @@ export default function ProblemSection() {
                 <br />
                 for elite women's sport
               </p>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
