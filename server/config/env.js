@@ -32,3 +32,8 @@ export const env = {
     .map((email) => email.trim())
     .filter(Boolean),
 };
+
+// Optional startup warning
+if (!env.teamNotificationEmails.length) {
+  console.warn("Warning: No team notification emails configured.");
+}
