@@ -209,3 +209,6 @@ __marimo__/
 
 credentials.json
 .env
+node_modules/
+dist/
+.vercel/
