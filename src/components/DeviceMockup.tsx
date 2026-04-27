@@ -37,12 +37,14 @@ export default function DeviceMockup() {
         >
           <div className="relative w-full">
             {/* Screen content */}
-            <img
+
+            {/*===== Add back when having actual interface =======*/}
+            {/* <img
               src="/figure/Example.svg"
               alt="Avail example screen"
               className="block w-full h-full object-cover object-top select-none pointer-events-none"
               draggable={false}
-            />
+            /> */}
           </div>
         </motion.div>
       </div>
