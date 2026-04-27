@@ -7,7 +7,8 @@ function required(name, fallback = "") {
 }
 
 function normalizePrivateKey(value) {
-  return value.replace(/\\n/g, "\n").trim();
+  const trimmed = value.trim().replace(/^['"]|['"]$/g, "");
+  return trimmed.replace(/\\n/g, "\n").replace(/\\r/g, "\r").trim();
 }
 
 export const env = {
