@@ -80,8 +80,8 @@ const VALUES = [
         />
       </svg>
     ),
-    title: "Validate the pilot opportunity",
-    desc: "Explore whether your team is suitable for a 4–6 month pilot programme.",
+    title: "Join the waitlist",
+    desc: "Let us know about your team and we’ll keep you updated on access.",
   },
   {
     Icon: () => (
@@ -408,17 +408,17 @@ export default function JoinPilotProgrammePage() {
           className="text-center mb-14"
         >
           <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#74C7A7] mb-3">
-            Pilot Programme
+            Waitlist
           </p>
           <h1
             className="font-bold tracking-[-0.035em] text-[#111318] leading-[1.1] mb-3"
             style={{ fontSize: "clamp(28px, 4vw, 46px)" }}
           >
-            Join Pilot Programme
+            Join waitlist
           </h1>
           <p className="text-[15px] text-[#6B7280] leading-[1.65] max-w-[420px] mx-auto">
-            Tell us about your team and we'll confirm whether AVAIL is a strong
-            fit for a 4–6 month pilot programme.
+            Tell us about your team and we’ll let you know when AVAIL opens to
+            teams like yours.
           </p>
         </motion.div>
 
@@ -465,8 +465,7 @@ export default function JoinPilotProgrammePage() {
                   Request received
                 </h2>
                 <p className="text-[14px] leading-[1.72] text-[#6B7280] max-w-[300px]">
-                  We'll be in touch within 24 hours to confirm next steps for
-                  the pilot programme at{" "}
+                  We’ll be in touch with next steps for the AVAIL waitlist at{" "}
                   <span className="text-[#111318] font-medium">
                     {form.email}
                   </span>
@@ -495,11 +494,11 @@ export default function JoinPilotProgrammePage() {
                 {/* Title inside card */}
                 <div className="mb-1">
                   <h2 className="text-[18px] font-bold text-[#111318] tracking-[-0.02em] mb-1">
-                    Join Pilot Programme
+                    Join waitlist
                   </h2>
                   <p className="text-[13px] leading-[1.65] text-[#6B7280]">
-                    Share a few details and we'll assess whether your team is a
-                    good fit for an AVAIL pilot.
+                    Share a few details and we’ll add your team to the AVAIL
+                    waitlist.
                   </p>
                 </div>
 
@@ -646,7 +645,7 @@ export default function JoinPilotProgrammePage() {
                       e.currentTarget.style.opacity = "0.7";
                     }}
                   >
-                    {isSubmitting ? "Submitting..." : "Join Pilot Programme"}
+                    {isSubmitting ? "Submitting..." : "Join waitlist"}
                   </button>
                   <p className="text-center text-[11.5px] text-[#9CA3AF]">
                     We typically respond within 24 hours.

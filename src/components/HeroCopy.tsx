@@ -45,7 +45,7 @@ export default function HeroCopy() {
           className="inline-flex items-center justify-center h-[46px] px-7 rounded-full text-white text-[14px] font-semibold tracking-[-0.01em] shadow-[0_4px_18px_rgba(111,191,158,0.45)] hover:opacity-[0.88] hover:-translate-y-px active:translate-y-0 transition-all duration-150"
           style={{ background: 'linear-gradient(45deg, #6FBF9E, #4FA3C7)' }}
         >
-          Join Pilot Programme
+          Join waitlist
         </Link>
       </motion.div>
     </>

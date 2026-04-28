@@ -2,6 +2,7 @@ import HeroCopy from '../components/HeroCopy'
 import DeviceMockup from '../components/DeviceMockup'
 import ProblemSection from '../components/ProblemSection'
 import SolutionSection from '../components/SolutionSection'
+import TeamSection from '../components/TeamSection'
 import FAQSection from '../components/FAQSection'
 
 export default function HomePage() {
@@ -27,6 +28,9 @@ export default function HomePage() {
 
       {/* ─── Solution ─────────────────────────────────────── */}
       <SolutionSection />
+
+      {/* ─── Team ─────────────────────────────────────────── */}
+      <TeamSection />
 
       {/* ─── FAQ ──────────────────────────────────────────── */}
       <FAQSection />

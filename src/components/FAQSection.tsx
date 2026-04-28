@@ -150,7 +150,7 @@ function FAQItem({ q, a, index }: FAQItemProps) {
 
 export default function FAQSection() {
   return (
-    <section className="w-full bg-white py-28 px-6" aria-labelledby="faq-headline">
+    <section className="w-full bg-white pt-36 pb-28 px-6" aria-labelledby="faq-headline">
       <div className="max-w-[720px] mx-auto">
 
         {/* Header */}
