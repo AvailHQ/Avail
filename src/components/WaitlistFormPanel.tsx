@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { submitDemoRequest } from "../lib/api";
 
 const ROLES = ["Coach", "Performance Staff", "Sports Scientist", "Other"];
@@ -172,6 +173,7 @@ function Textarea({
 }
 
 export default function WaitlistFormPanel() {
+  const navigate = useNavigate();
   const [form, setForm] = useState<FormState>({
     firstName: "",
     lastName: "",
@@ -186,6 +188,16 @@ export default function WaitlistFormPanel() {
   const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (!submitted) return;
+
+    const timeout = window.setTimeout(() => {
+      navigate("/");
+    }, 3000);
+
+    return () => window.clearTimeout(timeout);
+  }, [navigate, submitted]);
 
   const set =
     (key: keyof FormState) =>

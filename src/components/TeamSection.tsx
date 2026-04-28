@@ -7,20 +7,44 @@ type TeamMember = {
   name: string;
   role: string;
   accent: string;
+  photo: string;
+  quote: string;
 };
 
 const TEAM: TeamMember[] = [
   {
-    name: "YuLun Miao",
-    role: "Co-Founder & Technical Lead",
+    name: "Muhe Wang",
+    role: "Bio-domain & Pgysiology Lead",
     accent: "#74c7a7",
+    photo: "/figure/myl.jpg",
+    quote:
+      "“My goal is to help ensure female athletes are no longer treated as underrepresented variables in sports science, but as a priority in performance innovation.”",
   },
-  { name: "Elena Brooks", role: "Performance Science Lead", accent: "#74c7a7" },
-  { name: "Daniel Reed", role: "Founding Engineer", accent: "#74c7a7" },
-  { name: "Sophie Carter", role: "Product & Partnerships", accent: "#74c7a7" },
+  {
+    name: "Yash Saxena",
+    role: "Product & Science Lead",
+    accent: "#74c7a7",
+    photo: "/figure/myl.jpg",
+    quote:
+      "Performance decisions get better when physiology is treated as context, not noise. AVAIL turns that context into clear daily guidance.",
+  },
+  {
+    name: "Marc Miao",
+    role: "Technical & Security Lead",
+    accent: "#74c7a7",
+    photo: "/figure/myl.jpg",
+    quote:
+      "Closing the intelligence gap in women’s sport is not just a technical challenge, it is the foundation for building safer, smarter, and physiology-aware performance systems",
+  },
+  {
+    name: "Omar Kamesa",
+    role: "Business & Partnerships Lead",
+    accent: "#74c7a7",
+    photo: "/figure/omar.jpg",
+    quote:
+      "We build alongside clubs and performance teams so AVAIL fits the rhythm of real training environments, not just perfect dashboards.",
+  },
 ];
-
-const TEAM_PHOTO_SRC = "/figure/myl.jpg";
 
 const MINT = "#74c7a7";
 
@@ -39,7 +63,7 @@ function GhostAvatar({ member }: { member: TeamMember }) {
       style={{ width: 78, height: 78 }}
     >
       <img
-        src={TEAM_PHOTO_SRC}
+        src={member.photo}
         alt=""
         aria-hidden="true"
         className="w-full h-full object-cover"
@@ -73,9 +97,10 @@ function ActiveAvatar({ member }: { member: TeamMember }) {
       {/* Photo */}
       <div className="relative w-full h-full rounded-full overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.10)]">
         <img
-          src={TEAM_PHOTO_SRC}
+          src={member.photo}
           alt={member.name}
           className="w-full h-full object-cover"
+          style={{ objectPosition: "center calc(50% - 5px)" }}
           loading="lazy"
         />
       </div>
@@ -161,17 +186,24 @@ export default function TeamSection() {
               <QuoteIcon />
             </div>
 
-            <blockquote className="max-w-[560px]">
-              <h2
-                id="team-headline"
-                className="max-w-[560px] font-bold leading-[1.5] tracking-[-0.035em] text-[#111318]"
-                style={{ fontSize: "clamp(22px, 2.6vw, 28px)" }}
+            <AnimatePresence mode="wait">
+              <motion.blockquote
+                key={active.name + "-quote"}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                className="max-w-[560px]"
               >
-                We combine deep science with real-world performance experience
-                to build technology that truly supports women athletes and the
-                teams behind them.
-              </h2>
-            </blockquote>
+                <h2
+                  id="team-headline"
+                  className="max-w-[560px] font-bold leading-[1.5] tracking-[-0.035em] text-[#111318]"
+                  style={{ fontSize: "clamp(22px, 2.6vw, 28px)" }}
+                >
+                  {active.quote}
+                </h2>
+              </motion.blockquote>
+            </AnimatePresence>
           </motion.div>
 
           {/* ── RIGHT: Carousel (55%) ───────────────────────── */}

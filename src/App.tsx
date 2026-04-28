@@ -4,7 +4,6 @@ import Footer from './components/Footer'
 
 import HomePage from './pages/HomePage'
 import JoinPilotProgrammePage from './pages/JoinPilotProgrammePage'
-import PricingPage from './pages/PricingPage'
 
 export default function App() {
   return (
@@ -12,7 +11,6 @@ export default function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/pricing" element={<PricingPage />} />
         <Route path="/join-pilot-programme" element={<JoinPilotProgrammePage />} />
       </Routes>
       <Footer />
