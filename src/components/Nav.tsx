@@ -25,16 +25,30 @@ export default function Nav() {
         </a>
 
         <ul className="hidden hero:flex items-center gap-6 h-full" role="list">
-          {["How it works", "Science", "Pricing"].map((link) => (
-            <li key={link}>
-              <a
-                href={`#${link.toLowerCase()}`}
-                className="text-[13px] font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150"
-              >
-                {link}
-              </a>
-            </li>
-          ))}
+          <li>
+            <a
+              href="/#solution-headline"
+              className="text-[13px] font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150"
+            >
+              How it works
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#team-headline"
+              className="text-[13px] font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150"
+            >
+              Science
+            </a>
+          </li>
+          <li>
+            <Link
+              to="/pricing"
+              className="text-[13px] font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150"
+            >
+              Pricing
+            </Link>
+          </li>
         </ul>
 
         <Link

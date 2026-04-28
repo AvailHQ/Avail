@@ -98,13 +98,23 @@ export default function Footer() {
                   {heading}
                 </p>
                 {links.map((link) => (
-                  <a
-                    key={link}
-                    href="#"
-                    className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
-                  >
-                    {link}
-                  </a>
+                  link === "Pricing" ? (
+                    <Link
+                      key={link}
+                      to="/pricing"
+                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
+                    >
+                      {link}
+                    </Link>
+                  ) : (
+                    <a
+                      key={link}
+                      href="#"
+                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
+                    >
+                      {link}
+                    </a>
+                  )
                 ))}
               </div>
             ))}
