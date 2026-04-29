@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 
 import HomePage from './pages/HomePage'
 import HowItWorksPage from './pages/HowItWorksPage'
@@ -9,6 +10,7 @@ import JoinPilotProgrammePage from './pages/JoinPilotProgrammePage'
 export default function App() {
   return (
     <div className="overflow-x-clip">
+      <ScrollToTop />
       <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />

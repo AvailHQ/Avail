@@ -166,7 +166,7 @@ interface FieldStyle {
 
 // ─── Shared input styles ──────────────────────────────────────────────────────
 const BASE =
-  "w-full bg-white text-[13.5px] text-[#111318] placeholder-[#B0B8C4] rounded-lg outline-none transition-all duration-150";
+  "w-full bg-white text-[13.5px] text-[#111318] placeholder-[#B0B8C4] rounded-lg outline-none transition-all duration-150 wide:text-[15px]";
 
 function useField(): {
   focused: boolean;
@@ -199,7 +199,7 @@ function Input({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151]">{label}</label>
+      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
       <input
         type={type}
         name={name}
@@ -208,7 +208,7 @@ function Input({
         placeholder={placeholder}
         onFocus={f.onFocus}
         onBlur={f.onBlur}
-        className={`${BASE} h-[42px] px-[14px]`}
+        className={`${BASE} h-[42px] px-[14px] wide:h-[50px] wide:px-4`}
         style={f.borderStyle}
       />
       {error && <p className="text-[11px] text-red-400">{error}</p>}
@@ -228,7 +228,7 @@ function Select({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151]">{label}</label>
+      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
       <div className="relative">
         <select
           name={name}
@@ -236,7 +236,7 @@ function Select({
           onChange={onChange}
           onFocus={f.onFocus}
           onBlur={f.onBlur}
-          className={`${BASE} h-[42px] pl-[14px] pr-10 appearance-none cursor-pointer`}
+          className={`${BASE} h-[42px] pl-[14px] pr-10 appearance-none cursor-pointer wide:h-[50px] wide:pl-4`}
           style={{ ...f.borderStyle, color: value ? "#111318" : "#B0B8C4" }}
         >
           <option value="" disabled>
@@ -278,7 +278,7 @@ function Textarea({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151]">{label}</label>
+      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
       <textarea
         name={name}
         value={value}
@@ -287,7 +287,7 @@ function Textarea({
         rows={4}
         onFocus={f.onFocus}
         onBlur={f.onBlur}
-        className={`${BASE} px-[14px] py-[10px] resize-none leading-[1.65]`}
+        className={`${BASE} px-[14px] py-[10px] resize-none leading-[1.65] wide:px-4 wide:py-3`}
         style={f.borderStyle}
       />
     </div>
@@ -397,7 +397,7 @@ export default function JoinPilotProgrammePage() {
 
   return (
     <div
-      className="min-h-screen pt-24 pb-28 px-6 relative"
+      className="min-h-screen pt-24 pb-28 px-6 relative wide:pt-28 wide:pb-32"
       style={{
         background:
           "radial-gradient(ellipse 90% 70% at 50% 20%, #ffffff 0%, #F8F8F6 100%)",
@@ -421,24 +421,23 @@ export default function JoinPilotProgrammePage() {
         <rect width="100%" height="100%" fill="url(#demoGrid)" />
       </svg>
 
-      <div className="relative z-10 max-w-[1020px] mx-auto">
+      <div className="relative z-10 max-w-[1020px] mx-auto wide:max-w-[1440px]">
         {/* ── Page header ── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-14"
+          className="text-center mb-14 wide:mb-16"
         >
           <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#74C7A7] mb-3">
             Waitlist
           </p>
           <h1
-            className="font-bold tracking-[-0.035em] text-[#111318] leading-[1.1] mb-3"
-            style={{ fontSize: "clamp(28px, 4vw, 46px)" }}
+            className="font-bold tracking-[-0.035em] text-[#111318] leading-[1.1] mb-3 text-[clamp(28px,4vw,46px)] wide:text-[60px]"
           >
             Join waitlist
           </h1>
-          <p className="text-[15px] text-[#6B7280] leading-[1.65] max-w-[420px] mx-auto">
+          <p className="text-[15px] text-[#6B7280] leading-[1.65] max-w-[420px] mx-auto wide:max-w-[560px] wide:text-[17px]">
             Tell us about your team and we’ll let you know when AVAIL opens to
             teams like yours.
           </p>
@@ -469,7 +468,7 @@ export default function JoinPilotProgrammePage() {
         </motion.div>
 
         {/* ── Two-column body ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 items-start ">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 items-start wide:grid-cols-[1fr_520px] wide:gap-14">
           {/* ── LEFT: Form ── */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -531,7 +530,7 @@ export default function JoinPilotProgrammePage() {
               <form
                 onSubmit={handleSubmit}
                 noValidate
-                className="bg-white rounded-2xl p-9 flex flex-col gap-5 border border-gray-200 bg-white/90 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-m"
+                className="bg-white rounded-2xl p-9 flex flex-col gap-5 border border-gray-200 bg-white/90 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-m wide:p-11 wide:gap-6"
                 style={{
                   border: "1px solid #E5E7EB",
                   boxShadow: "0 1px 16px rgba(0,0,0,0.06)",
@@ -539,10 +538,10 @@ export default function JoinPilotProgrammePage() {
               >
                 {/* Title inside card */}
                 <div className="mb-1">
-                  <h2 className="text-[18px] font-bold text-[#111318] tracking-[-0.02em] mb-1">
+                  <h2 className="text-[18px] font-bold text-[#111318] tracking-[-0.02em] mb-1 wide:text-[22px]">
                     Join waitlist
                   </h2>
-                  <p className="text-[13px] leading-[1.65] text-[#6B7280]">
+                  <p className="text-[13px] leading-[1.65] text-[#6B7280] wide:text-[15px]">
                     Share a few details and we’ll add your team to the AVAIL
                     waitlist.
                   </p>
@@ -657,7 +656,7 @@ export default function JoinPilotProgrammePage() {
                         )}
                       </div>
                     </div>
-                    <span className="text-[12.5px] text-[#6B7280] leading-[1.5]">
+                    <span className="text-[12.5px] text-[#6B7280] leading-[1.5] wide:text-[14px]">
                       I agree to be contacted about AVAIL
                     </span>
                   </label>
@@ -673,7 +672,7 @@ export default function JoinPilotProgrammePage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full opacity-70 h-[44px] rounded-lg text-white text-[14px] font-semibold tracking-[-0.01em] transition-all bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] duration-150 hover:-translate-y-[1.5px] active:translate-y-0"
+                    className="w-full opacity-70 h-[44px] rounded-lg text-white text-[14px] font-semibold tracking-[-0.01em] transition-all bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] duration-150 hover:-translate-y-[1.5px] active:translate-y-0 wide:h-[52px] wide:text-[16px]"
                     style={{
                       boxShadow: "0 2px 12px rgba(116,199,167,0.35)",
                       cursor: isSubmitting ? "wait" : "pointer",
@@ -693,7 +692,7 @@ export default function JoinPilotProgrammePage() {
                   >
                     {isSubmitting ? "Submitting..." : "Join waitlist"}
                   </button>
-                  <p className="text-center text-[11.5px] text-[#9CA3AF]">
+                  <p className="text-center text-[11.5px] text-[#9CA3AF] wide:text-[13px]">
                     We typically respond within 24 hours.
                   </p>
                 </div>
@@ -733,10 +732,10 @@ export default function JoinPilotProgrammePage() {
                     ease: [0.22, 1, 0.36, 1],
                     delay: 0.22 + i * 0.09,
                   }}
-                  className="flex gap-5 py-8 first:pt-2"
+                  className="flex gap-5 py-8 first:pt-2 wide:gap-6 wide:py-9"
                 >
                   <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-[2px]"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-[2px] wide:h-12 wide:w-12"
                     style={{
                       background: "rgba(116,199,167,0.10)",
                       color: "#74C7A7",
@@ -745,10 +744,10 @@ export default function JoinPilotProgrammePage() {
                     <Icon />
                   </div>
                   <div>
-                    <p className="text-[14.5px] font-semibold text-[#111318] tracking-[-0.01em] mb-[6px]">
+                    <p className="text-[14.5px] font-semibold text-[#111318] tracking-[-0.01em] mb-[6px] wide:text-[17px]">
                       {title}
                     </p>
-                    <p className="text-[13px] text-[#6B7280] leading-[1.7]">
+                    <p className="text-[13px] text-[#6B7280] leading-[1.7] wide:text-[15px]">
                       {desc}
                     </p>
                   </div>

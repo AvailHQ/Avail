@@ -25,7 +25,7 @@ interface FieldStyle {
 }
 
 const BASE =
-  "w-full bg-white text-[13.5px] text-[#111318] placeholder-[#B0B8C4] rounded-lg outline-none transition-all duration-150";
+  "w-full bg-white text-[13.5px] text-[#111318] placeholder-[#B0B8C4] rounded-lg outline-none transition-all duration-150 wide:text-[15px]";
 
 function useField(): {
   borderStyle: FieldStyle;
@@ -63,7 +63,7 @@ function Input({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151]">{label}</label>
+      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
       <input
         type={type}
         name={name}
@@ -72,7 +72,7 @@ function Input({
         placeholder={placeholder}
         onFocus={f.onFocus}
         onBlur={f.onBlur}
-        className={`${BASE} h-[42px] px-[14px]`}
+        className={`${BASE} h-[42px] px-[14px] wide:h-[50px] wide:px-4`}
         style={f.borderStyle}
       />
       {error && <p className="text-[11px] text-red-400">{error}</p>}
@@ -100,7 +100,7 @@ function Select({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151]">{label}</label>
+      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
       <div className="relative">
         <select
           name={name}
@@ -108,7 +108,7 @@ function Select({
           onChange={onChange}
           onFocus={f.onFocus}
           onBlur={f.onBlur}
-          className={`${BASE} h-[42px] pl-[14px] pr-10 appearance-none cursor-pointer`}
+          className={`${BASE} h-[42px] pl-[14px] pr-10 appearance-none cursor-pointer wide:h-[50px] wide:pl-4`}
           style={{ ...f.borderStyle, color: value ? "#111318" : "#B0B8C4" }}
         >
           <option value="" disabled>
@@ -156,7 +156,7 @@ function Textarea({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151]">{label}</label>
+      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
       <textarea
         name={name}
         value={value}
@@ -165,7 +165,7 @@ function Textarea({
         rows={4}
         onFocus={f.onFocus}
         onBlur={f.onBlur}
-        className={`${BASE} resize-none px-[14px] py-[10px] leading-[1.65]`}
+        className={`${BASE} resize-none px-[14px] py-[10px] leading-[1.65] wide:px-4 wide:py-3`}
         style={f.borderStyle}
       />
     </div>
@@ -300,17 +300,17 @@ export default function WaitlistFormPanel() {
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       onSubmit={handleSubmit}
       noValidate
-      className="mx-auto flex max-w-[620px] flex-col gap-5 rounded-2xl border border-gray-200 bg-white/90 p-9 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur"
+      className="mx-auto flex max-w-[620px] flex-col gap-5 rounded-2xl border border-gray-200 bg-white/90 p-9 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur wide:max-w-[760px] wide:gap-6 wide:p-11"
       style={{
         border: "1px solid #E5E7EB",
         boxShadow: "0 1px 16px rgba(0,0,0,0.06)",
       }}
     >
       <div className="mb-1">
-        <h2 className="mb-1 text-[18px] font-bold tracking-[-0.02em] text-[#111318]">
+        <h2 className="mb-1 text-[18px] font-bold tracking-[-0.02em] text-[#111318] wide:text-[22px]">
           Join waitlist
         </h2>
-        <p className="text-[13px] leading-[1.65] text-[#6B7280]">
+        <p className="text-[13px] leading-[1.65] text-[#6B7280] wide:text-[15px]">
           Share a few details and we’ll add your team to the AVAIL waitlist.
         </p>
       </div>
@@ -417,7 +417,7 @@ export default function WaitlistFormPanel() {
               )}
             </div>
           </div>
-          <span className="text-[12.5px] leading-[1.5] text-[#6B7280]">
+          <span className="text-[12.5px] leading-[1.5] text-[#6B7280] wide:text-[14px]">
             I agree to be contacted about AVAIL
           </span>
         </label>
@@ -430,7 +430,7 @@ export default function WaitlistFormPanel() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="h-[44px] w-full rounded-lg bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] text-[14px] font-semibold tracking-[-0.01em] text-white opacity-70 transition-all duration-150 hover:-translate-y-[1.5px] hover:opacity-100 active:translate-y-0 disabled:hover:translate-y-0 disabled:hover:opacity-70"
+          className="h-[44px] w-full rounded-lg bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] text-[14px] font-semibold tracking-[-0.01em] text-white opacity-70 transition-all duration-150 hover:-translate-y-[1.5px] hover:opacity-100 active:translate-y-0 disabled:hover:translate-y-0 disabled:hover:opacity-70 wide:h-[52px] wide:text-[16px]"
           style={{
             boxShadow: "0 2px 12px rgba(116,199,167,0.35)",
             cursor: isSubmitting ? "wait" : "pointer",
@@ -438,7 +438,7 @@ export default function WaitlistFormPanel() {
         >
           {isSubmitting ? "Submitting..." : "Join waitlist"}
         </button>
-        <p className="text-center text-[11.5px] text-[#9CA3AF]">
+        <p className="text-center text-[11.5px] text-[#9CA3AF] wide:text-[13px]">
           We typically respond within 24 hours.
         </p>
       </div>

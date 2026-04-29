@@ -59,7 +59,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-[1160px] mx-auto px-8 pt-16 pb-12 grid grid-cols-1 hero:grid-cols-5 gap-12"
+          className="max-w-[1160px] mx-auto px-8 pt-16 pb-12 grid grid-cols-1 hero:grid-cols-5 gap-12 wide:max-w-[1560px]"
         >
           {/* ── Brand column ── */}
           <div className="hero:col-span-1 flex flex-col gap-6">
@@ -81,14 +81,14 @@ export default function Footer() {
             </a>
 
             {/* Tagline */}
-            <p className="text-[13px] leading-[1.65] text-[#6B7280] max-w-[200px]">
+            <p className="text-[13px] leading-[1.65] text-[#6B7280] max-w-[200px] wide:max-w-[240px] wide:text-[15px]">
               Cycle-aware load intelligence for elite women's sport.
             </p>
 
             {/* CTA */}
             <Link
               to="/join-pilot-programme"
-              className="inline-flex items-center justify-center self-start h-9 px-4 rounded-full text-white text-[12px] font-semibold tracking-[0.01em] shadow-[0_2px_12px_rgba(111,191,158,0.3)] hover:opacity-85 hover:-translate-y-px transition-all duration-150"
+              className="inline-flex items-center justify-center self-start h-9 px-4 rounded-full text-white text-[12px] font-semibold tracking-[0.01em] shadow-[0_2px_12px_rgba(111,191,158,0.3)] hover:opacity-85 hover:-translate-y-px transition-all duration-150 wide:h-11 wide:px-6 wide:text-[14px]"
               style={{ background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }}
             >
               Join waitlist
@@ -108,7 +108,7 @@ export default function Footer() {
                       key={link}
                       type="button"
                       onClick={() => setShowPricingModal(true)}
-                      className="self-start text-left text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
+                    className="self-start text-left text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug wide:text-[15px]"
                     >
                       {link}
                     </button>
@@ -116,7 +116,7 @@ export default function Footer() {
                     <Link
                       key={link}
                       to="/how-it-works"
-                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
+                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug wide:text-[15px]"
                     >
                       {link}
                     </Link>
@@ -124,7 +124,7 @@ export default function Footer() {
                     <Link
                       key={link}
                       to="/"
-                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
+                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug wide:text-[15px]"
                     >
                       {link}
                     </Link>
@@ -132,7 +132,7 @@ export default function Footer() {
                     <a
                       key={link}
                       href="#"
-                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
+                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug wide:text-[15px]"
                     >
                       {link}
                     </a>
@@ -145,7 +145,7 @@ export default function Footer() {
 
         {/* ── Bottom bar ────────────────────────────────── */}
         <div
-          className="max-w-[1160px] mx-auto px-8 py-5 flex flex-col hero:flex-row items-center justify-between gap-4"
+          className="max-w-[1160px] mx-auto px-8 py-5 flex flex-col hero:flex-row items-center justify-between gap-4 wide:max-w-[1560px]"
           style={{ borderTop: "1px solid #E8ECF0" }}
         >
           <p className="text-[12px] text-[#9CA3AF] font-medium">

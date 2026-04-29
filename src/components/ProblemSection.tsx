@@ -141,8 +141,8 @@ export default function ProblemSection() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <section className="w-full bg-white py-28 px-6" aria-labelledby="matrix-headline">
-      <div className="max-w-[860px] mx-auto">
+    <section className="w-full bg-white py-28 px-6 wide:py-32" aria-labelledby="matrix-headline">
+      <div className="max-w-[860px] mx-auto wide:max-w-[1320px]">
         <motion.p
           {...inView(0)}
           className="text-center text-[11px] font-semibold tracking-[0.14em] uppercase text-[#9CA3AF] mb-5"
@@ -153,8 +153,7 @@ export default function ProblemSection() {
         <motion.h2
           {...inView(0.07)}
           id="matrix-headline"
-          className="text-center font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-5"
-          style={{ fontSize: "clamp(24px, 3.4vw, 40px)" }}
+          className="text-center font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-5 text-[clamp(24px,3.4vw,40px)] wide:text-[52px]"
         >
           The only decision intelligence system
           <br />
@@ -163,7 +162,7 @@ export default function ProblemSection() {
 
         <motion.p
           {...inView(0.13)}
-          className="text-center text-[15px] leading-[1.65] text-[#6B7280] max-w-[460px] mx-auto mb-14"
+          className="text-center text-[15px] leading-[1.65] text-[#6B7280] max-w-[460px] mx-auto mb-14 wide:max-w-[620px] wide:text-[17px] wide:mb-16"
         >
           Avail transforms physiological variability into clear, actionable
           training decisions.

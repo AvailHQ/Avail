@@ -6,10 +6,8 @@ import {
   ArrowRight,
   Brain,
   CheckCircle2,
-  Database,
   Gauge,
   HeartPulse,
-  LineChart,
   Lock,
   Network,
   RefreshCcw,
@@ -18,7 +16,6 @@ import {
   Sparkles,
   TrendingUp,
   Users,
-  Waves,
 } from "lucide-react";
 
 // Shared reveal timings used across the page so motion stays consistent.
@@ -129,34 +126,6 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
   },
 ];
 
-const SCIENCE_CARDS = [
-  {
-    title: "Cycle-aware modelling",
-    copy: "Physiological variability is treated as decision context, not noise.",
-    Icon: Waves,
-  },
-  {
-    title: "Neuroendocrine-informed logic",
-    copy: "Readiness signals are interpreted with female physiology in mind.",
-    Icon: Brain,
-  },
-  {
-    title: "Privacy-first architecture",
-    copy: "Sensitive details stay protected while staff receive useful guidance.",
-    Icon: ShieldCheck,
-  },
-  {
-    title: "Multi-season calibration",
-    copy: "Longitudinal trends sharpen recommendations across training blocks.",
-    Icon: LineChart,
-  },
-  {
-    title: "Proprietary dataset advantage",
-    copy: "Every pilot improves the intelligence layer for women's sport.",
-    Icon: Database,
-  },
-];
-
 const TRUST_POINTS = [
   "Athletes control data sharing",
   "Coaches see structured insights, not raw cycle logs",
@@ -178,23 +147,12 @@ function GradientButton({ children }: { children: React.ReactNode }) {
   return (
     <Link
       to="/join-pilot-programme"
-      className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-[13px] font-bold text-white shadow-[0_12px_30px_rgba(79,163,199,0.24)] transition-all duration-150 hover:-translate-y-px hover:opacity-90"
+      className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-[13px] font-bold text-white shadow-[0_12px_30px_rgba(79,163,199,0.24)] transition-all duration-150 hover:-translate-y-px hover:opacity-90 wide:h-[54px] wide:px-7 wide:text-[15px]"
       style={{ background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }}
     >
       {children}
       <ArrowRight className="h-4 w-4" aria-hidden="true" />
     </Link>
-  );
-}
-
-function SecondaryButton({ children }: { children: React.ReactNode }) {
-  return (
-    <a
-      href="mailto:miaoyulun380@gmail.com?subject=AVAIL%20demo%20request"
-      className="inline-flex h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-5 text-[13px] font-bold text-slate-700 shadow-[0_10px_24px_rgba(15,23,42,0.05)] transition-all duration-150 hover:-translate-y-px hover:border-slate-300 hover:text-[#111318]"
-    >
-      {children}
-    </a>
   );
 }
 
@@ -564,7 +522,7 @@ function WorkflowCard({ step, index }: { step: WorkflowStep; index: number }) {
       {...fadeUp(0.05)}
       className="relative min-h-[78vh] w-full overflow-hidden border-t border-slate-200/80 bg-[#FEFEFC] shadow-[0_-18px_54px_rgba(15,23,42,0.06)]"
     >
-      <div className="relative mx-auto grid min-h-[78vh] w-full max-w-[1120px] px-6 py-6 hero:grid-cols-[0.38fr_0.62fr] hero:gap-8 hero:px-0 hero:py-8">
+      <div className="relative mx-auto grid min-h-[78vh] w-full max-w-[1120px] px-6 py-6 hero:grid-cols-[0.38fr_0.62fr] hero:gap-8 hero:px-0 hero:py-8 wide:max-w-[1480px] wide:gap-12">
         <div className="absolute left-6 top-5 text-[72px] font-bold leading-none tracking-[-0.08em] text-slate-100 hero:left-0 hero:text-[120px]">
           {step.number}
         </div>
@@ -573,19 +531,18 @@ function WorkflowCard({ step, index }: { step: WorkflowStep; index: number }) {
             {step.eyebrow}
           </p>
           <h2
-            className="max-w-[440px] font-bold leading-[1.05] tracking-[-0.045em] text-[#111318]"
-            style={{ fontSize: "clamp(28px, 4vw, 54px)" }}
+            className="max-w-[440px] font-bold leading-[1.05] tracking-[-0.045em] text-[#111318] text-[clamp(28px,4vw,54px)] wide:max-w-[520px] wide:text-[60px]"
           >
             {step.headline}
           </h2>
-          <p className="mt-5 max-w-[390px] text-[14px] leading-[1.75] text-slate-500 hero:text-[15px]">
+          <p className="mt-5 max-w-[390px] text-[14px] leading-[1.75] text-slate-500 hero:text-[15px] wide:max-w-[480px] wide:text-[17px]">
             {step.copy}
           </p>
           <div className="mt-7 flex flex-col gap-3">
             {step.bullets.map((bullet) => (
               <div
                 key={bullet}
-                className="flex items-center gap-3 text-[13px] font-semibold text-slate-600"
+                className="flex items-center gap-3 text-[13px] font-semibold text-slate-600 wide:text-[15px]"
               >
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#EAF8F2] text-[#27815D]">
                   <CheckCircle2 className="h-3.5 w-3.5" />
@@ -643,7 +600,7 @@ function HeroDiagram() {
     <motion.div
       {...heroReveal}
       transition={{ ...heroReveal.transition, delay: 0.18 }}
-      className="relative mx-auto mt-16 max-w-[980px] rounded-[36px] border border-slate-200/70 bg-white/82 p-5 shadow-[0_30px_90px_rgba(15,23,42,0.08)] backdrop-blur-xl hero:p-8"
+      className="relative mx-auto mt-16 max-w-[980px] rounded-[36px] border border-slate-200/70 bg-white/82 p-5 shadow-[0_30px_90px_rgba(15,23,42,0.08)] backdrop-blur-xl hero:p-8 wide:max-w-[1220px]"
     >
       <div className="absolute -left-8 top-12 h-36 w-36 rounded-full bg-[#6FBF9E]/18 blur-3xl" />
       <div className="absolute -right-8 bottom-12 h-44 w-44 rounded-full bg-[#4FA3C7]/16 blur-3xl" />
@@ -695,11 +652,11 @@ export default function HowItWorksPage() {
     <main className="bg-[#FAFBF8] text-[#111318]">
       {/* Hero: page promise and high-level product flow. */}
       <section
-        className="relative overflow-hidden px-6 pb-28 pt-32 hero:pt-40"
+        className="relative overflow-hidden px-6 pb-28 pt-32 hero:pt-40 wide:pb-32"
         aria-labelledby="how-it-works-hero"
       >
         <div className="absolute inset-x-0 top-0 h-[620px] bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(111,191,158,0.20),rgba(250,251,248,0)_68%)]" />
-        <div className="relative z-10 mx-auto max-w-[1120px] text-center">
+        <div className="relative z-10 mx-auto max-w-[1120px] text-center wide:max-w-[1560px]">
           <motion.p
             {...heroReveal}
             className="mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#4FA3C7]"
@@ -710,15 +667,14 @@ export default function HowItWorksPage() {
             {...heroReveal}
             transition={{ ...heroReveal.transition, delay: 0.06 }}
             id="how-it-works-hero"
-            className="mx-auto max-w-[900px] font-bold leading-[0.98] tracking-[-0.06em] text-[#111318]"
-            style={{ fontSize: "clamp(32px, 8vw, 48px)" }}
+            className="mx-auto max-w-[900px] font-bold leading-[0.98] tracking-[-0.06em] text-[#111318] text-[clamp(32px,8vw,48px)] wide:max-w-[1180px] wide:text-[76px]"
           >
             From athlete context to confident load decisions.
           </motion.h1>
           <motion.p
             {...heroReveal}
             transition={{ ...heroReveal.transition, delay: 0.12 }}
-            className="mx-auto mt-7 max-w-[660px] text-[15px] leading-[1.8] text-slate-500 hero:text-[17px]"
+            className="mx-auto mt-7 max-w-[660px] text-[15px] leading-[1.8] text-slate-500 hero:text-[17px] wide:max-w-[760px] wide:text-[18px]"
           >
             AVAIL transforms daily athlete inputs, cycle context, and training
             signals into decision-ready Load Scores without exposing raw
@@ -730,7 +686,7 @@ export default function HowItWorksPage() {
 
       {/* Sticky stacked workflow: each step overlays the previous layer while scrolling. */}
       <section className="pb-20 hero:pb-32" aria-labelledby="workflow-heading">
-        <div className="mx-auto mb-12 max-w-[1120px] text-center">
+        <div className="mx-auto mb-12 max-w-[1120px] text-center wide:max-w-[1320px]">
           <motion.p
             {...fadeUp(0)}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-[#4FA3C7]"
@@ -740,8 +696,7 @@ export default function HowItWorksPage() {
           <motion.h2
             {...fadeUp(0.05)}
             id="workflow-heading"
-            className="mx-auto max-w-[760px] font-bold leading-[1.05] tracking-[-0.05em] text-[#111318]"
-            style={{ fontSize: "clamp(32px, 5vw, 64px)" }}
+            className="mx-auto max-w-[760px] font-bold leading-[1.05] tracking-[-0.05em] text-[#111318] text-[clamp(32px,5vw,64px)] wide:max-w-[980px] wide:text-[72px]"
           >
             The infrastructure layer for cycle-aware load management.
           </motion.h2>
@@ -773,57 +728,16 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      {/* Science proof points: compact cards using the same 1120px content width. */}
-      <section
-        className="bg-white px-6 py-28"
-        aria-labelledby="science-heading"
-      >
-        <div className="mx-auto max-w-[1120px]">
-          <motion.div {...fadeUp(0)} className="mb-14 max-w-[720px]">
-            <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-[#4FA3C7]">
-              Built on science
-            </p>
-            <h2
-              id="science-heading"
-              className="font-bold leading-[1.06] tracking-[-0.05em] text-[#111318]"
-              style={{ fontSize: "clamp(32px, 5vw, 64px)" }}
-            >
-              Built on female physiology. Designed for elite performance.
-            </h2>
-          </motion.div>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {SCIENCE_CARDS.map(({ title, copy, Icon }, index) => (
-              <motion.article
-                key={title}
-                {...fadeUp(index * 0.05)}
-                className="rounded-[28px] border border-slate-200/70 bg-[#FAFBF8] p-5 shadow-[0_16px_44px_rgba(15,23,42,0.04)]"
-              >
-                <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#4FA3C7] shadow-sm">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h3 className="text-[15px] font-bold leading-tight tracking-[-0.02em] text-[#111318]">
-                  {title}
-                </h3>
-                <p className="mt-3 text-[13px] leading-[1.65] text-slate-500">
-                  {copy}
-                </p>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Privacy and trust: clarifies data boundaries and non-medical positioning. */}
-      <section className="px-6 py-28" aria-labelledby="privacy-heading">
-        <div className="mx-auto grid max-w-[1120px] gap-8 hero:grid-cols-[0.9fr_1.1fr] hero:items-center">
+      <section className="px-6 py-28 wide:py-32" aria-labelledby="privacy-heading">
+        <div className="mx-auto grid max-w-[1120px] gap-8 hero:grid-cols-[0.9fr_1.1fr] hero:items-center wide:max-w-[1560px] wide:gap-16">
           <motion.div {...fadeUp(0)}>
             <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-[#4FA3C7]">
               Privacy and trust
             </p>
             <h2
               id="privacy-heading"
-              className="font-bold leading-[1.06] tracking-[-0.05em] text-[#111318]"
-              style={{ fontSize: "clamp(32px, 5vw, 64px)" }}
+              className="font-bold leading-[1.06] tracking-[-0.05em] text-[#111318] text-[clamp(32px,5vw,64px)] wide:text-[68px]"
             >
               Decision support without exposing raw sensitive data.
             </h2>
@@ -868,17 +782,16 @@ export default function HowItWorksPage() {
       </section>
 
       {/* Final conversion CTA. */}
-      <section className="bg-white px-6 py-28">
+      <section className="bg-white px-6 py-28 wide:py-32">
         <motion.div
           {...fadeUp(0)}
-          className="mx-auto max-w-[1080px] overflow-hidden rounded-[36px] border border-slate-200/70 bg-[#111318] p-8 text-center shadow-[0_30px_80px_rgba(15,23,42,0.16)] hero:p-16"
+          className="mx-auto max-w-[1080px] overflow-hidden rounded-[36px] border border-slate-200/70 bg-[#111318] p-8 text-center shadow-[0_30px_80px_rgba(15,23,42,0.16)] hero:p-16 wide:max-w-[1320px]"
         >
           <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-[#6FBF9E]">
             <TrendingUp className="h-7 w-7" />
           </div>
           <h2
-            className="mx-auto max-w-[760px] font-bold leading-[1.05] tracking-[-0.05em] text-white"
-            style={{ fontSize: "clamp(32px, 5vw, 64px)" }}
+            className="mx-auto max-w-[760px] font-bold leading-[1.05] tracking-[-0.05em] text-white text-[clamp(32px,5vw,64px)] wide:max-w-[960px] wide:text-[72px]"
           >
             Ready to modernise load management in women's sport?
           </h2>
@@ -888,7 +801,6 @@ export default function HowItWorksPage() {
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <GradientButton>Apply for Pilot Access</GradientButton>
-            <SecondaryButton>Book a Demo</SecondaryButton>
           </div>
         </motion.div>
       </section>

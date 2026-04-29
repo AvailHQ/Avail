@@ -77,11 +77,11 @@ function BillingSwitch({
   onOfficialClick: () => void;
 }) {
   return (
-    <div className="mx-auto mt-14 flex w-full max-w-[440px] rounded-full bg-[#E9EBED] p-0 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#111318]">
+    <div className="mx-auto mt-14 flex w-full max-w-[440px] rounded-full bg-[#E9EBED] p-0 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#111318] wide:max-w-[520px] wide:text-[14px]">
       <button
         type="button"
         onClick={() => onChange("pilot")}
-        className={`flex h-[58px] flex-1 items-center justify-center rounded-full px-5 transition-all duration-200 ${
+        className={`flex h-[58px] flex-1 items-center justify-center rounded-full px-5 transition-all duration-200 wide:h-[66px] wide:px-7 ${
           mode === "pilot"
             ? "text-white shadow-[0_10px_28px_rgba(79,163,199,0.24)]"
             : ""
@@ -98,7 +98,7 @@ function BillingSwitch({
       <button
         type="button"
         onClick={onOfficialClick}
-        className={`flex h-[58px] flex-1 items-center justify-center rounded-full px-5 transition-all duration-200 ${
+        className={`flex h-[58px] flex-1 items-center justify-center rounded-full px-5 transition-all duration-200 wide:h-[66px] wide:px-7 ${
           mode === "official"
             ? "text-white shadow-[0_10px_28px_rgba(79,163,199,0.24)]"
             : ""
@@ -154,7 +154,7 @@ function PricingUnavailableModal({ onClose }: { onClose: () => void }) {
         <button
           type="button"
           onClick={onClose}
-          className="mt-7 inline-flex h-[42px] items-center justify-center rounded-lg px-7 text-[14px] font-semibold text-white transition-all duration-150 hover:-translate-y-[1px]"
+          className="mt-7 inline-flex h-[42px] items-center justify-center rounded-lg px-7 text-[14px] font-semibold text-white transition-all duration-150 hover:-translate-y-[1px] wide:h-[50px] wide:px-9 wide:text-[16px]"
           style={{
             background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)",
             boxShadow: "0 2px 12px rgba(116,199,167,0.35)",
@@ -181,7 +181,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
         ease: [0.22, 1, 0.36, 1],
         delay: 0.08 * index,
       }}
-      className={`flex min-h-[520px] flex-col rounded-[18px] border px-7 py-9 transition-all duration-300 ease-out hover:-translate-y-2 hero:px-8 hero:py-10 ${cardClasses}`}
+      className={`flex min-h-[520px] flex-col rounded-[18px] border px-7 py-9 transition-all duration-300 ease-out hover:-translate-y-2 hero:px-8 hero:py-10 wide:min-h-[580px] wide:px-10 wide:py-12 ${cardClasses}`}
       style={
         plan.featured
           ? { background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }
@@ -196,12 +196,12 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
 
       <div>
         <h2
-          className={`text-[21px] font-bold leading-tight ${plan.featured ? "uppercase tracking-[-0.01em]" : ""}`}
+          className={`text-[21px] font-bold leading-tight wide:text-[26px] ${plan.featured ? "uppercase tracking-[-0.01em]" : ""}`}
         >
           {plan.name}
         </h2>
         <p
-          className={`mt-4 min-h-[56px] text-[15px] font-medium leading-[1.45] ${plan.featured ? "text-white/72" : "text-[#5B636B]"}`}
+          className={`mt-4 min-h-[56px] text-[15px] font-medium leading-[1.45] wide:text-[17px] ${plan.featured ? "text-white/72" : "text-[#5B636B]"}`}
         >
           {plan.audience}
         </p>
@@ -209,7 +209,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
 
       <div className="mt-12">
         <div className="flex flex-wrap items-baseline gap-x-1">
-          <span className="text-[34px] font-bold tracking-[-0.03em] leading-none hero:text-[36px]">
+          <span className="text-[34px] font-bold tracking-[-0.03em] leading-none hero:text-[36px] wide:text-[44px]">
             {plan.price}
           </span>
           <span
@@ -229,12 +229,12 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
         {plan.features.map((feature) => (
           <li key={feature} className="flex items-start gap-3">
             <CheckCircle2
-              className={`mt-[2px] h-[17px] w-[17px] flex-none ${plan.featured ? "text-[#B9F7DA]" : "text-[#007A60]"}`}
+              className={`mt-[2px] h-[17px] w-[17px] flex-none wide:h-5 wide:w-5 ${plan.featured ? "text-[#B9F7DA]" : "text-[#007A60]"}`}
               strokeWidth={2.4}
               aria-hidden="true"
             />
             <span
-              className={`text-[14.5px] font-medium leading-snug ${plan.featured ? "text-white/88" : "text-[#5B636B]"}`}
+              className={`text-[14.5px] font-medium leading-snug wide:text-[16.5px] ${plan.featured ? "text-white/88" : "text-[#5B636B]"}`}
             >
               {feature}
             </span>
@@ -251,7 +251,7 @@ export default function PricingPage() {
 
   return (
     <main
-      className="min-h-screen px-6 pb-16 pt-28 font-sans hero:pb-24 hero:pt-24"
+      className="min-h-screen px-6 pb-16 pt-28 font-sans hero:pb-24 hero:pt-24 wide:pt-28"
       style={{
         background:
           "radial-gradient(ellipse 90% 55% at 50% 42%, rgba(111,191,158,0.15) 0%, rgba(247,249,252,0) 55%), linear-gradient(180deg, #F7F9FC 0%, #FFFFFF 100%)",
@@ -261,7 +261,7 @@ export default function PricingPage() {
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto max-w-[1000px] text-center"
+        className="mx-auto max-w-[1000px] text-center wide:max-w-[1320px]"
         aria-labelledby="pricing-headline"
       >
         <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#6FBF9E]">
@@ -269,12 +269,11 @@ export default function PricingPage() {
         </p>
         <h1
           id="pricing-headline"
-          className="mx-auto max-w-[860px] font-bold leading-[1.04] tracking-[-0.04em] text-[#111318]"
-          style={{ fontSize: "clamp(38px, 6.4vw, 48px)" }}
+          className="mx-auto max-w-[860px] font-bold leading-[1.04] tracking-[-0.04em] text-[#111318] text-[clamp(38px,6.4vw,48px)] wide:max-w-[1120px] wide:text-[72px]"
         >
           Performance infrastructure built to scale.
         </h1>
-        <p className="mx-auto mt-8 max-w-[670px] text-[17px] leading-[1.68] tracking-[-0.01em] text-[#4B5563] hero:text-[19px]">
+        <p className="mx-auto mt-8 max-w-[670px] text-[17px] leading-[1.68] tracking-[-0.01em] text-[#4B5563] hero:text-[19px] wide:max-w-[820px]">
           Flexible data architecture and intelligence tools designed for the
           unique demands of elite sports organizations and performance
           departments.
@@ -294,14 +293,14 @@ export default function PricingPage() {
 
       {mode === "pilot" || !OFFICIAL_PRICING_ENABLED ? (
         <section
-          className="mx-auto mt-16 max-w-[1160px]"
+          className="mx-auto mt-16 max-w-[1160px] wide:max-w-[1440px]"
           aria-label="Pilot programme waitlist"
         >
           <WaitlistFormPanel />
         </section>
       ) : (
         <section
-          className="mx-auto mt-16 grid max-w-[1160px] grid-cols-1 gap-8 hero:grid-cols-3"
+          className="mx-auto mt-16 grid max-w-[1160px] grid-cols-1 gap-8 hero:grid-cols-3 wide:max-w-[1440px]"
           aria-label="Pricing plans"
         >
           {PLANS.map((plan, index) => (

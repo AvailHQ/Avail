@@ -165,7 +165,7 @@ export default function TeamSection() {
         <rect width="100%" height="100%" fill="url(#teamDots)" />
       </svg>
 
-      <div className="relative z-10 mx-auto max-w-[1100px] pb-5">
+      <div className="relative z-10 mx-auto max-w-[1100px] pb-5 wide:max-w-[1500px]">
         {/* ── Centered header ─────────────────────────────── */}
         <motion.div {...fadeUp(0)} className="text-center mb-16">
           <p className="mb-3 text-[10.5px] pt-4 font-semibold uppercase tracking-[0.26em] text-[#9CA3AF]">
@@ -179,9 +179,9 @@ export default function TeamSection() {
         </motion.div>
 
         {/* ── Two-column body ──────────────────────────────── */}
-        <div className="grid grid-cols-2 items-center gap-[8rem] pb-5">
+        <div className="grid grid-cols-2 items-center gap-[8rem] pb-5 wide:gap-[12rem]">
           {/* ── LEFT: Quote (45%) ───────────────────────────── */}
-          <motion.div {...fadeUp(0.08)} className="min-w-0 max-w-[620px]">
+          <motion.div {...fadeUp(0.08)} className="min-w-0 max-w-[620px] wide:max-w-[760px]">
             <div className="mb-8 select-none">
               <QuoteIcon />
             </div>
@@ -193,12 +193,11 @@ export default function TeamSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-[560px]"
+                className="max-w-[560px] wide:max-w-[720px]"
               >
                 <h2
                   id="team-headline"
-                  className="max-w-[560px] font-bold leading-[1.5] tracking-[-0.035em] text-[#111318]"
-                  style={{ fontSize: "clamp(22px, 2.6vw, 28px)" }}
+                  className="max-w-[560px] font-bold leading-[1.5] tracking-[-0.035em] text-[#111318] text-[clamp(22px,2.6vw,28px)] wide:max-w-[720px] wide:text-[34px]"
                 >
                   {active.quote}
                 </h2>
@@ -209,7 +208,7 @@ export default function TeamSection() {
           {/* ── RIGHT: Carousel (55%) ───────────────────────── */}
           <motion.div
             {...fadeUp(0.16)}
-            className="min-w-0 flex max-w-[460px] flex-col items-center gap-5 justify-self-center"
+            className="min-w-0 flex max-w-[460px] flex-col items-center gap-5 justify-self-center wide:max-w-[620px]"
           >
             {/* Avatar row: [←] [ghost] [active] [ghost] [→] */}
             <div className="flex w-[500px] max-w-none items-center justify-center gap-8 overflow-visible">
@@ -218,9 +217,9 @@ export default function TeamSection() {
                 type="button"
                 onClick={() => step(-1)}
                 aria-label="Previous team member"
-                className="flex-shrink-0 w-10 h-10 rounded-full border border-[#E0E5EC] bg-white shadow-sm flex items-center justify-center text-[#6B7280] transition-colors duration-150 hover:border-[#74c7a7] hover:text-[#2C8A72]"
+                className="flex-shrink-0 w-10 h-10 rounded-full border border-[#E0E5EC] bg-white shadow-sm flex items-center justify-center text-[#6B7280] transition-colors duration-150 hover:border-[#74c7a7] hover:text-[#2C8A72] wide:h-12 wide:w-12"
               >
-                <ChevronLeft className="w-4 h-4" strokeWidth={2.2} />
+                <ChevronLeft className="w-4 h-4 wide:h-5 wide:w-5" strokeWidth={2.2} />
               </button>
 
               {/* Left ghost */}
@@ -267,9 +266,9 @@ export default function TeamSection() {
                 type="button"
                 onClick={() => step(1)}
                 aria-label="Next team member"
-                className="flex-shrink-0 w-10 h-10 rounded-full border border-[#E0E5EC] bg-white shadow-sm flex items-center justify-center text-[#6B7280] transition-colors duration-150 hover:border-[#74c7a7] hover:text-[#2C8A72]"
+                className="flex-shrink-0 w-10 h-10 rounded-full border border-[#E0E5EC] bg-white shadow-sm flex items-center justify-center text-[#6B7280] transition-colors duration-150 hover:border-[#74c7a7] hover:text-[#2C8A72] wide:h-12 wide:w-12"
               >
-                <ChevronRight className="w-4 h-4" strokeWidth={2.2} />
+                <ChevronRight className="w-4 h-4 wide:h-5 wide:w-5" strokeWidth={2.2} />
               </button>
             </div>
 
@@ -283,11 +282,11 @@ export default function TeamSection() {
                 transition={{ duration: 0.18 }}
                 className="text-center"
               >
-                <p className="text-[18px] font-bold tracking-[-0.03em] text-[#111318] leading-none">
+                <p className="text-[18px] font-bold tracking-[-0.03em] text-[#111318] leading-none wide:text-[22px]">
                   {active.name}
                 </p>
                 <p
-                  className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.2em]"
+                  className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] wide:text-[11px]"
                   style={{ color: MINT }}
                 >
                   {active.role}

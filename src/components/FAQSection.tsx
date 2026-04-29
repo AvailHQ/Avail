@@ -84,19 +84,19 @@ function FAQItem({ q, a, index }: FAQItemProps) {
     >
       <button
         onClick={() => setOpen(v => !v)}
-        className="w-full flex items-start justify-between gap-6 py-6 text-left group focus-visible:outline-none"
+        className="w-full flex items-start justify-between gap-6 py-6 text-left group focus-visible:outline-none wide:py-7"
         aria-expanded={open}
       >
         {/* Number + question */}
         <div className="flex items-start gap-4">
           <span
-            className="text-[11px] font-semibold tabular-nums mt-[2px] flex-shrink-0 transition-colors duration-150"
+            className="text-[11px] font-semibold tabular-nums mt-[2px] flex-shrink-0 transition-colors duration-150 wide:text-[13px]"
             style={{ color: open ? '#6FBF9E' : '#C4CAD4' }}
           >
             {String(index + 1).padStart(2, '0')}
           </span>
           <span
-            className="text-[15px] font-semibold leading-snug tracking-[-0.01em] transition-colors duration-150"
+            className="text-[15px] font-semibold leading-snug tracking-[-0.01em] transition-colors duration-150 wide:text-[18px]"
             style={{ color: open ? '#111318' : '#374151' }}
           >
             {q}
@@ -105,7 +105,7 @@ function FAQItem({ q, a, index }: FAQItemProps) {
 
         {/* Toggle icon */}
         <div
-          className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-[1px] transition-all duration-200"
+          className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-[1px] transition-all duration-200 wide:h-7 wide:w-7"
           style={{
             background: open ? 'rgba(116,199,167,0.12)' : '#F4F5F7',
           }}
@@ -132,9 +132,9 @@ function FAQItem({ q, a, index }: FAQItemProps) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="pb-6 pl-10 flex flex-col gap-[10px]">
+            <div className="pb-6 pl-10 flex flex-col gap-[10px] wide:pb-7 wide:pl-12">
               {a.map((para, i) => (
-                <p key={i} className="text-[14px] leading-[1.72] text-[#6B7280]">
+                <p key={i} className="text-[14px] leading-[1.72] text-[#6B7280] wide:text-[16px]">
                   {para}
                 </p>
               ))}
@@ -150,8 +150,8 @@ function FAQItem({ q, a, index }: FAQItemProps) {
 
 export default function FAQSection() {
   return (
-    <section className="w-full bg-white pt-36 pb-28 px-6" aria-labelledby="faq-headline">
-      <div className="max-w-[720px] mx-auto">
+    <section className="w-full bg-white pt-36 pb-28 px-6 wide:pt-40 wide:pb-32" aria-labelledby="faq-headline">
+      <div className="max-w-[720px] mx-auto wide:max-w-[980px]">
 
         {/* Header */}
         <motion.div
@@ -166,12 +166,11 @@ export default function FAQSection() {
           </p>
           <h2
             id="faq-headline"
-            className="font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-4"
-            style={{ fontSize: 'clamp(24px, 3.2vw, 38px)' }}
+            className="font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-4 text-[clamp(24px,3.2vw,38px)] wide:text-[46px]"
           >
             Common questions
           </h2>
-          <p className="text-[15px] text-[#6B7280] leading-[1.65] max-w-[380px] mx-auto">
+          <p className="text-[15px] text-[#6B7280] leading-[1.65] max-w-[380px] mx-auto wide:max-w-[520px]">
             Everything you need to know before getting started.
           </p>
         </motion.div>

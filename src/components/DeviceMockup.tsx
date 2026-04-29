@@ -10,7 +10,7 @@ export default function DeviceMockup() {
     >
       {/* Glow shadow underneath the device */}
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[75%] h-16 pointer-events-none"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[75%] h-16 pointer-events-none wide:w-[66%] wide:h-24"
         style={{
           background:
             "radial-gradient(ellipse at center, rgba(79,163,199,0.22) 0%, rgba(111,191,158,0.12) 40%, transparent 75%)",
@@ -21,7 +21,7 @@ export default function DeviceMockup() {
 
       {/* Tablet frame */}
       <div
-        className="relative w-full max-w-[960px] max-h-[620px] overflow-hidden"
+        className="relative w-full max-w-[960px] max-h-[620px] overflow-hidden wide:max-w-[1180px] wide:max-h-[700px]"
         style={{
           perspective: "1200px",
         }}

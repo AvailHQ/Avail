@@ -9,6 +9,7 @@ export default {
       },
       screens: {
         hero: '920px',
+        wide: '1800px',
       },
     },
   },
