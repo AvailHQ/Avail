@@ -13,3 +13,17 @@ body {
   font-family: "Martel Sans", "Quicksand", "Noto Serif SC", -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
 }
+
+.hero-neuron-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-neuron-canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0.86;
+}
