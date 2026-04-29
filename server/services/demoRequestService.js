@@ -1,4 +1,7 @@
-import { appendDemoRequestRow } from "./googleSheetsService.js";
+import {
+  appendDemoRequestRow,
+  getDemoRequestCount,
+} from "./googleSheetsService.js";
 import {
   buildSubmitterConfirmationEmail,
   buildTeamNotificationEmail,
@@ -27,4 +30,10 @@ export async function createDemoRequest(payload) {
   ]);
 
   return { record };
+}
+
+export async function getDemoRequestStats() {
+  const waitlistCount = await getDemoRequestCount();
+
+  return { waitlistCount };
 }

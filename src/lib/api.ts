@@ -20,6 +20,10 @@ interface ErrorResponse {
   errors?: FieldErrors;
 }
 
+interface DemoRequestStatsResponse {
+  waitlistCount?: number;
+}
+
 export async function submitDemoRequest(
   payload: DemoRequestPayload,
 ): Promise<void> {
@@ -52,4 +56,19 @@ export async function submitDemoRequest(
   }
 
   throw error;
+}
+
+export async function getDemoRequestStats(): Promise<{ waitlistCount: number }> {
+  const response = await fetch("/api/demo-requests/stats");
+
+  if (!response.ok) {
+    throw new Error("Unable to load waitlist stats.");
+  }
+
+  const data = (await response.json()) as DemoRequestStatsResponse;
+
+  return {
+    waitlistCount:
+      typeof data.waitlistCount === "number" ? data.waitlistCount : 0,
+  };
 }

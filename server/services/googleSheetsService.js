@@ -58,3 +58,34 @@ export async function appendDemoRequestRow(record) {
     },
   });
 }
+
+export async function getDemoRequestCount() {
+  const sheets = getSheetsClient();
+
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: env.googleSheetsSpreadsheetId,
+    range: `${env.googleSheetsSheetName}!A:I`,
+    majorDimension: "ROWS",
+  });
+
+  const rows = response.data.values ?? [];
+  const filledRows = rows.filter((row) => row[0]);
+
+  if (!filledRows.length) {
+    return 0;
+  }
+
+  const firstCell = String(filledRows[0][0]).trim().toLowerCase();
+  const hasHeader =
+    firstCell.includes("created") ||
+    firstCell.includes("submitted") ||
+    firstCell.includes("timestamp") ||
+    firstCell === "date";
+
+  const dataRows = hasHeader ? filledRows.slice(1) : filledRows;
+  const realRows = dataRows.filter(
+    (row) => !row.some((cell) => String(cell).toLowerCase().includes("test")),
+  );
+
+  return realRows.length;
+}

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp } from "lucide-react";
+import { TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
-import { submitDemoRequest } from "../lib/api";
+import { getDemoRequestStats, submitDemoRequest } from "../lib/api";
 
 // ─── Field options ────────────────────────────────────────────────────────────
 const ROLES = ["Coach", "Performance Staff", "Sports Scientist", "Other"];
@@ -310,6 +310,27 @@ export default function JoinPilotProgrammePage() {
   const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [waitlistCount, setWaitlistCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    getDemoRequestStats()
+      .then(({ waitlistCount }) => {
+        if (!cancelled) {
+          setWaitlistCount(waitlistCount);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setWaitlistCount(null);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const set =
     (k: keyof FormState) =>
@@ -352,6 +373,7 @@ export default function JoinPilotProgrammePage() {
 
     try {
       await submitDemoRequest(form);
+      setWaitlistCount((count) => (count === null ? count : count + 1));
       setSubmitted(true);
     } catch (error) {
       const message =
@@ -420,6 +442,30 @@ export default function JoinPilotProgrammePage() {
             Tell us about your team and we’ll let you know when AVAIL opens to
             teams like yours.
           </p>
+          {waitlistCount !== null && waitlistCount > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.45,
+                ease: [0.22, 1, 0.36, 1],
+                delay: 0.08,
+              }}
+              className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#D8EFE5] bg-white/75 px-4 py-2 text-[12.5px] font-medium text-[#536171] shadow-[0_8px_28px_rgba(15,23,42,0.04)] backdrop-blur"
+            >
+              <Users
+                className="h-[14px] w-[14px] text-[#74C7A7]"
+                aria-hidden="true"
+              />
+              <span>
+                <span className="font-semibold text-[#111318]">
+                  {waitlistCount.toLocaleString()}
+                </span>{" "}
+                {waitlistCount === 1 ? "team has" : "teams have"} joined the
+                waitlist so far
+              </span>
+            </motion.div>
+          )}
         </motion.div>
 
         {/* ── Two-column body ── */}
