@@ -31,12 +31,12 @@ export default function Nav() {
 
           <ul className="hidden hero:flex items-center gap-6 h-full" role="list">
             <li>
-              <a
-                href="/#solution-headline"
+              <Link
+                to="/how-it-works"
                 className="text-[13px] font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150"
               >
                 How it works
-              </a>
+              </Link>
             </li>
             <li>
               <a

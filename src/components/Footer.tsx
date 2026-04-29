@@ -112,6 +112,22 @@ export default function Footer() {
                     >
                       {link}
                     </button>
+                  ) : link === "How it works" ? (
+                    <Link
+                      key={link}
+                      to="/how-it-works"
+                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
+                    >
+                      {link}
+                    </Link>
+                  ) : link === "Overview" ? (
+                    <Link
+                      key={link}
+                      to="/"
+                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
+                    >
+                      {link}
+                    </Link>
                   ) : (
                     <a
                       key={link}
