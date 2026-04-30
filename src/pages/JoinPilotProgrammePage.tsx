@@ -166,7 +166,7 @@ interface FieldStyle {
 
 // ─── Shared input styles ──────────────────────────────────────────────────────
 const BASE =
-  "w-full bg-white text-[13.5px] text-[#111318] placeholder-[#B0B8C4] rounded-lg outline-none transition-all duration-150 wide:text-[15px]";
+  "w-full bg-white text-fluid-base text-[#111318] placeholder-[#B0B8C4] rounded-lg outline-none transition-all duration-150";
 
 function useField(): {
   focused: boolean;
@@ -199,7 +199,7 @@ function Input({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
+      <label className="text-fluid-sm font-medium text-[#374151]">{label}</label>
       <input
         type={type}
         name={name}
@@ -211,7 +211,7 @@ function Input({
         className={`${BASE} h-[42px] px-[14px] wide:h-[50px] wide:px-4`}
         style={f.borderStyle}
       />
-      {error && <p className="text-[11px] text-red-400">{error}</p>}
+      {error && <p className="text-fluid-xs text-red-400">{error}</p>}
     </div>
   );
 }
@@ -228,7 +228,7 @@ function Select({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
+      <label className="text-fluid-sm font-medium text-[#374151]">{label}</label>
       <div className="relative">
         <select
           name={name}
@@ -263,7 +263,7 @@ function Select({
           />
         </svg>
       </div>
-      {error && <p className="text-[11px] text-red-400">{error}</p>}
+      {error && <p className="text-fluid-xs text-red-400">{error}</p>}
     </div>
   );
 }
@@ -278,7 +278,7 @@ function Textarea({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
+      <label className="text-fluid-sm font-medium text-[#374151]">{label}</label>
       <textarea
         name={name}
         value={value}
@@ -429,15 +429,15 @@ export default function JoinPilotProgrammePage() {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-14 wide:mb-16"
         >
-          <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#74C7A7] mb-3">
+          <p className="text-fluid-xs font-semibold tracking-[0.14em] uppercase text-[#74C7A7] mb-3">
             Waitlist
           </p>
           <h1
-            className="font-bold tracking-[-0.035em] text-[#111318] leading-[1.1] mb-3 text-[clamp(28px,4vw,46px)] wide:text-[60px]"
+            className="font-bold tracking-[-0.035em] text-[#111318] leading-[1.1] mb-3 text-fluid-4xl"
           >
             Join waitlist
           </h1>
-          <p className="text-[15px] text-[#6B7280] leading-[1.65] max-w-[420px] mx-auto wide:max-w-[560px] wide:text-[17px]">
+          <p className="text-fluid-lg text-[#6B7280] leading-[1.65] max-w-[420px] mx-auto wide:max-w-[560px]">
             Tell us about your team and we’ll let you know when AVAIL opens to
             teams like yours.
           </p>
@@ -450,7 +450,7 @@ export default function JoinPilotProgrammePage() {
                 ease: [0.22, 1, 0.36, 1],
                 delay: 0.08,
               }}
-              className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#D8EFE5] bg-white/75 px-4 py-2 text-[12.5px] font-medium text-[#536171] shadow-[0_8px_28px_rgba(15,23,42,0.04)] backdrop-blur"
+              className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#D8EFE5] bg-white/75 px-4 py-2 text-fluid-sm font-medium text-[#536171] shadow-[0_8px_28px_rgba(15,23,42,0.04)] backdrop-blur"
             >
               <Users
                 className="h-[14px] w-[14px] text-[#74C7A7]"
@@ -506,10 +506,10 @@ export default function JoinPilotProgrammePage() {
                     />
                   </svg>
                 </div>
-                <h2 className="text-[20px] font-bold text-[#111318] tracking-[-0.02em] mb-2">
+                <h2 className="text-fluid-2xl font-bold text-[#111318] tracking-[-0.02em] mb-2">
                   Request received
                 </h2>
-                <p className="text-[14px] leading-[1.72] text-[#6B7280] max-w-[300px]">
+                <p className="text-fluid-md leading-[1.72] text-[#6B7280] max-w-[300px]">
                   We’ll be in touch with next steps for the AVAIL waitlist at{" "}
                   <span className="text-[#111318] font-medium">
                     {form.email}
@@ -518,7 +518,7 @@ export default function JoinPilotProgrammePage() {
                 </p>
                 <Link
                   to="/"
-                  className="mt-7 inline-flex items-center justify-center h-[42px] px-6 rounded-lg text-white text-[14px] font-semibold tracking-[-0.01em] bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] transition-all duration-150 hover:-translate-y-[1.5px] active:translate-y-0"
+                  className="mt-7 inline-flex items-center justify-center h-[42px] px-6 rounded-lg text-white text-fluid-md font-semibold tracking-[-0.01em] bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] transition-all duration-150 hover:-translate-y-[1.5px] active:translate-y-0"
                   style={{
                     boxShadow: "0 2px 12px rgba(116,199,167,0.35)",
                   }}
@@ -538,10 +538,10 @@ export default function JoinPilotProgrammePage() {
               >
                 {/* Title inside card */}
                 <div className="mb-1">
-                  <h2 className="text-[18px] font-bold text-[#111318] tracking-[-0.02em] mb-1 wide:text-[22px]">
+                  <h2 className="text-fluid-xl font-bold text-[#111318] tracking-[-0.02em] mb-1">
                     Join waitlist
                   </h2>
-                  <p className="text-[13px] leading-[1.65] text-[#6B7280] wide:text-[15px]">
+                  <p className="text-fluid-base leading-[1.65] text-[#6B7280]">
                     Share a few details and we’ll add your team to the AVAIL
                     waitlist.
                   </p>
@@ -615,7 +615,7 @@ export default function JoinPilotProgrammePage() {
                 />
 
                 {submitError && (
-                  <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-[12.5px] text-red-700">
+                  <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-fluid-sm text-red-700">
                     {submitError}
                   </div>
                 )}
@@ -656,12 +656,12 @@ export default function JoinPilotProgrammePage() {
                         )}
                       </div>
                     </div>
-                    <span className="text-[12.5px] text-[#6B7280] leading-[1.5] wide:text-[14px]">
+                    <span className="text-fluid-sm text-[#6B7280] leading-[1.5]">
                       I agree to be contacted about AVAIL
                     </span>
                   </label>
                   {errors.consent && (
-                    <p className="text-[11px] text-red-400 pl-7">
+                    <p className="text-fluid-xs text-red-400 pl-7">
                       {errors.consent}
                     </p>
                   )}
@@ -672,7 +672,7 @@ export default function JoinPilotProgrammePage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full opacity-70 h-[44px] rounded-lg text-white text-[14px] font-semibold tracking-[-0.01em] transition-all bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] duration-150 hover:-translate-y-[1.5px] active:translate-y-0 wide:h-[52px] wide:text-[16px]"
+                    className="w-full opacity-70 h-[44px] rounded-lg text-white text-fluid-md font-semibold tracking-[-0.01em] transition-all bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] duration-150 hover:-translate-y-[1.5px] active:translate-y-0 wide:h-[52px]"
                     style={{
                       boxShadow: "0 2px 12px rgba(116,199,167,0.35)",
                       cursor: isSubmitting ? "wait" : "pointer",
@@ -692,7 +692,7 @@ export default function JoinPilotProgrammePage() {
                   >
                     {isSubmitting ? "Submitting..." : "Join waitlist"}
                   </button>
-                  <p className="text-center text-[11.5px] text-[#9CA3AF] wide:text-[13px]">
+                  <p className="text-center text-fluid-xs text-[#9CA3AF]">
                     We typically respond within 24 hours.
                   </p>
                 </div>
@@ -744,10 +744,10 @@ export default function JoinPilotProgrammePage() {
                     <Icon />
                   </div>
                   <div>
-                    <p className="text-[14.5px] font-semibold text-[#111318] tracking-[-0.01em] mb-[6px] wide:text-[17px]">
+                    <p className="text-fluid-md font-semibold text-[#111318] tracking-[-0.01em] mb-[6px]">
                       {title}
                     </p>
-                    <p className="text-[13px] text-[#6B7280] leading-[1.7] wide:text-[15px]">
+                    <p className="text-fluid-base text-[#6B7280] leading-[1.7]">
                       {desc}
                     </p>
                   </div>
@@ -755,7 +755,7 @@ export default function JoinPilotProgrammePage() {
               ))}
               <section className="py-8 text-center">
                 <div className="flex items-center w-full mb-6">
-                  <p className="text-sm text-gray-400 uppercase tracking-wider text-center pr-3">
+                  <p className="text-fluid-sm text-gray-400 uppercase tracking-wider text-center pr-3">
                     Validated By
                   </p>
                   <p className="w-[70%] h-px bg-black opacity-20"></p>
@@ -791,7 +791,7 @@ export default function JoinPilotProgrammePage() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <p className="text-[12px] text-[#9CA3AF] leading-[1.65]">
+              <p className="text-fluid-sm text-[#9CA3AF] leading-[1.65]">
                 Athlete data is never exposed to coaching staff. AVAIL is not a
                 medical tool and does not replace clinical judgment.
               </p>

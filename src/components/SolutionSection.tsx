@@ -155,16 +155,16 @@ export default function SolutionSection() {
 
       <div className="relative z-10 mx-auto max-w-[1180px] hero:max-w-[1320px] wide:max-w-[1560px]">
         <motion.div {...fadeUp(0)} className="text-center mb-14">
-          <p className="text-[10.5px] font-semibold tracking-[0.15em] uppercase text-[#9CA3AF] mb-4">
+          <p className="text-fluid-xs font-semibold tracking-[0.15em] uppercase text-[#9CA3AF] mb-4">
             Solution
           </p>
           <h2
             id="solution-headline"
-            className="font-bold tracking-[-0.03em] text-[#111318] leading-[1.12] mb-3 text-[clamp(24px,3.1vw,40px)] wide:text-[52px]"
+            className="font-bold tracking-[-0.03em] text-[#111318] leading-[1.12] mb-3 text-fluid-4xl"
           >
             Core capabilities
           </h2>
-          <p className="text-[15px] text-[#6B7280] leading-[1.65] max-w-[520px] mx-auto">
+          <p className="text-fluid-lg text-[#6B7280] leading-[1.65] max-w-[520px] mx-auto">
             Everything you need to make smarter decisions for female athletes.
           </p>
         </motion.div>
@@ -186,10 +186,10 @@ export default function SolutionSection() {
                 <Icon />
               </div>
 
-              <h3 className="mb-3 text-[15px] font-bold leading-[1.15] tracking-[-0.02em] text-[#111318] xl:text-[16px] wide:text-[18px]">
+              <h3 className="mb-3 text-fluid-lg font-bold leading-[1.15] tracking-[-0.02em] text-[#111318]">
                 {title}
               </h3>
-              <p className="text-[13px] leading-[1.65] text-[#667085] xl:text-[14px] wide:text-[15.5px]">
+              <p className="text-fluid-base leading-[1.65] text-[#667085]">
                 {description}
               </p>
             </motion.article>

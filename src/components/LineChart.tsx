@@ -21,7 +21,7 @@ export default function LineChart() {
     <div aria-hidden="true">
       <div className="flex justify-between mb-2">
         {DAYS.map((d) => (
-          <span key={d} className="text-[11px] font-medium text-[#9ca3af] tracking-[0.02em]">
+          <span key={d} className="text-fluid-xs font-medium text-[#9ca3af] tracking-[0.02em]">
             {d}
           </span>
         ))}

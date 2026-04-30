@@ -33,7 +33,7 @@ export default function Nav() {
               className="h-10 w-10 wide:h-12 wide:w-12"
               aria-hidden="true"
             />
-            <span className="text-[17px] font-bold tracking-[-0.04em] text-[#111318] wide:text-[20px]">
+            <span className="text-fluid-lg font-bold tracking-[-0.04em] text-[#111318]">
               Avail
             </span>
           </a>
@@ -42,7 +42,7 @@ export default function Nav() {
             <li>
               <Link
                 to="/how-it-works"
-                className="text-[13px] font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150 wide:text-[15px]"
+                className="text-fluid-base font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150"
               >
                 How it works
               </Link>
@@ -50,7 +50,7 @@ export default function Nav() {
             <li>
               <a
                 href="/#team-headline"
-                className="text-[13px] font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150 wide:text-[15px]"
+                className="text-fluid-base font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150"
               >
                 Science
               </a>
@@ -59,7 +59,7 @@ export default function Nav() {
               <button
                 type="button"
                 onClick={openPricingModal}
-                className="text-[13px] font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150 wide:text-[15px]"
+                className="text-fluid-base font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150"
               >
                 Pricing
               </button>
@@ -68,7 +68,7 @@ export default function Nav() {
 
           <Link
             to="/join-pilot-programme"
-            className="hidden hero:inline-flex items-center justify-center h-9 px-4 rounded-full text-white text-[12px] font-semibold tracking-[0.01em] shadow-[0_1px_8px_rgba(111,191,158,0.32)] hover:opacity-85 hover:-translate-y-px transition-all duration-150 wide:h-11 wide:px-6 wide:text-[14px]"
+            className="hidden hero:inline-flex items-center justify-center h-9 px-4 rounded-full text-white text-fluid-sm font-semibold tracking-[0.01em] shadow-[0_1px_8px_rgba(111,191,158,0.32)] hover:opacity-85 hover:-translate-y-px transition-all duration-150 wide:h-11 wide:px-6"
             style={{ background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }}
           >
             Join waitlist
@@ -98,28 +98,28 @@ export default function Nav() {
                 <Link
                   to="/how-it-works"
                   onClick={closeMobileMenu}
-                  className="rounded-[8px] px-3 py-3 text-[14px] font-semibold text-[#374151] active:bg-[#EEF2F5]"
+                  className="rounded-[8px] px-3 py-3 text-fluid-md font-semibold text-[#374151] active:bg-[#EEF2F5]"
                 >
                   How it works
                 </Link>
                 <a
                   href="/#team-headline"
                   onClick={closeMobileMenu}
-                  className="rounded-[8px] px-3 py-3 text-[14px] font-semibold text-[#374151] active:bg-[#EEF2F5]"
+                  className="rounded-[8px] px-3 py-3 text-fluid-md font-semibold text-[#374151] active:bg-[#EEF2F5]"
                 >
                   Science
                 </a>
                 <button
                   type="button"
                   onClick={openPricingModal}
-                  className="rounded-[8px] px-3 py-3 text-left text-[14px] font-semibold text-[#374151] active:bg-[#EEF2F5]"
+                  className="rounded-[8px] px-3 py-3 text-left text-fluid-md font-semibold text-[#374151] active:bg-[#EEF2F5]"
                 >
                   Pricing
                 </button>
                 <Link
                   to="/join-pilot-programme"
                   onClick={closeMobileMenu}
-                  className="mt-3 inline-flex h-11 items-center justify-center rounded-full text-[14px] font-semibold text-white shadow-[0_2px_12px_rgba(111,191,158,0.34)]"
+                  className="mt-3 inline-flex h-11 items-center justify-center rounded-full text-fluid-md font-semibold text-white shadow-[0_2px_12px_rgba(111,191,158,0.34)]"
                   style={{ background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }}
                 >
                   Join waitlist

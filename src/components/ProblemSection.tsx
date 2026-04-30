@@ -145,7 +145,7 @@ export default function ProblemSection() {
       <div className="max-w-[860px] mx-auto wide:max-w-[1320px]">
         <motion.p
           {...inView(0)}
-          className="text-center text-[11px] font-semibold tracking-[0.14em] uppercase text-[#9CA3AF] mb-5"
+          className="text-center text-fluid-xs font-semibold tracking-[0.14em] uppercase text-[#9CA3AF] mb-5"
         >
           The Load Management Landscape
         </motion.p>
@@ -153,7 +153,7 @@ export default function ProblemSection() {
         <motion.h2
           {...inView(0.07)}
           id="matrix-headline"
-          className="text-center font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-5 text-[clamp(24px,3.4vw,40px)] wide:text-[52px]"
+          className="text-center font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-5 text-fluid-4xl"
         >
           The only decision intelligence system
           <br />
@@ -162,7 +162,7 @@ export default function ProblemSection() {
 
         <motion.p
           {...inView(0.13)}
-          className="text-center text-[15px] leading-[1.65] text-[#6B7280] max-w-[460px] mx-auto mb-14 wide:max-w-[620px] wide:text-[17px] wide:mb-16"
+          className="text-center text-fluid-lg leading-[1.65] text-[#6B7280] max-w-[460px] mx-auto mb-14 wide:max-w-[620px] wide:mb-16"
         >
           Avail transforms physiological variability into clear, actionable
           training decisions.
@@ -219,10 +219,10 @@ export default function ProblemSection() {
             />
 
             <text
+              className="text-fluid-xs"
               x={ML + MW * 0.25}
               y={VH - 10}
               textAnchor="middle"
-              fontSize="9.5"
               fill={activeAxes?.x === "tracking" ? "#1A7A55" : "#B8BEC8"}
               fontFamily="Inter, system-ui, sans-serif"
               fontWeight={activeAxes?.x === "tracking" ? "700" : "600"}
@@ -231,10 +231,10 @@ export default function ProblemSection() {
               Tracking
             </text>
             <text
+              className="text-fluid-xs"
               x={ML + MW * 0.75}
               y={VH - 10}
               textAnchor="middle"
-              fontSize="9.5"
               fill={activeAxes?.x === "decision" ? "#1A7A55" : "#B8BEC8"}
               fontFamily="Inter, system-ui, sans-serif"
               fontWeight={activeAxes?.x === "decision" ? "700" : "600"}
@@ -244,11 +244,11 @@ export default function ProblemSection() {
             </text>
 
             <text
+              className="text-fluid-xs"
               transform={`rotate(-90, 20, ${MT + MH * 0.74})`}
               x="20"
               y={MT + MH * 0.74 + 4}
               textAnchor="middle"
-              fontSize="9.5"
               fill={activeAxes?.y === "data" ? "#1A7A55" : "#B8BEC8"}
               fontFamily="Inter, system-ui, sans-serif"
               fontWeight={activeAxes?.y === "data" ? "700" : "600"}
@@ -257,11 +257,11 @@ export default function ProblemSection() {
               Data Collection
             </text>
             <text
+              className="text-fluid-xs"
               transform={`rotate(-90, 20, ${MT + MH * 0.26})`}
               x="20"
               y={MT + MH * 0.26 + 4}
               textAnchor="middle"
-              fontSize="9.5"
               fill={activeAxes?.y === "female" ? "#1A7A55" : "#B8BEC8"}
               fontFamily="Inter, system-ui, sans-serif"
               fontWeight={activeAxes?.y === "female" ? "700" : "600"}
@@ -316,11 +316,11 @@ export default function ProblemSection() {
                     <span className="flex-shrink-0 rounded-[4px] overflow-hidden leading-none">
                       <Icon />
                     </span>
-                    <span className="text-[10.5px] font-bold text-[#1E2D3D] tracking-[0.01em] leading-none whitespace-nowrap">
+                    <span className="text-fluid-xs font-bold text-[#1E2D3D] tracking-[0.01em] leading-none whitespace-nowrap">
                       {name}
                     </span>
                   </div>
-                  <p className="text-[9px] leading-none text-[#6B7280] whitespace-nowrap">
+                  <p className="text-fluid-2xs leading-none text-[#6B7280] whitespace-nowrap">
                     {desc}
                   </p>
                 </motion.div>
@@ -385,11 +385,11 @@ export default function ProblemSection() {
               >
                 <div className="flex items-center gap-[8px] mb-[8px]">
                   <img src="/figure/logo.svg" alt="" className="flex-shrink-0" style={{ width: 22, height: 22 }} aria-hidden="true" />
-                  <span className="text-[16px] font-bold text-[#1A7A55] tracking-[0.06em] leading-none">
+                  <span className="text-fluid-lg font-bold text-[#1A7A55] tracking-[0.06em] leading-none">
                     AVAIL
                   </span>
                 </div>
-                <p className="text-[12px] font-semibold leading-[1.5] text-[#4aaa82]">
+                <p className="text-fluid-sm font-semibold leading-[1.5] text-[#4aaa82]">
                   Cycle-aware load intelligence
                   <br />
                   for elite women's sport

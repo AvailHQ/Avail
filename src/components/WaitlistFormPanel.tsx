@@ -25,7 +25,7 @@ interface FieldStyle {
 }
 
 const BASE =
-  "w-full bg-white text-[13.5px] text-[#111318] placeholder-[#B0B8C4] rounded-lg outline-none transition-all duration-150 wide:text-[15px]";
+  "w-full bg-white text-fluid-base text-[#111318] placeholder-[#B0B8C4] rounded-lg outline-none transition-all duration-150";
 
 function useField(): {
   borderStyle: FieldStyle;
@@ -63,7 +63,7 @@ function Input({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
+      <label className="text-fluid-sm font-medium text-[#374151]">{label}</label>
       <input
         type={type}
         name={name}
@@ -75,7 +75,7 @@ function Input({
         className={`${BASE} h-[42px] px-[14px] wide:h-[50px] wide:px-4`}
         style={f.borderStyle}
       />
-      {error && <p className="text-[11px] text-red-400">{error}</p>}
+      {error && <p className="text-fluid-xs text-red-400">{error}</p>}
     </div>
   );
 }
@@ -100,7 +100,7 @@ function Select({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
+      <label className="text-fluid-sm font-medium text-[#374151]">{label}</label>
       <div className="relative">
         <select
           name={name}
@@ -135,7 +135,7 @@ function Select({
           />
         </svg>
       </div>
-      {error && <p className="text-[11px] text-red-400">{error}</p>}
+      {error && <p className="text-fluid-xs text-red-400">{error}</p>}
     </div>
   );
 }
@@ -156,7 +156,7 @@ function Textarea({
   const f = useField();
   return (
     <div className="flex flex-col gap-[5px]">
-      <label className="text-[12px] font-medium text-[#374151] wide:text-[13px]">{label}</label>
+      <label className="text-fluid-sm font-medium text-[#374151]">{label}</label>
       <textarea
         name={name}
         value={value}
@@ -282,10 +282,10 @@ export default function WaitlistFormPanel() {
             />
           </svg>
         </div>
-        <h2 className="mb-2 text-[20px] font-bold tracking-[-0.02em] text-[#111318]">
+        <h2 className="mb-2 text-fluid-2xl font-bold tracking-[-0.02em] text-[#111318]">
           Request received
         </h2>
-        <p className="max-w-[320px] text-[14px] leading-[1.72] text-[#6B7280]">
+        <p className="max-w-[320px] text-fluid-md leading-[1.72] text-[#6B7280]">
           We’ll be in touch with next steps for the AVAIL waitlist at{" "}
           <span className="font-medium text-[#111318]">{form.email}</span>.
         </p>
@@ -307,10 +307,10 @@ export default function WaitlistFormPanel() {
       }}
     >
       <div className="mb-1">
-        <h2 className="mb-1 text-[18px] font-bold tracking-[-0.02em] text-[#111318] wide:text-[22px]">
+        <h2 className="mb-1 text-fluid-xl font-bold tracking-[-0.02em] text-[#111318]">
           Join waitlist
         </h2>
-        <p className="text-[13px] leading-[1.65] text-[#6B7280] wide:text-[15px]">
+        <p className="text-fluid-base leading-[1.65] text-[#6B7280]">
           Share a few details and we’ll add your team to the AVAIL waitlist.
         </p>
       </div>
@@ -382,7 +382,7 @@ export default function WaitlistFormPanel() {
       />
 
       {submitError && (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-[12.5px] text-red-700">
+        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-fluid-sm text-red-700">
           {submitError}
         </div>
       )}
@@ -417,12 +417,12 @@ export default function WaitlistFormPanel() {
               )}
             </div>
           </div>
-          <span className="text-[12.5px] leading-[1.5] text-[#6B7280] wide:text-[14px]">
+          <span className="text-fluid-sm leading-[1.5] text-[#6B7280]">
             I agree to be contacted about AVAIL
           </span>
         </label>
         {errors.consent && (
-          <p className="pl-7 text-[11px] text-red-400">{errors.consent}</p>
+          <p className="pl-7 text-fluid-xs text-red-400">{errors.consent}</p>
         )}
       </div>
 
@@ -430,7 +430,7 @@ export default function WaitlistFormPanel() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="h-[44px] w-full rounded-lg bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] text-[14px] font-semibold tracking-[-0.01em] text-white opacity-70 transition-all duration-150 hover:-translate-y-[1.5px] hover:opacity-100 active:translate-y-0 disabled:hover:translate-y-0 disabled:hover:opacity-70 wide:h-[52px] wide:text-[16px]"
+          className="h-[44px] w-full rounded-lg bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] text-fluid-md font-semibold tracking-[-0.01em] text-white opacity-70 transition-all duration-150 hover:-translate-y-[1.5px] hover:opacity-100 active:translate-y-0 disabled:hover:translate-y-0 disabled:hover:opacity-70 wide:h-[52px]"
           style={{
             boxShadow: "0 2px 12px rgba(116,199,167,0.35)",
             cursor: isSubmitting ? "wait" : "pointer",
@@ -438,7 +438,7 @@ export default function WaitlistFormPanel() {
         >
           {isSubmitting ? "Submitting..." : "Join waitlist"}
         </button>
-        <p className="text-center text-[11.5px] text-[#9CA3AF] wide:text-[13px]">
+        <p className="text-center text-fluid-xs text-[#9CA3AF]">
           We typically respond within 24 hours.
         </p>
       </div>

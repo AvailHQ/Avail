@@ -168,7 +168,7 @@ export default function TeamSection() {
       <div className="relative z-10 mx-auto max-w-[1100px] pb-5 wide:max-w-[1500px]">
         {/* ── Centered header ─────────────────────────────── */}
         <motion.div {...fadeUp(0)} className="text-center mb-16">
-          <p className="mb-3 text-[10.5px] pt-4 font-semibold uppercase tracking-[0.26em] text-[#9CA3AF]">
+          <p className="mb-3 text-fluid-xs pt-4 font-semibold uppercase tracking-[0.26em] text-[#9CA3AF]">
             Our Team
           </p>
           {/* Mint underline */}
@@ -197,7 +197,7 @@ export default function TeamSection() {
               >
                 <h2
                   id="team-headline"
-                  className="max-w-[560px] font-bold leading-[1.5] tracking-[-0.035em] text-[#111318] text-[clamp(22px,2.6vw,28px)] wide:max-w-[720px] wide:text-[34px]"
+                  className="max-w-[560px] font-bold leading-[1.5] tracking-[-0.035em] text-[#111318] text-fluid-3xl wide:max-w-[720px]"
                 >
                   {active.quote}
                 </h2>
@@ -282,11 +282,11 @@ export default function TeamSection() {
                 transition={{ duration: 0.18 }}
                 className="text-center"
               >
-                <p className="text-[18px] font-bold tracking-[-0.03em] text-[#111318] leading-none wide:text-[22px]">
+                <p className="text-fluid-xl font-bold tracking-[-0.03em] text-[#111318] leading-none">
                   {active.name}
                 </p>
                 <p
-                  className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] wide:text-[11px]"
+                  className="mt-1.5 text-fluid-2xs font-semibold uppercase tracking-[0.2em]"
                   style={{ color: MINT }}
                 >
                   {active.role}

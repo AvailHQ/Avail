@@ -77,7 +77,7 @@ function BillingSwitch({
   onOfficialClick: () => void;
 }) {
   return (
-    <div className="mx-auto mt-14 flex w-full max-w-[440px] rounded-full bg-[#E9EBED] p-0 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#111318] wide:max-w-[520px] wide:text-[14px]">
+    <div className="mx-auto mt-14 flex w-full max-w-[440px] rounded-full bg-[#E9EBED] p-0 text-fluid-sm font-semibold uppercase tracking-[0.08em] text-[#111318] wide:max-w-[520px]">
       <button
         type="button"
         onClick={() => onChange("pilot")}
@@ -144,17 +144,17 @@ function PricingUnavailableModal({ onClose }: { onClose: () => void }) {
         </div>
         <h2
           id="pricing-modal-title"
-          className="text-[20px] font-bold tracking-[-0.02em] text-[#111318]"
+          className="text-fluid-2xl font-bold tracking-[-0.02em] text-[#111318]"
         >
           Pricing coming soon
         </h2>
-        <p className="mx-auto mt-3 max-w-[310px] text-[14px] leading-[1.7] text-[#6B7280]">
+        <p className="mx-auto mt-3 max-w-[310px] text-fluid-md leading-[1.7] text-[#6B7280]">
           Pricing will be published after the pilot programme.
         </p>
         <button
           type="button"
           onClick={onClose}
-          className="mt-7 inline-flex h-[42px] items-center justify-center rounded-lg px-7 text-[14px] font-semibold text-white transition-all duration-150 hover:-translate-y-[1px] wide:h-[50px] wide:px-9 wide:text-[16px]"
+          className="mt-7 inline-flex h-[42px] items-center justify-center rounded-lg px-7 text-fluid-md font-semibold text-white transition-all duration-150 hover:-translate-y-[1px] wide:h-[50px] wide:px-9"
           style={{
             background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)",
             boxShadow: "0 2px 12px rgba(116,199,167,0.35)",
@@ -189,19 +189,19 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
       }
     >
       {plan.featured && (
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9EF0CE] px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#006D57] shadow-[0_8px_18px_rgba(0,0,0,0.06)]">
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9EF0CE] px-5 py-2 text-fluid-xs font-semibold uppercase tracking-[0.12em] text-[#006D57] shadow-[0_8px_18px_rgba(0,0,0,0.06)]">
           Most Popular
         </div>
       )}
 
       <div>
         <h2
-          className={`text-[21px] font-bold leading-tight wide:text-[26px] ${plan.featured ? "uppercase tracking-[-0.01em]" : ""}`}
+          className={`text-fluid-2xl font-bold leading-tight ${plan.featured ? "uppercase tracking-[-0.01em]" : ""}`}
         >
           {plan.name}
         </h2>
         <p
-          className={`mt-4 min-h-[56px] text-[15px] font-medium leading-[1.45] wide:text-[17px] ${plan.featured ? "text-white/72" : "text-[#5B636B]"}`}
+          className={`mt-4 min-h-[56px] text-fluid-lg font-medium leading-[1.45] ${plan.featured ? "text-white/72" : "text-[#5B636B]"}`}
         >
           {plan.audience}
         </p>
@@ -209,17 +209,17 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
 
       <div className="mt-12">
         <div className="flex flex-wrap items-baseline gap-x-1">
-          <span className="text-[34px] font-bold tracking-[-0.03em] leading-none hero:text-[36px] wide:text-[44px]">
+          <span className="text-fluid-5xl font-bold tracking-[-0.03em] leading-none">
             {plan.price}
           </span>
           <span
-            className={`text-[13px] font-semibold ${plan.featured ? "text-white/75" : "text-[#5B636B]"}`}
+            className={`text-fluid-base font-semibold ${plan.featured ? "text-white/75" : "text-[#5B636B]"}`}
           >
             {plan.priceSuffix}
           </span>
         </div>
         <p
-          className={`mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] ${plan.featured ? "text-white/55" : "text-[#7D858C]"}`}
+          className={`mt-3 text-fluid-xs font-semibold uppercase tracking-[0.14em] ${plan.featured ? "text-white/55" : "text-[#7D858C]"}`}
         >
           {plan.billing}
         </p>
@@ -234,7 +234,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
               aria-hidden="true"
             />
             <span
-              className={`text-[14.5px] font-medium leading-snug wide:text-[16.5px] ${plan.featured ? "text-white/88" : "text-[#5B636B]"}`}
+              className={`text-fluid-md font-medium leading-snug ${plan.featured ? "text-white/88" : "text-[#5B636B]"}`}
             >
               {feature}
             </span>
@@ -264,16 +264,16 @@ export default function PricingPage() {
         className="mx-auto max-w-[1000px] text-center wide:max-w-[1320px]"
         aria-labelledby="pricing-headline"
       >
-        <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#6FBF9E]">
+        <p className="mb-5 text-fluid-xs font-semibold uppercase tracking-[0.24em] text-[#6FBF9E]">
           Pricing
         </p>
         <h1
           id="pricing-headline"
-          className="mx-auto max-w-[860px] font-bold leading-[1.04] tracking-[-0.04em] text-[#111318] text-[clamp(38px,6.4vw,48px)] wide:max-w-[1120px] wide:text-[72px]"
+          className="mx-auto max-w-[860px] font-bold leading-[1.04] tracking-[-0.04em] text-[#111318] text-fluid-hero wide:max-w-[1120px]"
         >
           Performance infrastructure built to scale.
         </h1>
-        <p className="mx-auto mt-8 max-w-[670px] text-[17px] leading-[1.68] tracking-[-0.01em] text-[#4B5563] hero:text-[19px] wide:max-w-[820px]">
+        <p className="mx-auto mt-8 max-w-[670px] text-fluid-lg leading-[1.68] tracking-[-0.01em] text-[#4B5563] wide:max-w-[820px]">
           Flexible data architecture and intelligence tools designed for the
           unique demands of elite sports organizations and performance
           departments.

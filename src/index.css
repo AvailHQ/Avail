@@ -11,5 +11,6 @@ html {
 body {
   background-color: #f7f9fc;
   font-family: "Martel Sans", "Quicksand", "Noto Serif SC", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(0.875rem, 0.8rem + 0.28vw, 1rem);
   overflow-x: hidden;
 }

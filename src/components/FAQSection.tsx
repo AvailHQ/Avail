@@ -90,13 +90,13 @@ function FAQItem({ q, a, index }: FAQItemProps) {
         {/* Number + question */}
         <div className="flex items-start gap-4">
           <span
-            className="text-[11px] font-semibold tabular-nums mt-[2px] flex-shrink-0 transition-colors duration-150 wide:text-[13px]"
+            className="text-fluid-xs font-semibold tabular-nums mt-[2px] flex-shrink-0 transition-colors duration-150"
             style={{ color: open ? '#6FBF9E' : '#C4CAD4' }}
           >
             {String(index + 1).padStart(2, '0')}
           </span>
           <span
-            className="text-[15px] font-semibold leading-snug tracking-[-0.01em] transition-colors duration-150 wide:text-[18px]"
+            className="text-fluid-lg font-semibold leading-snug tracking-[-0.01em] transition-colors duration-150"
             style={{ color: open ? '#111318' : '#374151' }}
           >
             {q}
@@ -134,7 +134,7 @@ function FAQItem({ q, a, index }: FAQItemProps) {
           >
             <div className="pb-6 pl-10 flex flex-col gap-[10px] wide:pb-7 wide:pl-12">
               {a.map((para, i) => (
-                <p key={i} className="text-[14px] leading-[1.72] text-[#6B7280] wide:text-[16px]">
+                <p key={i} className="text-fluid-md leading-[1.72] text-[#6B7280]">
                   {para}
                 </p>
               ))}
@@ -161,16 +161,16 @@ export default function FAQSection() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-14"
         >
-          <p className="text-[10.5px] font-semibold tracking-[0.15em] uppercase text-[#9CA3AF] mb-4">
+          <p className="text-fluid-xs font-semibold tracking-[0.15em] uppercase text-[#9CA3AF] mb-4">
             FAQ
           </p>
           <h2
             id="faq-headline"
-            className="font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-4 text-[clamp(24px,3.2vw,38px)] wide:text-[46px]"
+            className="font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-4 text-fluid-3xl"
           >
             Common questions
           </h2>
-          <p className="text-[15px] text-[#6B7280] leading-[1.65] max-w-[380px] mx-auto wide:max-w-[520px]">
+          <p className="text-fluid-lg text-[#6B7280] leading-[1.65] max-w-[380px] mx-auto wide:max-w-[520px]">
             Everything you need to know before getting started.
           </p>
         </motion.div>
@@ -193,7 +193,7 @@ export default function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-          className="text-center text-[13px] text-[#9CA3AF] mt-10"
+          className="text-center text-fluid-base text-[#9CA3AF] mt-10"
         >
           Still have questions?{' '}
           <a

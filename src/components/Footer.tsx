@@ -75,20 +75,20 @@ export default function Footer() {
                 className="h-8 w-auto"
                 aria-hidden="true"
               />
-              <span className="text-[#111318] text-[17px] font-bold tracking-[-0.04em]">
+              <span className="text-[#111318] text-fluid-lg font-bold tracking-[-0.04em]">
                 Avail
               </span>
             </a>
 
             {/* Tagline */}
-            <p className="text-[13px] leading-[1.65] text-[#6B7280] max-w-[200px] wide:max-w-[240px] wide:text-[15px]">
+            <p className="text-fluid-base leading-[1.65] text-[#6B7280] max-w-[200px] wide:max-w-[240px]">
               Cycle-aware load intelligence for elite women's sport.
             </p>
 
             {/* CTA */}
             <Link
               to="/join-pilot-programme"
-              className="inline-flex items-center justify-center self-start h-9 px-4 rounded-full text-white text-[12px] font-semibold tracking-[0.01em] shadow-[0_2px_12px_rgba(111,191,158,0.3)] hover:opacity-85 hover:-translate-y-px transition-all duration-150 wide:h-11 wide:px-6 wide:text-[14px]"
+              className="inline-flex items-center justify-center self-start h-9 px-4 rounded-full text-white text-fluid-sm font-semibold tracking-[0.01em] shadow-[0_2px_12px_rgba(111,191,158,0.3)] hover:opacity-85 hover:-translate-y-px transition-all duration-150 wide:h-11 wide:px-6"
               style={{ background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }}
             >
               Join waitlist
@@ -99,7 +99,7 @@ export default function Footer() {
           <div className="hero:col-span-4 grid grid-cols-2 md:grid-cols-4 gap-8">
             {COLUMNS.map(({ heading, links }) => (
               <div key={heading} className="flex flex-col gap-3">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#9CA3AF] mb-1">
+                <p className="text-fluid-xs font-semibold uppercase tracking-[0.12em] text-[#9CA3AF] mb-1">
                   {heading}
                 </p>
                 {links.map((link) => (
@@ -108,7 +108,7 @@ export default function Footer() {
                       key={link}
                       type="button"
                       onClick={() => setShowPricingModal(true)}
-                    className="self-start text-left text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug wide:text-[15px]"
+                    className="self-start text-left text-fluid-base font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
                     >
                       {link}
                     </button>
@@ -116,7 +116,7 @@ export default function Footer() {
                     <Link
                       key={link}
                       to="/how-it-works"
-                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug wide:text-[15px]"
+                      className="text-fluid-base font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
                     >
                       {link}
                     </Link>
@@ -124,7 +124,7 @@ export default function Footer() {
                     <Link
                       key={link}
                       to="/"
-                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug wide:text-[15px]"
+                      className="text-fluid-base font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
                     >
                       {link}
                     </Link>
@@ -132,7 +132,7 @@ export default function Footer() {
                     <a
                       key={link}
                       href="#"
-                      className="text-[13px] font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug wide:text-[15px]"
+                      className="text-fluid-base font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
                     >
                       {link}
                     </a>
@@ -148,7 +148,7 @@ export default function Footer() {
           className="max-w-[1160px] mx-auto px-8 py-5 flex flex-col hero:flex-row items-center justify-between gap-4 wide:max-w-[1560px]"
           style={{ borderTop: "1px solid #E8ECF0" }}
         >
-          <p className="text-[12px] text-[#9CA3AF] font-medium">
+          <p className="text-fluid-sm text-[#9CA3AF] font-medium">
             © 2026 Avail. All rights reserved.
           </p>
 
