@@ -8,13 +8,11 @@ import {
   CheckCircle2,
   Gauge,
   HeartPulse,
-  Lock,
   Network,
   RefreshCcw,
   ShieldCheck,
   SlidersHorizontal,
   Sparkles,
-  TrendingUp,
   Users,
 } from "lucide-react";
 
@@ -126,12 +124,27 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
   },
 ];
 
-const TRUST_POINTS = [
-  "Athletes control data sharing",
-  "Coaches see structured insights, not raw cycle logs",
-  "AVAIL is not a medical or diagnostic tool",
-  "Consent-first architecture",
-  "Privacy-preserving performance workflow",
+const TRUST_CARDS = [
+  {
+    title: "Athlete Data Control",
+    body: "Athletes choose what is shared and keep sensitive context protected.",
+  },
+  {
+    title: "Structured Coach Insights",
+    body: "Coaches receive guidance and readiness signals, not raw cycle logs.",
+  },
+  {
+    title: "Non-Diagnostic Guidance",
+    body: "AVAIL supports performance decisions and does not make medical claims.",
+  },
+  {
+    title: "Consent-First Workflow",
+    body: "Sensitive inputs stay tied to clear consent and team data boundaries.",
+  },
+  {
+    title: "Privacy-Preserving Design",
+    body: "Performance workflows stay useful without exposing unnecessary detail.",
+  },
 ];
 
 // Small shared UI primitives used by the hero, mockups, and CTA sections.
@@ -213,35 +226,11 @@ function FloatingCard({
 // Step 01 visual: athlete daily check-in phone.
 function PhoneCheckIn() {
   return (
-    <div className="relative mx-auto h-[360px] w-[180px] rounded-[34px] border border-slate-900/10 bg-[#111318] p-2 shadow-[0_30px_80px_rgba(15,23,42,0.25)] hero:h-[440px] hero:w-[220px] hero:rounded-[38px]">
-      <div className="h-full overflow-hidden rounded-[30px] bg-[#FAFBF8] p-4">
-        <div className="mx-auto mb-5 h-1.5 w-16 rounded-full bg-slate-200" />
-        <p className="text-fluid-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-          Today
-        </p>
-        <h3 className="mt-1 text-fluid-xl font-bold leading-tight tracking-[-0.03em] text-[#111318]">
-          Readiness check-in
-        </h3>
-        <div className="mt-6 space-y-5">
-          <MetricBar label="Sleep" value={82} />
-          <MetricBar label="Fatigue" value={34} tone="warm" />
-          <MetricBar label="Soreness" value={41} tone="blue" />
-          <MetricBar label="Mood" value={76} />
-        </div>
-        <div className="mt-7 rounded-2xl border border-slate-200/70 bg-white p-4">
-          <p className="text-fluid-xs font-semibold text-slate-400">
-            Cycle context
-          </p>
-          <p className="mt-1 text-fluid-base font-bold text-[#111318]">
-            Private athlete input
-          </p>
-        </div>
-        <div className="mt-4 flex items-center gap-2 rounded-full bg-[#EAF8F2] px-3 py-2 text-fluid-sm font-bold text-[#27815D]">
-          <CheckCircle2 className="h-4 w-4" />
-          Check-in complete
-        </div>
-      </div>
-    </div>
+    <img
+      src="/figure/step1.png"
+      alt="Athlete readiness check-in preview"
+      className="absolute inset-0 h-full w-full object-cover"
+    />
   );
 }
 
@@ -503,11 +492,19 @@ function StepMockup({ kind }: { kind: MockupKind }) {
     learning: <LearningMockup />,
   };
 
+  if (kind === "checkin") {
+    return (
+      <div className="relative mx-auto aspect-[1205/1306] w-full max-w-[420px] overflow-hidden rounded-[28px] border border-slate-200/70 bg-white shadow-[0_24px_64px_rgba(15,23,42,0.08)] hero:mx-0 hero:max-w-[430px]">
+        <PhoneCheckIn />
+      </div>
+    );
+  }
+
   return (
-    <div className="relative mx-auto min-h-[300px] w-full max-w-[640px] overflow-hidden rounded-[30px] border border-slate-200/70 bg-[radial-gradient(circle_at_50%_15%,rgba(111,191,158,0.18),rgba(250,251,248,0.9)_42%,rgba(255,255,255,0.95)_100%)] px-4 py-6 hero:min-h-[520px] hero:px-8 hero:py-9">
+    <div className="relative mx-auto min-h-[300px] w-full max-w-[560px] overflow-hidden rounded-[30px] border border-slate-200/70 bg-[radial-gradient(circle_at_50%_15%,rgba(111,191,158,0.18),rgba(250,251,248,0.9)_42%,rgba(255,255,255,0.95)_100%)] px-4 py-6 hero:mx-0 hero:min-h-[400px] hero:px-6 hero:py-7">
       <div className="absolute left-10 top-10 h-36 w-36 rounded-full bg-[#6FBF9E]/14 blur-3xl" />
       <div className="absolute bottom-12 right-10 h-44 w-44 rounded-full bg-[#4FA3C7]/14 blur-3xl" />
-      <div className="relative z-10 flex min-h-[260px] items-center justify-center hero:min-h-[360px]">
+      <div className="relative z-10 flex min-h-[260px] items-center justify-center hero:min-h-[300px]">
         {mockups[kind]}
       </div>
     </div>
@@ -522,11 +519,21 @@ function WorkflowCard({ step, index }: { step: WorkflowStep; index: number }) {
       {...fadeUp(0.05)}
       className="relative min-h-[78vh] w-full overflow-hidden border-t border-slate-200/80 bg-[#FEFEFC] shadow-[0_-18px_54px_rgba(15,23,42,0.06)]"
     >
-      <div className="relative mx-auto grid min-h-[78vh] w-full max-w-[1120px] px-6 py-6 hero:grid-cols-[0.38fr_0.62fr] hero:gap-8 hero:px-0 hero:py-8 wide:max-w-[1480px] wide:gap-12">
-        <div className="absolute left-6 top-5 text-fluid-display font-bold leading-none tracking-[-0.08em] text-slate-100 hero:left-0">
+      <div className="relative mx-auto grid min-h-[78vh] w-full max-w-[1120px] px-6 py-6 hero:grid-cols-[0.38fr_0.62fr] hero:grid-rows-[auto_auto] hero:content-center hero:gap-x-8 hero:gap-y-6 hero:px-0 hero:py-8 wide:max-w-[1480px] wide:gap-x-12 wide:gap-y-8">
+        <div className="absolute left-6 top-5 text-fluid-display font-bold leading-none tracking-[-0.08em] text-slate-100 hero:static hero:self-start">
           {step.number}
         </div>
-        <div className="relative z-10 flex flex-col justify-center py-8 hero:py-0">
+        <div className="relative z-10 order-2 flex flex-col justify-center hero:order-none hero:col-start-2 hero:row-start-1 hero:translate-x-10 wide:translate-x-14">
+          <div className="mx-auto w-full px-1">
+            <h2 className="font-bold leading-[1.03] tracking-[-0.045em] text-[#111318] text-[clamp(1.75rem,1.75vw,2.45rem)] hero:whitespace-nowrap">
+              {step.headline}
+            </h2>
+          </div>
+        </div>
+        <div className="relative z-10 order-1 flex flex-col justify-center py-8 hero:order-none hero:col-start-1 hero:row-start-2 hero:py-0">
+          <p className="mb-3 text-fluid-xs font-bold uppercase tracking-[0.16em] text-[#4FA3C7]">
+            {step.eyebrow}
+          </p>
           <p className="max-w-[390px] text-fluid-md leading-[1.75] text-slate-500 wide:max-w-[480px]">
             {step.copy}
           </p>
@@ -544,22 +551,8 @@ function WorkflowCard({ step, index }: { step: WorkflowStep; index: number }) {
             ))}
           </div>
         </div>
-        <div className="relative z-10 flex flex-col justify-center">
-          <div className="mx-auto mb-5 w-full max-w-[640px] px-1">
-            <p className="mb-3 text-fluid-xs font-bold uppercase tracking-[0.16em] text-[#4FA3C7]">
-              {step.eyebrow}
-            </p>
-            <h2 className="max-w-[620px] font-bold leading-[1.03] tracking-[-0.045em] text-[#111318] text-fluid-4xl">
-              {step.headline}
-            </h2>
-          </div>
+        <div className="relative z-10 order-3 flex flex-col justify-center hero:order-none hero:col-start-2 hero:row-start-2 hero:translate-x-10 wide:translate-x-14">
           <StepMockup kind={step.kind} />
-          {index === 0 && (
-            <FloatingCard className="right-5 top-[190px] hidden w-44 hero:block">
-              <p className="text-fluid-xs font-bold text-slate-400">Completion</p>
-              <p className="mt-1 text-fluid-2xl font-bold text-[#111318]">94%</p>
-            </FloatingCard>
-          )}
           {index === 3 && (
             <FloatingCard
               className="bottom-10 left-6 hidden w-48 hero:block"
@@ -701,53 +694,45 @@ export default function HowItWorksPage() {
 
       {/* Privacy and trust: clarifies data boundaries and non-medical positioning. */}
       <section className="px-6 py-28 wide:py-32" aria-labelledby="privacy-heading">
-        <div className="mx-auto grid max-w-[1120px] gap-8 hero:grid-cols-[0.9fr_1.1fr] hero:items-center wide:max-w-[1560px] wide:gap-16">
+        <div className="mx-auto max-w-[1120px] wide:max-w-[1560px]">
           <motion.div {...fadeUp(0)}>
             <p className="mb-4 text-fluid-xs font-bold uppercase tracking-[0.16em] text-[#4FA3C7]">
               Privacy and trust
             </p>
             <h2
               id="privacy-heading"
-              className="font-bold leading-[1.06] tracking-[-0.05em] text-[#111318] text-fluid-hero"
+              className="flex items-center gap-4 font-bold leading-[1.06] tracking-[-0.045em] text-[#111318] text-fluid-4xl"
             >
-              Decision support without exposing raw sensitive data.
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#EAF8F2] text-[#27815D] shadow-[0_14px_34px_rgba(39,129,93,0.12)]">
+                <ShieldCheck className="h-6 w-6" aria-hidden="true" />
+              </span>
+              Private by design.
             </h2>
             <p className="mt-6 max-w-[520px] text-fluid-lg leading-[1.8] text-slate-500">
-              AVAIL is designed for performance workflows where athletes retain
-              control and coaches receive structured guidance, not raw cycle
-              logs or diagnostic claims.
+              Athletes retain control while coaches receive structured
+              guidance, not raw cycle logs or diagnostic claims.
             </p>
           </motion.div>
+
           <motion.div
             {...fadeUp(0.08)}
-            className="rounded-[32px] border border-slate-200/70 bg-white p-6 shadow-[0_30px_80px_rgba(15,23,42,0.08)]"
+            className="mt-16 grid gap-7 hero:grid-cols-3 wide:gap-9"
           >
-            <div className="mb-6 flex items-center justify-between rounded-3xl bg-[#FAFBF8] p-5">
-              <div>
-                <p className="text-fluid-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-                  Protected workflow
-                </p>
-                <p className="mt-1 text-fluid-2xl font-bold tracking-[-0.03em] text-[#111318]">
-                  Athlete first, coach ready
-                </p>
-              </div>
-              <Lock className="h-8 w-8 text-[#6FBF9E]" />
-            </div>
-            <div className="space-y-3">
-              {TRUST_POINTS.map((point) => (
-                <div
-                  key={point}
-                  className="flex items-center gap-3 rounded-2xl border border-slate-200/70 bg-[#FAFBF8] p-4"
-                >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EAF8F2] text-[#27815D]">
-                    <ShieldCheck className="h-4 w-4" />
-                  </span>
-                  <p className="text-fluid-base font-bold text-slate-600">
-                    {point}
+            {TRUST_CARDS.map((card) => (
+              <div
+                key={card.title}
+                className="group rounded-[25px] bg-gradient-to-br from-slate-200/80 via-slate-200/70 to-slate-200/80 p-px transition-all duration-200 hover:-translate-y-[2px] hover:from-[#6FBF9E] hover:via-[#A7ECD0] hover:to-[#4FA3C7] hover:shadow-[0_22px_54px_rgba(15,23,42,0.10)]"
+              >
+                <div className="h-full rounded-[24px] bg-[#FEFEFC]/90 p-7 transition-colors duration-200 group-hover:bg-white hero:min-h-[170px] wide:p-8">
+                  <h3 className="text-fluid-lg font-bold tracking-[-0.02em] text-[#111318]">
+                    {card.title}
+                  </h3>
+                  <p className="mt-4 text-fluid-md leading-[1.75] text-slate-500">
+                    {card.body}
                   </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -756,17 +741,14 @@ export default function HowItWorksPage() {
       <section className="bg-white px-6 py-28 wide:py-32">
         <motion.div
           {...fadeUp(0)}
-          className="mx-auto max-w-[1080px] overflow-hidden rounded-[36px] border border-slate-200/70 bg-[#111318] p-8 text-center shadow-[0_30px_80px_rgba(15,23,42,0.16)] hero:p-16 wide:max-w-[1320px]"
+          className="mx-auto max-w-[1080px] overflow-hidden rounded-[36px] border border-slate-200/70 bg-gradient-to-b from-white via-[#F7FBFF] to-[#DDEBFF] p-8 text-center shadow-[0_30px_80px_rgba(15,23,42,0.10)] hero:p-16 wide:max-w-[1320px]"
         >
-          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-[#6FBF9E]">
-            <TrendingUp className="h-7 w-7" />
-          </div>
           <h2
-            className="mx-auto max-w-[760px] font-bold leading-[1.05] tracking-[-0.05em] text-white text-fluid-hero wide:max-w-[960px]"
+            className="mx-auto max-w-[680px] font-bold leading-[1.05] tracking-[-0.045em] text-[#111318] text-fluid-4xl wide:max-w-[820px]"
           >
-            Ready to modernise load management in women's sport?
+            Modernise women's load management.
           </h2>
-          <p className="mx-auto mt-5 max-w-[560px] text-fluid-lg leading-[1.75] text-white/58">
+          <p className="mx-auto mt-5 max-w-[560px] text-fluid-lg leading-[1.75] text-slate-500">
             Bring cycle-aware performance intelligence into the decisions your
             staff already make every day.
           </p>

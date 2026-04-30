@@ -21,11 +21,11 @@ export default function HeroCopy() {
 
       <motion.h1
         {...fadeUp(0.15)}
-        className="font-bold leading-[1.06] tracking-[-0.04em] text-[#111318] mb-5 max-w-[1120px] mx-auto text-fluid-hero"
+        className="mx-auto mb-5 max-w-[1180px] font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-4xl wide:max-w-[1320px]"
       >
-        Cycle-aware load intelligence
+        The only decision intelligence system
         <br />
-        for elite women's sport
+        built for women's sport
       </motion.h1>
 
       <motion.p

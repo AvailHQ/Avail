@@ -129,7 +129,7 @@ const CAPABILITIES: Capability[] = [
 export default function SolutionSection() {
   return (
     <section
-      className="w-full py-28 px-6 relative overflow-hidden"
+      className="w-full px-6 py-20 relative overflow-hidden hero:py-24 wide:py-28"
       aria-labelledby="solution-headline"
       style={{
         background:
@@ -154,7 +154,7 @@ export default function SolutionSection() {
       </svg>
 
       <div className="relative z-10 mx-auto max-w-[1180px] hero:max-w-[1320px] wide:max-w-[1560px]">
-        <motion.div {...fadeUp(0)} className="text-center mb-14">
+        <motion.div {...fadeUp(0)} className="text-center mb-10 hero:mb-12">
           <p className="text-fluid-xs font-semibold tracking-[0.15em] uppercase text-[#9CA3AF] mb-4">
             Solution
           </p>
@@ -180,9 +180,9 @@ export default function SolutionSection() {
                 boxShadow: "0 22px 44px rgba(111,191,158,0.14)",
                 transition: { duration: 0.12, ease: "linear" },
               }}
-              className="group min-h-[246px] rounded-[28px] border border-slate-200/70 bg-[#FEFEFC] px-5 py-6 shadow-[0_18px_54px_rgba(15,23,42,0.05)] wide:min-h-[270px] wide:p-7"
+              className="group min-h-[210px] rounded-[24px] border border-slate-200/70 bg-[#FEFEFC] px-5 py-5 shadow-[0_18px_54px_rgba(15,23,42,0.05)] hero:min-h-[218px] hero:px-6 hero:py-6 wide:min-h-[250px] wide:p-7"
             >
-              <div className="mb-8 flex transition-transform duration-150 group-hover:scale-[1.05] wide:mb-9">
+              <div className="mb-6 flex transition-transform duration-150 group-hover:scale-[1.05] wide:mb-8">
                 <Icon />
               </div>
 
