@@ -115,8 +115,8 @@ function pos(mx: number, my: number): PosStyle {
 }
 
 const COMPETITORS: Competitor[] = [
-  { name: "WHOOP", Icon: IcWHOOP, mx: 0.17, my: 0.26, desc: "Recovery & strain wearable" },
-  { name: "Oura", Icon: IcOura, mx: 0.06, my: 0.1, desc: "Sleep & readiness ring tracker" },
+  { name: "WHOOP", Icon: IcWHOOP, mx: 0.22, my: 0.26, desc: "Recovery & strain wearable" },
+  { name: "Oura", Icon: IcOura, mx: 0.13, my: 0.1, desc: "Sleep & readiness ring tracker" },
   { name: "Catapult", Icon: IcCatapult, mx: 0.63, my: 0.18, desc: "GPS load tracking for teams" },
   { name: "Kitman Labs", Icon: IcKitman, mx: 0.7, my: 0.47, desc: "Load & injury analytics platform" },
   { name: "FitrWoman", Icon: IcFitrWoman, mx: 0.19, my: 0.77, desc: "Cycle tracking for female athletes" },
@@ -170,7 +170,7 @@ export default function ProblemSection() {
 
         <motion.div
           {...inView(0.2)}
-          className="relative w-full select-none"
+          className="relative w-full select-none [--matrix-card-scale:0.58] sm:[--matrix-card-scale:0.72] hero:[--matrix-card-scale:1]"
           style={{ aspectRatio: `${VW} / ${VH}` }}
         >
           <svg
@@ -274,7 +274,7 @@ export default function ProblemSection() {
           {COMPETITORS.map(({ name, Icon, mx, my, desc }, i) => (
             <motion.div
               key={name}
-              className="absolute -translate-x-1/2 -translate-y-1/2 z-10"
+              className="absolute z-10"
               style={pos(mx, my)}
               initial={{ opacity: 0, scale: 0.72 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -293,41 +293,43 @@ export default function ProblemSection() {
                 setActiveAxes(null);
               }}
             >
-              <motion.div
-                animate={
-                  hoveredCard === name
-                    ? {
-                        scale: 1.035,
-                        y: -4,
-                        boxShadow: "0 10px 28px rgba(0,0,0,0.18)",
-                      }
-                    : {
-                        scale: 1,
-                        y: 0,
-                        boxShadow: "0 3px 16px rgba(0,0,0,0.14)",
-                      }
-                }
-                transition={{ duration: 0.045, ease: "linear" }}
-                className="bg-white border border-[#B8C4CF] rounded-[9px] cursor-default"
-                style={{ padding: "9px 12px" }}
-              >
-                <div className="flex items-center gap-[7px] mb-[5px]">
-                  <span className="flex-shrink-0 rounded-[4px] overflow-hidden leading-none">
-                    <Icon />
-                  </span>
-                  <span className="text-[10.5px] font-bold text-[#1E2D3D] tracking-[0.01em] leading-none whitespace-nowrap">
-                    {name}
-                  </span>
-                </div>
-                <p className="text-[9px] leading-none text-[#6B7280] whitespace-nowrap">
-                  {desc}
-                </p>
-              </motion.div>
+              <div className="-translate-x-1/2 -translate-y-1/2 scale-[var(--matrix-card-scale)] origin-center">
+                <motion.div
+                  animate={
+                    hoveredCard === name
+                      ? {
+                          scale: 1.035,
+                          y: -4,
+                          boxShadow: "0 10px 28px rgba(0,0,0,0.18)",
+                        }
+                      : {
+                          scale: 1,
+                          y: 0,
+                          boxShadow: "0 3px 16px rgba(0,0,0,0.14)",
+                        }
+                  }
+                  transition={{ duration: 0.045, ease: "linear" }}
+                  className="bg-white border border-[#B8C4CF] rounded-[9px] cursor-default"
+                  style={{ padding: "9px 12px" }}
+                >
+                  <div className="flex items-center gap-[7px] mb-[5px]">
+                    <span className="flex-shrink-0 rounded-[4px] overflow-hidden leading-none">
+                      <Icon />
+                    </span>
+                    <span className="text-[10.5px] font-bold text-[#1E2D3D] tracking-[0.01em] leading-none whitespace-nowrap">
+                      {name}
+                    </span>
+                  </div>
+                  <p className="text-[9px] leading-none text-[#6B7280] whitespace-nowrap">
+                    {desc}
+                  </p>
+                </motion.div>
+              </div>
             </motion.div>
           ))}
 
           <motion.div
-            className="absolute -translate-x-1/2 -translate-y-1/2 z-20"
+            className="absolute z-20"
             style={pos(0.83, 0.92)}
             initial={{ opacity: 0, scale: 0.6 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -342,56 +344,58 @@ export default function ProblemSection() {
               setActiveAxes(null);
             }}
           >
-            <div
-              className="absolute -inset-[20px] rounded-[28px] pointer-events-none"
-              style={{
-                background: "radial-gradient(ellipse, rgba(116,199,167,0.18) 0%, transparent 65%)",
-                filter: "blur(14px)",
-              }}
-            />
-            <div
-              className="absolute -inset-[6px] rounded-[20px] pointer-events-none"
-              style={{
-                background: "radial-gradient(ellipse, rgba(116,199,167,0.30) 0%, transparent 70%)",
-                filter: "blur(5px)",
-              }}
-            />
-            <motion.div
-              animate={
-                hoveredCard === "AVAIL"
-                  ? {
-                      scale: 1.025,
-                      y: -5,
-                      boxShadow:
-                        "0 10px 34px rgba(111,191,158,0.42), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
-                    }
-                  : {
-                      scale: 1,
-                      y: 0,
-                      boxShadow:
-                        "0 4px 30px rgba(111,191,158,0.40), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
-                    }
-              }
-              transition={{ duration: 0.045, ease: "linear" }}
-              className="relative bg-white rounded-[16px] cursor-default"
-              style={{
-                width: 248,
-                padding: "16px 19px",
-                border: "2px solid #74c7a7",
-              }}
-            >
-              <div className="flex items-center gap-[8px] mb-[8px]">
-                <img src="/figure/logo.svg" alt="" className="flex-shrink-0" style={{ width: 22, height: 22 }} aria-hidden="true" />
-                <span className="text-[16px] font-bold text-[#1A7A55] tracking-[0.06em] leading-none">
-                  AVAIL
-                </span>
-              </div>
-              <p className="text-[12px] font-semibold leading-[1.5] text-[#4aaa82]">
-                Cycle-aware load intelligence
-                <br />
-                for elite women's sport
-              </p>
-            </motion.div>
+            <div className="-translate-x-1/2 -translate-y-1/2 scale-[var(--matrix-card-scale)] origin-center">
+              <div
+                className="absolute -inset-[20px] rounded-[28px] pointer-events-none"
+                style={{
+                  background: "radial-gradient(ellipse, rgba(116,199,167,0.18) 0%, transparent 65%)",
+                  filter: "blur(14px)",
+                }}
+              />
+              <div
+                className="absolute -inset-[6px] rounded-[20px] pointer-events-none"
+                style={{
+                  background: "radial-gradient(ellipse, rgba(116,199,167,0.30) 0%, transparent 70%)",
+                  filter: "blur(5px)",
+                }}
+              />
+              <motion.div
+                animate={
+                  hoveredCard === "AVAIL"
+                    ? {
+                        scale: 1.025,
+                        y: -5,
+                        boxShadow:
+                          "0 10px 34px rgba(111,191,158,0.42), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
+                      }
+                    : {
+                        scale: 1,
+                        y: 0,
+                        boxShadow:
+                          "0 4px 30px rgba(111,191,158,0.40), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
+                      }
+                }
+                transition={{ duration: 0.045, ease: "linear" }}
+                className="relative bg-white rounded-[16px] cursor-default"
+                style={{
+                  width: 248,
+                  padding: "16px 19px",
+                  border: "2px solid #74c7a7",
+                }}
+              >
+                <div className="flex items-center gap-[8px] mb-[8px]">
+                  <img src="/figure/logo.svg" alt="" className="flex-shrink-0" style={{ width: 22, height: 22 }} aria-hidden="true" />
+                  <span className="text-[16px] font-bold text-[#1A7A55] tracking-[0.06em] leading-none">
+                    AVAIL
+                  </span>
+                </div>
+                <p className="text-[12px] font-semibold leading-[1.5] text-[#4aaa82]">
+                  Cycle-aware load intelligence
+                  <br />
+                  for elite women's sport
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
