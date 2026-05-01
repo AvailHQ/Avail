@@ -174,24 +174,20 @@ export default function SolutionSection() {
             <motion.article
               key={title}
               {...fadeUp(0.08 + index * 0.06)}
-              whileHover={{
-                y: -6,
-                scale: 1.01,
-                boxShadow: "0 22px 44px rgba(111,191,158,0.14)",
-                transition: { duration: 0.12, ease: "linear" },
-              }}
-              className="group min-h-[210px] rounded-[24px] border border-slate-200/70 bg-[#FEFEFC] px-5 py-5 shadow-[0_18px_54px_rgba(15,23,42,0.05)] hero:min-h-[218px] hero:px-6 hero:py-6 wide:min-h-[250px] wide:p-7"
+              className="min-h-[210px] rounded-[24px] bg-gradient-to-br from-slate-200/70 via-slate-200/70 to-slate-200/70 p-px shadow-[0_18px_54px_rgba(15,23,42,0.05)] transition-colors duration-150 hover:from-[#6FBF9E] hover:via-[#A7ECD0] hover:to-[#4FA3C7] hero:min-h-[218px] wide:min-h-[250px]"
             >
-              <div className="mb-6 flex transition-transform duration-150 group-hover:scale-[1.05] wide:mb-8">
-                <Icon />
-              </div>
+              <div className="h-full rounded-[23px] bg-[#FEFEFC] px-5 py-5 hero:px-6 hero:py-6 wide:p-7">
+                <div className="mb-6 flex wide:mb-8">
+                  <Icon />
+                </div>
 
-              <h3 className="mb-3 text-fluid-lg font-bold leading-[1.15] tracking-[-0.02em] text-[#111318]">
-                {title}
-              </h3>
-              <p className="text-fluid-base leading-[1.65] text-[#667085]">
-                {description}
-              </p>
+                <h3 className="mb-3 text-fluid-lg font-bold leading-[1.15] tracking-[-0.02em] text-[#111318]">
+                  {title}
+                </h3>
+                <p className="text-fluid-base leading-[1.65] text-[#667085]">
+                  {description}
+                </p>
+              </div>
             </motion.article>
           ))}
         </div>

@@ -2,14 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
-  Activity,
   ArrowRight,
   Brain,
   CheckCircle2,
   Gauge,
-  HeartPulse,
-  Network,
-  RefreshCcw,
   ShieldCheck,
   SlidersHorizontal,
   Sparkles,
@@ -147,15 +143,6 @@ const TRUST_CARDS = [
   },
 ];
 
-// Small shared UI primitives used by the hero, mockups, and CTA sections.
-function Pill({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-fluid-xs font-semibold text-slate-500 shadow-[0_8px_20px_rgba(15,23,42,0.04)]">
-      {children}
-    </span>
-  );
-}
-
 function GradientButton({ children }: { children: React.ReactNode }) {
   return (
     <Link
@@ -236,87 +223,23 @@ function PhoneCheckIn() {
 
 // Step 02 visual: multiple athlete signals converging into one integration layer.
 function SignalIntegrationMockup() {
-  const signals = [
-    { label: "Wellness", Icon: HeartPulse },
-    { label: "Cycle", Icon: RefreshCcw },
-    { label: "Load", Icon: Activity },
-    { label: "RPE", Icon: SlidersHorizontal },
-  ];
-
   return (
-    <div className="relative mx-auto w-full max-w-[560px] rounded-[32px] border border-slate-200/80 bg-white/78 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.08)]">
-      <div className="grid grid-cols-2 gap-4">
-        {signals.map(({ label, Icon }, index) => (
-          <motion.div
-            key={label}
-            animate={{ y: [0, index % 2 === 0 ? -5 : 5, 0] }}
-            transition={{
-              duration: 4.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: index * 0.18,
-            }}
-            className="rounded-3xl border border-slate-200/70 bg-[#FAFBF8] p-5"
-          >
-            <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-2xl bg-white text-[#4FA3C7] shadow-sm">
-              <Icon className="h-5 w-5" />
-            </div>
-            <p className="text-fluid-base font-bold text-[#111318]">{label}</p>
-            <div className="mt-3 h-2 rounded-full bg-slate-100">
-              <div className="h-full w-2/3 rounded-full bg-gradient-to-r from-[#6FBF9E] to-[#4FA3C7]" />
-            </div>
-          </motion.div>
-        ))}
-      </div>
-      <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[32px] border border-white bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] text-white shadow-[0_24px_60px_rgba(79,163,199,0.34)]">
-        <Network className="h-10 w-10" />
-      </div>
-    </div>
+    <img
+      src="/figure/step2.png"
+      alt="Signal integration preview showing wellness, cycle, load, and RPE inputs"
+      className="absolute inset-0 h-full w-full object-cover"
+    />
   );
 }
 
 // Step 03 visual: AVAIL's physiology-aware engine.
 function EngineMockup() {
   return (
-    <div className="relative mx-auto w-full max-w-[570px] rounded-[34px] border border-slate-200/80 bg-[#101820] p-5 shadow-[0_34px_88px_rgba(15,23,42,0.2)]">
-      <div className="rounded-[26px] border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(111,191,158,0.28),rgba(79,163,199,0.08)_42%,rgba(255,255,255,0.03)_100%)] p-6">
-        <div className="flex items-center justify-between">
-          <p className="text-fluid-xs font-bold uppercase tracking-[0.16em] text-white/42">
-            AVAIL Engine
-          </p>
-          <Pill>Live model</Pill>
-        </div>
-        <div className="relative mx-auto my-8 flex h-52 w-52 items-center justify-center rounded-full border border-white/15 bg-white/[0.04]">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-4 rounded-full border border-dashed border-[#6FBF9E]/60"
-          />
-          <motion.div
-            animate={{ scale: [1, 1.06, 1] }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-[#6FBF9E] to-[#4FA3C7] shadow-[0_0_70px_rgba(111,191,158,0.42)]"
-          >
-            <Brain className="h-12 w-12 text-white" />
-          </motion.div>
-        </div>
-        <div className="grid grid-cols-3 gap-3">
-          {["Recovery", "Fatigue", "Tolerance"].map((label, index) => (
-            <div
-              key={label}
-              className="rounded-2xl border border-white/10 bg-white/[0.06] p-4"
-            >
-              <p className="text-fluid-xs font-semibold uppercase tracking-[0.12em] text-white/40">
-                {label}
-              </p>
-              <p className="mt-2 text-fluid-2xl font-bold text-white">
-                {[78, 31, 84][index]}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    <img
+      src="/figure/step3.png"
+      alt="AVAIL Engine preview showing physiology-aware load tolerance modeling"
+      className="absolute inset-0 h-full w-full object-cover"
+    />
   );
 }
 
@@ -494,17 +417,33 @@ function StepMockup({ kind }: { kind: MockupKind }) {
 
   if (kind === "checkin") {
     return (
-      <div className="relative mx-auto aspect-[1205/1306] w-full max-w-[420px] overflow-hidden rounded-[28px] border border-slate-200/70 bg-white shadow-[0_24px_64px_rgba(15,23,42,0.08)] hero:mx-0 hero:max-w-[430px]">
+      <div className="relative mx-auto aspect-[4/3] w-full max-w-[620px] overflow-hidden rounded-[30px] border border-slate-200/70 bg-white shadow-[0_24px_64px_rgba(15,23,42,0.08)] hero:mx-0">
         <PhoneCheckIn />
       </div>
     );
   }
 
+  if (kind === "signals") {
+    return (
+      <div className="relative mx-auto aspect-[4/3] w-full max-w-[620px] overflow-hidden rounded-[30px] hero:mx-0">
+        <SignalIntegrationMockup />
+      </div>
+    );
+  }
+
+  if (kind === "engine") {
+    return (
+      <div className="relative mx-auto aspect-[4/3] w-full max-w-[620px] overflow-hidden rounded-[30px] hero:mx-0">
+        <EngineMockup />
+      </div>
+    );
+  }
+
   return (
-    <div className="relative mx-auto min-h-[300px] w-full max-w-[560px] overflow-hidden rounded-[30px] border border-slate-200/70 bg-[radial-gradient(circle_at_50%_15%,rgba(111,191,158,0.18),rgba(250,251,248,0.9)_42%,rgba(255,255,255,0.95)_100%)] px-4 py-6 hero:mx-0 hero:min-h-[400px] hero:px-6 hero:py-7">
+    <div className="relative mx-auto aspect-[4/3] w-full max-w-[620px] overflow-hidden rounded-[30px] border border-slate-200/70 bg-[radial-gradient(circle_at_50%_15%,rgba(111,191,158,0.18),rgba(250,251,248,0.9)_42%,rgba(255,255,255,0.95)_100%)] p-4 hero:mx-0 hero:p-6">
       <div className="absolute left-10 top-10 h-36 w-36 rounded-full bg-[#6FBF9E]/14 blur-3xl" />
       <div className="absolute bottom-12 right-10 h-44 w-44 rounded-full bg-[#4FA3C7]/14 blur-3xl" />
-      <div className="relative z-10 flex min-h-[260px] items-center justify-center hero:min-h-[300px]">
+      <div className="relative z-10 flex h-full items-center justify-center">
         {mockups[kind]}
       </div>
     </div>
@@ -523,9 +462,9 @@ function WorkflowCard({ step, index }: { step: WorkflowStep; index: number }) {
         <div className="absolute left-6 top-5 text-fluid-display font-bold leading-none tracking-[-0.08em] text-slate-100 hero:static hero:self-start">
           {step.number}
         </div>
-        <div className="relative z-10 order-2 flex flex-col justify-center hero:order-none hero:col-start-2 hero:row-start-1 hero:translate-x-10 wide:translate-x-14">
+        <div className="relative z-10 order-2 flex flex-col justify-center hero:order-none hero:col-start-2 hero:row-start-1 hero:translate-x-6 wide:translate-x-10">
           <div className="mx-auto w-full px-1">
-            <h2 className="font-bold leading-[1.03] tracking-[-0.045em] text-[#111318] text-[clamp(1.75rem,1.75vw,2.45rem)] hero:whitespace-nowrap">
+            <h2 className="max-w-[820px] font-bold leading-[1.08] tracking-[-0.045em] text-[#111318] text-[clamp(1.75rem,1.75vw,2.45rem)]">
               {step.headline}
             </h2>
           </div>
@@ -551,7 +490,7 @@ function WorkflowCard({ step, index }: { step: WorkflowStep; index: number }) {
             ))}
           </div>
         </div>
-        <div className="relative z-10 order-3 flex flex-col justify-center hero:order-none hero:col-start-2 hero:row-start-2 hero:translate-x-10 wide:translate-x-14">
+        <div className="relative z-10 order-3 flex flex-col justify-center hero:order-none hero:col-start-2 hero:row-start-2 hero:translate-x-6 wide:translate-x-10">
           <StepMockup kind={step.kind} />
           {index === 3 && (
             <FloatingCard
