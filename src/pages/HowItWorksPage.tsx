@@ -647,7 +647,7 @@ export default function HowItWorksPage() {
             {...heroReveal}
             transition={{ ...heroReveal.transition, delay: 0.06 }}
             id="how-it-works-hero"
-            className="mx-auto max-w-[900px] font-bold leading-[0.98] tracking-[-0.06em] text-[#111318] text-fluid-hero wide:max-w-[1180px]"
+            className="mx-auto max-w-[900px] font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-4xl wide:max-w-[1180px]"
           >
             From athlete context to confident load decisions.
           </motion.h1>

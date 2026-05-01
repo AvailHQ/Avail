@@ -153,11 +153,14 @@ export default function ProblemSection() {
         <motion.h2
           {...inView(0.07)}
           id="matrix-headline"
-          className="text-center font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-5 text-fluid-4xl"
+          className="text-center font-bold tracking-normal text-[#111318] leading-[1.13] mb-5 text-[clamp(0.98rem,5.1vw,3.25rem)] sm:text-fluid-4xl"
         >
-          The only decision intelligence system
-          <br />
-          built for women's sport
+          <span className="block whitespace-nowrap">
+            The only decision intelligence
+          </span>
+          <span className="block whitespace-nowrap">
+            system built for women's sport
+          </span>
         </motion.h2>
 
         <motion.p
