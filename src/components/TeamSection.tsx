@@ -16,7 +16,7 @@ const TEAM: TeamMember[] = [
     name: "Muhe Wang",
     role: "Bio-domain & Pgysiology Lead",
     accent: "#74c7a7",
-    photo: "/figure/myl.jpg",
+    photo: "/figure/wmh.png",
     quote:
       "“My goal is to help ensure female athletes are no longer treated as underrepresented variables in sports science, but as a priority in performance innovation.”",
   },
