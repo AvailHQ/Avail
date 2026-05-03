@@ -417,7 +417,7 @@ function StepMockup({ kind }: { kind: MockupKind }) {
 
   if (kind === "checkin") {
     return (
-      <div className="relative mx-auto aspect-[4/3] w-full max-w-[620px] overflow-hidden rounded-[30px] border border-slate-200/70 bg-white shadow-[0_24px_64px_rgba(15,23,42,0.08)] hero:mx-0">
+      <div className="relative mx-auto aspect-[4/3] w-[78%] max-w-[340px] overflow-hidden rounded-[24px] border border-slate-200/70 bg-white shadow-[0_24px_64px_rgba(15,23,42,0.08)] sm:max-w-[500px] sm:rounded-[30px] hero:mx-0 hero:w-full hero:max-w-[620px]">
         <PhoneCheckIn />
       </div>
     );
@@ -425,7 +425,7 @@ function StepMockup({ kind }: { kind: MockupKind }) {
 
   if (kind === "signals") {
     return (
-      <div className="relative mx-auto aspect-[4/3] w-full max-w-[620px] overflow-hidden rounded-[30px] hero:mx-0">
+      <div className="relative mx-auto aspect-[4/3] w-[78%] max-w-[340px] overflow-hidden rounded-[24px] sm:max-w-[500px] sm:rounded-[30px] hero:mx-0 hero:w-full hero:max-w-[620px]">
         <SignalIntegrationMockup />
       </div>
     );
@@ -433,14 +433,14 @@ function StepMockup({ kind }: { kind: MockupKind }) {
 
   if (kind === "engine") {
     return (
-      <div className="relative mx-auto aspect-[4/3] w-full max-w-[620px] overflow-hidden rounded-[30px] hero:mx-0">
+      <div className="relative mx-auto aspect-[4/3] w-[78%] max-w-[340px] overflow-hidden rounded-[24px] sm:max-w-[500px] sm:rounded-[30px] hero:mx-0 hero:w-full hero:max-w-[620px]">
         <EngineMockup />
       </div>
     );
   }
 
   return (
-    <div className="relative mx-auto aspect-[4/3] w-full max-w-[620px] overflow-hidden rounded-[30px] border border-slate-200/70 bg-[radial-gradient(circle_at_50%_15%,rgba(111,191,158,0.18),rgba(250,251,248,0.9)_42%,rgba(255,255,255,0.95)_100%)] p-4 hero:mx-0 hero:p-6">
+    <div className="relative mx-auto aspect-[4/3] w-[78%] max-w-[340px] overflow-hidden rounded-[24px] border border-slate-200/70 bg-[radial-gradient(circle_at_50%_15%,rgba(111,191,158,0.18),rgba(250,251,248,0.9)_42%,rgba(255,255,255,0.95)_100%)] p-3 sm:max-w-[500px] sm:rounded-[30px] hero:mx-0 hero:w-full hero:max-w-[620px] hero:p-6">
       <div className="absolute left-10 top-10 h-36 w-36 rounded-full bg-[#6FBF9E]/14 blur-3xl" />
       <div className="absolute bottom-12 right-10 h-44 w-44 rounded-full bg-[#4FA3C7]/14 blur-3xl" />
       <div className="relative z-10 flex h-full items-center justify-center">
@@ -458,39 +458,39 @@ function WorkflowCard({ step, index }: { step: WorkflowStep; index: number }) {
       {...fadeUp(0.05)}
       className="relative min-h-[78vh] w-full overflow-hidden border-t border-slate-200/80 bg-[#FEFEFC] shadow-[0_-18px_54px_rgba(15,23,42,0.06)]"
     >
-      <div className="relative mx-auto grid min-h-[78vh] w-full max-w-[1120px] px-6 py-6 hero:grid-cols-[0.38fr_0.62fr] hero:grid-rows-[auto_auto] hero:content-center hero:gap-x-8 hero:gap-y-6 hero:px-0 hero:py-8 wide:max-w-[1480px] wide:gap-x-12 wide:gap-y-8">
-        <div className="absolute left-6 top-5 text-fluid-display font-bold leading-none tracking-[-0.08em] text-slate-100 hero:static hero:self-start">
+      <div className="relative mx-auto grid min-h-[78vh] w-full max-w-[1120px] content-center justify-items-center gap-y-4 px-6 py-4 text-center hero:grid-cols-[0.38fr_0.62fr] hero:grid-rows-[auto_auto] hero:content-center hero:justify-items-stretch hero:gap-x-8 hero:gap-y-6 hero:px-0 hero:py-8 hero:text-left wide:max-w-[1480px] wide:gap-x-12 wide:gap-y-8">
+        <div className="absolute left-6 top-4 text-[clamp(3.25rem,18vw,5rem)] font-bold leading-none tracking-[-0.08em] text-slate-100 hero:static hero:self-start hero:text-fluid-display">
           {step.number}
         </div>
         <div className="relative z-10 order-2 flex flex-col justify-center hero:order-none hero:col-start-2 hero:row-start-1 hero:translate-x-6 wide:translate-x-10">
-          <div className="mx-auto w-full px-1">
-            <h2 className="max-w-[820px] font-bold leading-[1.08] tracking-[-0.045em] text-[#111318] text-[clamp(1.75rem,1.75vw,2.45rem)]">
+          <div className="mx-auto w-full px-1 hero:mx-0">
+            <h2 className="mx-auto max-w-[820px] font-bold leading-[1.08] tracking-[-0.045em] text-[#111318] text-[clamp(1.45rem,1.75vw,2.45rem)] hero:mx-0">
               {step.headline}
             </h2>
           </div>
         </div>
-        <div className="relative z-10 order-1 flex flex-col justify-center py-8 hero:order-none hero:col-start-1 hero:row-start-2 hero:py-0">
+        <div className="relative z-10 order-1 flex flex-col items-center justify-center py-3 hero:order-none hero:col-start-1 hero:row-start-2 hero:items-start hero:py-0">
           <p className="mb-3 text-fluid-xs font-bold uppercase tracking-[0.16em] text-[#4FA3C7]">
             {step.eyebrow}
           </p>
           <p className="max-w-[390px] text-fluid-md leading-[1.75] text-slate-500 wide:max-w-[480px]">
             {step.copy}
           </p>
-          <div className="mt-7 flex flex-col gap-3">
+          <div className="mx-auto mt-5 flex w-fit max-w-full flex-col items-stretch gap-2.5 text-left hero:mx-0 hero:mt-7 hero:gap-3">
             {step.bullets.map((bullet) => (
               <div
                 key={bullet}
-                className="flex items-center gap-3 text-fluid-base font-semibold text-slate-600"
+                className="grid grid-cols-[1.25rem_minmax(0,1fr)] items-center gap-3 text-fluid-base font-semibold text-slate-600"
               >
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#EAF8F2] text-[#27815D]">
                   <CheckCircle2 className="h-3.5 w-3.5" />
                 </span>
-                {bullet}
+                <span>{bullet}</span>
               </div>
             ))}
           </div>
         </div>
-        <div className="relative z-10 order-3 flex flex-col justify-center hero:order-none hero:col-start-2 hero:row-start-2 hero:translate-x-6 wide:translate-x-10">
+        <div className="relative z-10 order-3 flex w-full flex-col justify-center hero:order-none hero:col-start-2 hero:row-start-2 hero:translate-x-6 wide:translate-x-10">
           <StepMockup kind={step.kind} />
           {index === 3 && (
             <FloatingCard
@@ -683,11 +683,11 @@ export default function HowItWorksPage() {
           className="mx-auto max-w-[1080px] overflow-hidden rounded-[36px] border border-slate-200/70 bg-gradient-to-b from-white via-[#F7FBFF] to-[#DDEBFF] p-8 text-center shadow-[0_30px_80px_rgba(15,23,42,0.10)] hero:p-16 wide:max-w-[1320px]"
         >
           <h2
-            className="mx-auto max-w-[680px] font-bold leading-[1.05] tracking-[-0.045em] text-[#111318] text-fluid-4xl wide:max-w-[820px]"
+            className="mx-auto max-w-[680px] text-[1.5rem] font-bold leading-[1.08] tracking-[-0.035em] text-[#111318] sm:text-fluid-4xl sm:leading-[1.05] sm:tracking-[-0.045em] wide:max-w-[820px]"
           >
             Modernise women's load management.
           </h2>
-          <p className="mx-auto mt-5 max-w-[560px] text-fluid-lg leading-[1.75] text-slate-500">
+          <p className="mx-auto mt-5 max-w-[560px] text-fluid-base leading-[1.7] text-slate-500 sm:text-fluid-lg sm:leading-[1.75]">
             Bring cycle-aware performance intelligence into the decisions your
             staff already make every day.
           </p>

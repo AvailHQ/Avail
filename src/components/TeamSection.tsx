@@ -140,7 +140,7 @@ export default function TeamSection() {
 
   return (
     <section
-      className="relative overflow-hidden px-6 w-full pt-24 pb-32"
+      className="relative overflow-hidden px-5 w-full pt-20 pb-24 sm:px-6 lg:pt-24 lg:pb-32"
       aria-labelledby="team-headline"
       style={{
         background:
@@ -167,7 +167,7 @@ export default function TeamSection() {
 
       <div className="relative z-10 mx-auto max-w-[1100px] pb-5 wide:max-w-[1500px]">
         {/* ── Centered header ─────────────────────────────── */}
-        <motion.div {...fadeUp(0)} className="text-center mb-16">
+        <motion.div {...fadeUp(0)} className="text-center mb-10 lg:mb-16">
           <p className="mb-3 text-fluid-xs pt-4 font-semibold uppercase tracking-[0.26em] text-[#9CA3AF]">
             Our Team
           </p>
@@ -179,10 +179,13 @@ export default function TeamSection() {
         </motion.div>
 
         {/* ── Two-column body ──────────────────────────────── */}
-        <div className="grid grid-cols-2 items-center gap-[8rem] pb-5 wide:gap-[12rem]">
+        <div className="grid grid-cols-1 items-center gap-10 pb-5 lg:grid-cols-2 lg:gap-[8rem] wide:gap-[12rem]">
           {/* ── LEFT: Quote (45%) ───────────────────────────── */}
-          <motion.div {...fadeUp(0.08)} className="min-w-0 max-w-[620px] wide:max-w-[760px]">
-            <div className="mb-8 select-none">
+          <motion.div
+            {...fadeUp(0.08)}
+            className="order-2 min-w-0 max-w-[620px] justify-self-center text-center lg:order-1 lg:justify-self-auto lg:text-left wide:max-w-[760px]"
+          >
+            <div className="mb-5 flex justify-center select-none lg:mb-8 lg:block">
               <QuoteIcon />
             </div>
 
@@ -193,11 +196,11 @@ export default function TeamSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-[560px] wide:max-w-[720px]"
+                className="mx-auto max-w-[34rem] lg:mx-0 lg:max-w-[560px] wide:max-w-[720px]"
               >
                 <h2
                   id="team-headline"
-                  className="max-w-[560px] font-bold leading-[1.5] tracking-[-0.035em] text-[#111318] text-fluid-3xl wide:max-w-[720px]"
+                  className="max-w-[34rem] text-base font-bold leading-[1.45] text-[#111318] sm:text-fluid-2xl lg:max-w-[560px] lg:text-fluid-3xl lg:leading-[1.5] wide:max-w-[720px]"
                 >
                   {active.quote}
                 </h2>
@@ -208,10 +211,10 @@ export default function TeamSection() {
           {/* ── RIGHT: Carousel (55%) ───────────────────────── */}
           <motion.div
             {...fadeUp(0.16)}
-            className="min-w-0 flex max-w-[460px] flex-col items-center gap-5 justify-self-center wide:max-w-[620px]"
+            className="order-1 min-w-0 flex w-full max-w-[460px] flex-col items-center gap-5 justify-self-center lg:order-2 wide:max-w-[620px]"
           >
             {/* Avatar row: [←] [ghost] [active] [ghost] [→] */}
-            <div className="flex w-[500px] max-w-none items-center justify-center gap-8 overflow-visible">
+            <div className="flex w-full max-w-[360px] items-center justify-center gap-4 overflow-visible sm:max-w-[500px] sm:gap-8">
               {/* ← arrow (outside-left) */}
               <button
                 type="button"
@@ -230,6 +233,7 @@ export default function TeamSection() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
+                  className="hidden sm:block"
                 >
                   <GhostAvatar member={prevMember} />
                 </motion.div>
@@ -256,6 +260,7 @@ export default function TeamSection() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
+                  className="hidden sm:block"
                 >
                   <GhostAvatar member={nextMember} />
                 </motion.div>
@@ -280,13 +285,13 @@ export default function TeamSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.18 }}
-                className="text-center"
+                className="max-w-full text-center"
               >
                 <p className="text-fluid-xl font-bold tracking-[-0.03em] text-[#111318] leading-none">
                   {active.name}
                 </p>
                 <p
-                  className="mt-1.5 text-fluid-2xs font-semibold uppercase tracking-[0.2em]"
+                  className="mx-auto mt-1.5 max-w-[280px] text-fluid-2xs font-semibold uppercase leading-relaxed tracking-[0.2em]"
                   style={{ color: MINT }}
                 >
                   {active.role}
