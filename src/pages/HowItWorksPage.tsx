@@ -184,9 +184,7 @@ function SignalPipelineCard({
   progress: MotionValue<number>;
 }) {
   const stageCenter =
-    PIPELINE_STAGES.length === 1
-      ? 0
-      : index / (PIPELINE_STAGES.length - 1);
+    PIPELINE_STAGES.length === 1 ? 0 : index / (PIPELINE_STAGES.length - 1);
   const stageStart = Math.max(0, stageCenter - 0.13);
   const stageEnd = Math.min(1, stageCenter + 0.14);
   const opacity = useTransform(
@@ -202,7 +200,11 @@ function SignalPipelineCard({
   const borderColor = useTransform(
     progress,
     [stageStart, stageCenter, stageEnd],
-    ["rgba(148,163,184,0.18)", "rgba(79,163,199,0.42)", "rgba(148,163,184,0.2)"],
+    [
+      "rgba(148,163,184,0.18)",
+      "rgba(79,163,199,0.42)",
+      "rgba(148,163,184,0.2)",
+    ],
   );
   const boxShadow = useTransform(
     progress,
@@ -272,7 +274,13 @@ function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
         aria-hidden="true"
       >
         <defs>
-          <filter id="mobile-pipeline-glow" x="-120%" y="-10%" width="340%" height="120%">
+          <filter
+            id="mobile-pipeline-glow"
+            x="-120%"
+            y="-10%"
+            width="340%"
+            height="120%"
+          >
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
@@ -334,14 +342,23 @@ function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
       <div className="relative hidden h-[min(78vh,760px)] min-h-[650px] overflow-visible hero:block wide:h-[min(80vh,880px)] wide:min-h-[760px] wide:w-[704px] wide:justify-self-end">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_54%_45%,rgba(111,191,158,0.12),rgba(254,254,252,0)_58%)]" />
         <div className="absolute left-[58%] top-0 h-[2000px] w-[704px] -translate-x-1/2 overflow-visible wide:left-1/2">
-          <motion.div className="absolute inset-0 overflow-visible" style={{ y: trackY }}>
+          <motion.div
+            className="absolute inset-0 overflow-visible"
+            style={{ y: trackY }}
+          >
             <svg
               viewBox="0 0 704 2000"
               className="absolute inset-0 h-full w-full overflow-visible"
               aria-hidden="true"
             >
               <defs>
-                <filter id="pipeline-active-glow" x="-28%" y="-8%" width="156%" height="116%">
+                <filter
+                  id="pipeline-active-glow"
+                  x="-28%"
+                  y="-8%"
+                  width="156%"
+                  height="116%"
+                >
                   <feGaussianBlur stdDeviation="3" result="blur" />
                   <feMerge>
                     <feMergeNode in="blur" />
@@ -431,7 +448,8 @@ function HeroDiagram() {
       label: "Athlete Inputs",
       subtitle: "Raw Signals",
       Icon: Activity,
-      desktopPosition: "hero:right-auto hero:left-[4%] hero:top-[72px] hero:translate-x-0",
+      desktopPosition:
+        "hero:right-auto hero:left-[4%] hero:top-[72px] hero:translate-x-0",
       mobilePosition: "left-1/2 top-2 -translate-x-1/2",
       rippleDelay: "0s",
     },
@@ -439,7 +457,8 @@ function HeroDiagram() {
       label: "Signal Process",
       subtitle: "Normalization",
       Icon: SlidersHorizontal,
-      desktopPosition: "hero:right-auto hero:left-[25%] hero:top-[82px] hero:translate-x-0",
+      desktopPosition:
+        "hero:right-auto hero:left-[25%] hero:top-[82px] hero:translate-x-0",
       mobilePosition: "left-1/2 top-[142px] -translate-x-1/2",
       rippleDelay: "2.5s",
     },
@@ -457,7 +476,8 @@ function HeroDiagram() {
       label: "Coaching Decisions",
       subtitle: "Action Layer",
       Icon: LayoutDashboard,
-      desktopPosition: "hero:left-auto hero:right-[23%] hero:top-[66px] hero:translate-x-0",
+      desktopPosition:
+        "hero:left-auto hero:right-[23%] hero:top-[66px] hero:translate-x-0",
       mobilePosition: "left-1/2 top-[446px] -translate-x-1/2",
       rippleDelay: "7.3s",
     },
@@ -465,7 +485,8 @@ function HeroDiagram() {
       label: "Longitudinal Calibration",
       subtitle: "Continuous Learning",
       Icon: Database,
-      desktopPosition: "hero:left-auto hero:right-[4%] hero:top-[72px] hero:translate-x-0",
+      desktopPosition:
+        "hero:left-auto hero:right-[4%] hero:top-[72px] hero:translate-x-0",
       mobilePosition: "left-1/2 top-[590px] -translate-x-1/2",
       rippleDelay: "9.5s",
     },
@@ -564,7 +585,13 @@ function HeroDiagram() {
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
-            <linearGradient id="hero-mobile-signal-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient
+              id="hero-mobile-signal-gradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#6FBF9E" stopOpacity="0.7" />
               <stop offset="48%" stopColor="#4FA3C7" stopOpacity="0.92" />
               <stop offset="100%" stopColor="#8EC8E5" stopOpacity="0.74" />
@@ -594,7 +621,12 @@ function HeroDiagram() {
               repeatCount="indefinite"
             />
           </circle>
-          <circle r="4" fill="#6FBF9E" opacity="0.9" filter="url(#hero-mobile-signal-glow)">
+          <circle
+            r="4"
+            fill="#6FBF9E"
+            opacity="0.9"
+            filter="url(#hero-mobile-signal-glow)"
+          >
             <animateMotion
               begin="4.2s"
               dur="12s"
@@ -648,31 +680,31 @@ function HeroDiagram() {
                   featured
                     ? "h-20 w-20 border-[#6FBF9E]/60 bg-white/95 shadow-[0_0_0_1px_rgba(111,191,158,0.34),0_18px_60px_rgba(111,191,158,0.24),0_0_86px_rgba(111,191,158,0.18)]"
                     : "h-14 w-14 border-slate-200/80"
-              }`}
-            >
-              <Icon
+                }`}
+              >
+                <Icon
                   className={featured ? "h-9 w-9" : "h-6 w-6"}
                   strokeWidth={1.9}
-                aria-hidden="true"
-              />
-            </motion.div>
-            <div className="w-[190px] max-w-[72vw] text-center">
-              <p
-                className={`font-bold leading-[1.16] tracking-[0.01em] text-[#111318] ${
-                  featured ? "text-fluid-base" : "text-fluid-sm opacity-70"
-                }`}
-              >
-                {label}
-              </p>
-              <p
-                className={`mt-1.5 text-[0.7rem] font-semibold leading-[1.2] text-slate-500 sm:text-fluid-xs ${
-                  featured ? "" : "opacity-70"
-                }`}
-              >
-                {subtitle}
-              </p>
+                  aria-hidden="true"
+                />
+              </motion.div>
+              <div className="w-[190px] max-w-[72vw] text-center">
+                <p
+                  className={`font-bold leading-[1.16] tracking-[0.01em] text-[#111318] ${
+                    featured ? "text-fluid-base" : "text-fluid-sm opacity-70"
+                  }`}
+                >
+                  {label}
+                </p>
+                <p
+                  className={`mt-1.5 text-[0.7rem] font-semibold leading-[1.2] text-slate-500 sm:text-fluid-xs ${
+                    featured ? "" : "opacity-70"
+                  }`}
+                >
+                  {subtitle}
+                </p>
+              </div>
             </div>
-          </div>
           ),
         )}
       </div>
@@ -775,11 +807,11 @@ export default function HowItWorksPage() {
           className="mx-auto max-w-[1080px] overflow-hidden rounded-[36px] border border-slate-200/70 bg-gradient-to-b from-white via-[#F7FBFF] to-[#DDEBFF] p-8 text-center shadow-[0_30px_80px_rgba(15,23,42,0.10)] hero:p-16 wide:max-w-[1320px]"
         >
           <h2 className="mx-auto max-w-[680px] text-[1.5rem] font-bold leading-[1.08] tracking-[-0.035em] text-[#111318] sm:text-fluid-4xl sm:leading-[1.05] sm:tracking-[-0.045em] wide:max-w-[820px]">
-            Modernise women's load management.
+            Women's sport was never built for population averages
           </h2>
           <p className="mx-auto mt-5 max-w-[560px] text-fluid-base leading-[1.7] text-slate-500 sm:text-fluid-lg sm:leading-[1.75]">
-            Bring cycle-aware performance intelligence into the decisions your
-            staff already make every day.
+            Avail brings individualized physiological context into load
+            management.
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <GradientButton>Apply for Pilot Access</GradientButton>

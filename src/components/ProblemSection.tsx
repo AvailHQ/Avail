@@ -115,11 +115,41 @@ function pos(mx: number, my: number): PosStyle {
 }
 
 const COMPETITORS: Competitor[] = [
-  { name: "WHOOP", Icon: IcWHOOP, mx: 0.22, my: 0.26, desc: "Recovery & strain wearable" },
-  { name: "Oura", Icon: IcOura, mx: 0.13, my: 0.1, desc: "Sleep & readiness ring tracker" },
-  { name: "Catapult", Icon: IcCatapult, mx: 0.63, my: 0.18, desc: "GPS load tracking for teams" },
-  { name: "Kitman Labs", Icon: IcKitman, mx: 0.7, my: 0.47, desc: "Load & injury analytics platform" },
-  { name: "FitrWoman", Icon: IcFitrWoman, mx: 0.19, my: 0.77, desc: "Cycle tracking for female athletes" },
+  {
+    name: "WHOOP",
+    Icon: IcWHOOP,
+    mx: 0.22,
+    my: 0.26,
+    desc: "Recovery & strain wearable",
+  },
+  {
+    name: "Oura",
+    Icon: IcOura,
+    mx: 0.13,
+    my: 0.1,
+    desc: "Sleep & readiness ring tracker",
+  },
+  {
+    name: "Catapult",
+    Icon: IcCatapult,
+    mx: 0.63,
+    my: 0.18,
+    desc: "GPS load tracking for teams",
+  },
+  {
+    name: "Kitman Labs",
+    Icon: IcKitman,
+    mx: 0.7,
+    my: 0.47,
+    desc: "Load & injury analytics platform",
+  },
+  {
+    name: "FitrWoman",
+    Icon: IcFitrWoman,
+    mx: 0.19,
+    my: 0.77,
+    desc: "Cycle tracking for female athletes",
+  },
 ];
 
 const inView = (delay = 0) => ({
@@ -141,7 +171,10 @@ export default function ProblemSection() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <section className="w-full bg-white py-28 px-6 wide:py-32" aria-labelledby="matrix-headline">
+    <section
+      className="w-full bg-white py-28 px-6 wide:py-32"
+      aria-labelledby="matrix-headline"
+    >
       <div className="max-w-[860px] mx-auto wide:max-w-[1320px]">
         <motion.p
           {...inView(0)}
@@ -156,10 +189,10 @@ export default function ProblemSection() {
           className="text-center font-bold tracking-normal text-[#111318] leading-[1.13] mb-5 text-[clamp(0.98rem,5.1vw,3.25rem)] sm:text-fluid-4xl"
         >
           <span className="block whitespace-nowrap">
-            The only decision intelligence
+            Built for physiological variability
           </span>
           <span className="block whitespace-nowrap">
-            system built for women's sport
+            NOT population averages
           </span>
         </motion.h2>
 
@@ -167,8 +200,7 @@ export default function ProblemSection() {
           {...inView(0.13)}
           className="text-center text-fluid-lg leading-[1.65] text-[#6B7280] max-w-[460px] mx-auto mb-14 wide:max-w-[620px] wide:mb-16"
         >
-          Avail transforms physiological variability into clear, actionable
-          training decisions.
+          Transforming physiological variability into actionable decisions.
         </motion.p>
 
         <motion.div
@@ -183,7 +215,12 @@ export default function ProblemSection() {
             aria-hidden="true"
           >
             <defs>
-              <pattern id="matrixDots" width="26" height="26" patternUnits="userSpaceOnUse">
+              <pattern
+                id="matrixDots"
+                width="26"
+                height="26"
+                patternUnits="userSpaceOnUse"
+              >
                 <circle cx="13" cy="13" r="1.1" fill="rgba(0,0,0,0.13)" />
               </pattern>
               <radialGradient id="availQuad" cx="75%" cy="30%" r="55%">
@@ -192,7 +229,13 @@ export default function ProblemSection() {
               </radialGradient>
             </defs>
 
-            <rect x={ML} y={MT} width={MW} height={MH} fill="url(#matrixDots)" />
+            <rect
+              x={ML}
+              y={MT}
+              width={MW}
+              height={MH}
+              fill="url(#matrixDots)"
+            />
             <rect
               x={CX}
               y={MT}
@@ -201,7 +244,14 @@ export default function ProblemSection() {
               fill="url(#availQuad)"
             />
 
-            <line x1={ML} y1={CY} x2={ML + MW - 2} y2={CY} stroke="#D1D5DB" strokeWidth="1" />
+            <line
+              x1={ML}
+              y1={CY}
+              x2={ML + MW - 2}
+              y2={CY}
+              stroke="#D1D5DB"
+              strokeWidth="1"
+            />
             <path
               d={`M ${ML + MW - 9} ${CY - 4} L ${ML + MW} ${CY} L ${ML + MW - 9} ${CY + 4}`}
               fill="none"
@@ -211,7 +261,14 @@ export default function ProblemSection() {
               strokeLinejoin="round"
             />
 
-            <line x1={CX} y1={MT + MH} x2={CX} y2={MT + 2} stroke="#D1D5DB" strokeWidth="1" />
+            <line
+              x1={CX}
+              y1={MT + MH}
+              x2={CX}
+              y2={MT + 2}
+              stroke="#D1D5DB"
+              strokeWidth="1"
+            />
             <path
               d={`M ${CX - 4} ${MT + 9} L ${CX} ${MT} L ${CX + 4} ${MT + 9}`}
               fill="none"
@@ -351,14 +408,16 @@ export default function ProblemSection() {
               <div
                 className="absolute -inset-[20px] rounded-[28px] pointer-events-none"
                 style={{
-                  background: "radial-gradient(ellipse, rgba(116,199,167,0.18) 0%, transparent 65%)",
+                  background:
+                    "radial-gradient(ellipse, rgba(116,199,167,0.18) 0%, transparent 65%)",
                   filter: "blur(14px)",
                 }}
               />
               <div
                 className="absolute -inset-[6px] rounded-[20px] pointer-events-none"
                 style={{
-                  background: "radial-gradient(ellipse, rgba(116,199,167,0.30) 0%, transparent 70%)",
+                  background:
+                    "radial-gradient(ellipse, rgba(116,199,167,0.30) 0%, transparent 70%)",
                   filter: "blur(5px)",
                 }}
               />
@@ -387,7 +446,13 @@ export default function ProblemSection() {
                 }}
               >
                 <div className="flex items-center gap-[8px] mb-[8px]">
-                  <img src="/figure/logo.svg" alt="" className="flex-shrink-0" style={{ width: 22, height: 22 }} aria-hidden="true" />
+                  <img
+                    src="/figure/logo.svg"
+                    alt=""
+                    className="flex-shrink-0"
+                    style={{ width: 22, height: 22 }}
+                    aria-hidden="true"
+                  />
                   <span className="text-fluid-lg font-bold text-[#1A7A55] tracking-[0.06em] leading-none">
                     AVAIL
                   </span>
