@@ -155,7 +155,7 @@ function StaticNarrativePanel() {
         <span className="h-2 w-2 rounded-full bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.72)]" />
         Contextual Pipelines
       </p>
-      <h2 className="workflow-narrative-title max-w-[760px] whitespace-normal font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-4xl">
+      <h2 className="workflow-narrative-title max-w-[760px] whitespace-normal font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-3xl wide:text-fluid-4xl">
         Contextual Pipelines.
       </h2>
       <p className="mt-8 max-w-[590px] text-fluid-lg font-semibold leading-[1.82] tracking-[-0.01em] text-slate-500 wide:mt-9 wide:max-w-[660px] wide:text-fluid-xl">
@@ -333,7 +333,7 @@ function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
     <>
       <div className="relative hidden h-[min(78vh,760px)] min-h-[650px] overflow-visible hero:block wide:h-[min(80vh,880px)] wide:min-h-[760px] wide:w-[704px] wide:justify-self-end">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_54%_45%,rgba(111,191,158,0.12),rgba(254,254,252,0)_58%)]" />
-        <div className="absolute left-[50%] top-0 h-[2000px] w-[704px] -translate-x-1/2 overflow-visible wide:left-1/2">
+        <div className="absolute left-[44%] top-0 h-[2000px] w-[704px] -translate-x-1/2 overflow-visible wide:left-1/2">
           <motion.div className="absolute inset-0 overflow-visible" style={{ y: trackY }}>
             <svg
               viewBox="0 0 704 2000"
@@ -406,7 +406,7 @@ function WorkflowNarrativeSection() {
     >
       <div className="relative flex min-h-screen items-center overflow-visible px-6 py-24 hero:sticky hero:top-0 hero:overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(111,191,158,0.13),rgba(254,254,252,0)_70%)]" />
-        <div className="workflow-narrative-grid relative mx-auto grid w-full max-w-[1280px] gap-10 hero:grid-cols-[0.48fr_0.52fr] hero:items-start wide:max-w-[1560px] wide:grid-cols-[minmax(0,620px)_704px] wide:gap-[236px]">
+        <div className="workflow-narrative-grid relative mx-auto grid w-full max-w-[1120px] gap-10 hero:grid-cols-[0.48fr_0.52fr] hero:items-start wide:max-w-[1560px] wide:grid-cols-[minmax(0,620px)_704px] wide:gap-[236px]">
           <div>
             <h2 id="workflow-narrative-heading" className="sr-only">
               How Avail turns athlete context into coaching guidance
