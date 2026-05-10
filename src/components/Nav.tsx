@@ -48,14 +48,6 @@ export default function Nav() {
               </Link>
             </li>
             <li>
-              <a
-                href="/#team-headline"
-                className="text-fluid-base font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150"
-              >
-                Science
-              </a>
-            </li>
-            <li>
               <button
                 type="button"
                 onClick={openPricingModal}
@@ -102,13 +94,6 @@ export default function Nav() {
                 >
                   How it works
                 </Link>
-                <a
-                  href="/#team-headline"
-                  onClick={closeMobileMenu}
-                  className="rounded-[8px] px-3 py-3 text-fluid-md font-semibold text-[#374151] active:bg-[#EEF2F5]"
-                >
-                  Science
-                </a>
                 <button
                   type="button"
                   onClick={openPricingModal}

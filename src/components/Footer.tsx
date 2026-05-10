@@ -33,7 +33,7 @@ const COLUMNS = [
   },
   {
     heading: "Company",
-    links: ["About", "Team", "Contact"],
+    links: ["About", "Contact"],
   },
   {
     heading: "Resources",
