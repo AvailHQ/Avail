@@ -333,7 +333,7 @@ function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
     <>
       <div className="relative hidden h-[min(78vh,760px)] min-h-[650px] overflow-visible hero:block wide:h-[min(80vh,880px)] wide:min-h-[760px] wide:w-[704px] wide:justify-self-end">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_54%_45%,rgba(111,191,158,0.12),rgba(254,254,252,0)_58%)]" />
-        <div className="absolute left-[58%] top-0 h-[2000px] w-[704px] -translate-x-1/2 overflow-visible wide:left-1/2">
+        <div className="absolute left-[50%] top-0 h-[2000px] w-[704px] -translate-x-1/2 overflow-visible wide:left-1/2">
           <motion.div className="absolute inset-0 overflow-visible" style={{ y: trackY }}>
             <svg
               viewBox="0 0 704 2000"
@@ -401,7 +401,7 @@ function WorkflowNarrativeSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative border-y border-slate-200/70 bg-[#FEFEFC] hero:min-h-[300vh] wide:min-h-[305vh] [overflow-x:clip]"
+      className="relative border-y border-slate-200/70 bg-[#FEFEFC] hero:min-h-[300vh] wide:min-h-[305vh]"
       aria-labelledby="workflow-narrative-heading"
     >
       <div className="relative flex min-h-screen items-center overflow-visible px-6 py-24 hero:sticky hero:top-0 hero:overflow-hidden">
