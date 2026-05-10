@@ -299,6 +299,16 @@ function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
         aria-hidden="true"
       >
         <defs>
+          <linearGradient
+            id="mobile-pipeline-theme-gradient"
+            x1="0%"
+            y1="0%"
+            x2="0%"
+            y2="100%"
+          >
+            <stop offset="0%" stopColor="#6FBF9E" />
+            <stop offset="100%" stopColor="#4FA3C7" />
+          </linearGradient>
           <filter
             id="mobile-pipeline-glow"
             x="-120%"
@@ -325,7 +335,7 @@ function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
           fill="none"
           filter="url(#mobile-pipeline-glow)"
           pathLength={pathLength}
-          stroke="#4FA3C7"
+          stroke="url(#mobile-pipeline-theme-gradient)"
           strokeLinecap="round"
           strokeWidth="2.5"
         />
@@ -374,6 +384,16 @@ function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
               aria-hidden="true"
             >
               <defs>
+                <linearGradient
+                  id="pipeline-theme-gradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#6FBF9E" />
+                  <stop offset="100%" stopColor="#4FA3C7" />
+                </linearGradient>
                 <filter
                   id="pipeline-active-glow"
                   x="-28%"
@@ -400,7 +420,7 @@ function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
                 fill="none"
                 filter="url(#pipeline-active-glow)"
                 pathLength={pathLength}
-                stroke="#35C7EA"
+                stroke="url(#pipeline-theme-gradient)"
                 strokeLinecap="round"
                 strokeWidth="5"
                 opacity="0.18"
@@ -409,7 +429,7 @@ function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
                 d={pipelinePath}
                 fill="none"
                 pathLength={pathLength}
-                stroke="#35C7EA"
+                stroke="url(#pipeline-theme-gradient)"
                 strokeLinecap="round"
                 strokeWidth="2.7"
               />
