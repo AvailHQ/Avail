@@ -174,6 +174,11 @@ const pipelineTrackEndY =
   PIPELINE_STAGES[PIPELINE_STAGES.length - 1].cardY -
   80;
 
+// smoothProgress value at which the animated line reaches node i
+const NODE_REACH_AT = PIPELINE_STAGES.map(
+  (_, i) => 0.035 + (i / (PIPELINE_STAGES.length - 1)) * 0.785,
+);
+
 function SignalPipelineCard({
   stage,
   index,
@@ -183,44 +188,66 @@ function SignalPipelineCard({
   index: number;
   progress: MotionValue<number>;
 }) {
-  const stageCenter =
-    PIPELINE_STAGES.length === 1
-      ? 0
-      : index / (PIPELINE_STAGES.length - 1);
-  const stageStart = Math.max(0, stageCenter - 0.13);
-  const stageEnd = Math.min(1, stageCenter + 0.14);
-  const opacity = useTransform(
-    progress,
-    [0, stageStart, stageCenter, stageEnd, 1],
-    index === 0 ? [0.96, 0.96, 1, 0.76, 0.66] : [0.48, 0.62, 1, 0.76, 0.66],
-  );
-  const scale = useTransform(
-    progress,
-    [stageStart, stageCenter, stageEnd],
-    [0.985, 1, 0.99],
-  );
+  const activateAt = NODE_REACH_AT[index];
+  const deactivateAt =
+    index < PIPELINE_STAGES.length - 1 ? NODE_REACH_AT[index + 1] : 1.2;
+  const ramp = 0.022;
+  const isFirst = index === 0;
+
+  // Active: opacity 1 / Inactive: 0.52
+  const opacityInput = isFirst
+    ? [0, deactivateAt - ramp, deactivateAt + ramp, 1]
+    : [0, activateAt - ramp, activateAt + ramp, deactivateAt - ramp, deactivateAt + ramp, 1];
+  const opacityOutput = isFirst
+    ? [1, 1, 0.52, 0.52]
+    : [0.52, 0.52, 1, 1, 0.52, 0.52];
+  const opacity = useTransform(progress, opacityInput, opacityOutput);
+
+  const scaleInput = isFirst
+    ? [0, deactivateAt, deactivateAt + ramp, 1]
+    : [0, activateAt, activateAt + ramp, deactivateAt, deactivateAt + ramp, 1];
+  const scaleOutput = isFirst
+    ? [1, 1, 0.987, 0.987]
+    : [0.987, 0.987, 1, 1, 0.987, 0.987];
+  const scale = useTransform(progress, scaleInput, scaleOutput);
+
+  const borderInput = isFirst
+    ? [0, deactivateAt, deactivateAt + ramp * 2, 1]
+    : [0, activateAt, activateAt + ramp * 2, deactivateAt, deactivateAt + ramp * 2, 1];
+  const borderActive = "rgba(79,163,199,0.42)";
+  const borderInactive = "rgba(148,163,184,0.18)";
   const borderColor = useTransform(
     progress,
-    [stageStart, stageCenter, stageEnd],
-    ["rgba(148,163,184,0.18)", "rgba(79,163,199,0.42)", "rgba(148,163,184,0.2)"],
+    borderInput,
+    isFirst
+      ? [borderActive, borderActive, borderInactive, borderInactive]
+      : [borderInactive, borderInactive, borderActive, borderActive, borderInactive, borderInactive],
   );
+
+  const shadowInput = isFirst
+    ? [0, deactivateAt, deactivateAt + ramp * 2, 1]
+    : [0, activateAt, activateAt + ramp * 2, deactivateAt, deactivateAt + ramp * 2, 1];
+  const shadowActive = "0 24px 70px rgba(15,23,42,0.08), 0 0 46px rgba(79,163,199,0.12)";
+  const shadowInactive = "0 18px 52px rgba(15,23,42,0.045), 0 0 0 rgba(79,163,199,0)";
   const boxShadow = useTransform(
     progress,
-    [stageStart, stageCenter, stageEnd],
-    [
-      "0 18px 52px rgba(15,23,42,0.045), 0 0 0 rgba(79,163,199,0)",
-      "0 24px 70px rgba(15,23,42,0.08), 0 0 46px rgba(79,163,199,0.12)",
-      "0 18px 52px rgba(15,23,42,0.052), 0 0 18px rgba(111,191,158,0.06)",
-    ],
+    shadowInput,
+    isFirst
+      ? [shadowActive, shadowActive, shadowInactive, shadowInactive]
+      : [shadowInactive, shadowInactive, shadowActive, shadowActive, shadowInactive, shadowInactive],
   );
+
+  const dotInput = isFirst
+    ? [0, deactivateAt, deactivateAt + ramp * 2, 1]
+    : [0, activateAt, activateAt + ramp * 2, deactivateAt, deactivateAt + ramp * 2, 1];
+  const dotActive = "0 0 20px rgba(53,199,234,0.54), 0 0 38px rgba(79,163,199,0.18)";
+  const dotInactive = "0 0 0 rgba(53,199,234,0)";
   const dotShadow = useTransform(
     progress,
-    [stageStart, stageCenter, stageEnd],
-    [
-      "0 0 0 rgba(53,199,234,0)",
-      "0 0 20px rgba(53,199,234,0.54), 0 0 38px rgba(79,163,199,0.18)",
-      "0 0 14px rgba(53,199,234,0.24)",
-    ],
+    dotInput,
+    isFirst
+      ? [dotActive, dotActive, dotInactive, dotInactive]
+      : [dotInactive, dotInactive, dotActive, dotActive, dotInactive, dotInactive],
   );
 
   return (
