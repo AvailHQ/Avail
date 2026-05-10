@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import PricingComingSoonModal from "./PricingComingSoonModal";
 
 // ─── Social icons (SVG only — links are in the bottom bar) ────────────────
 const IconLinkedIn = () => (
@@ -29,7 +27,7 @@ const IconEmail = () => (
 const COLUMNS = [
   {
     heading: "Platform",
-    links: ["Overview", "How it works", "Pricing"],
+    links: ["Overview", "How it works"],
   },
   {
     heading: "Company",
@@ -47,11 +45,8 @@ const COLUMNS = [
 
 // ─── Footer ────────────────────────────────────────────────────────────────
 export default function Footer() {
-  const [showPricingModal, setShowPricingModal] = useState(false);
-
   return (
-    <>
-      <footer>
+    <footer>
         <div className="bg-[#f5f5f5]">
         {/* ── Main body ─────────────────────────────────── */}
         <motion.div
@@ -103,16 +98,7 @@ export default function Footer() {
                   {heading}
                 </p>
                 {links.map((link) => (
-                  link === "Pricing" ? (
-                    <button
-                      key={link}
-                      type="button"
-                      onClick={() => setShowPricingModal(true)}
-                    className="self-start text-left text-fluid-base font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150 leading-snug"
-                    >
-                      {link}
-                    </button>
-                  ) : link === "How it works" ? (
+                  link === "How it works" ? (
                     <Link
                       key={link}
                       to="/how-it-works"
@@ -183,12 +169,5 @@ export default function Footer() {
         </div>
         </div>
       </footer>
-
-      <AnimatePresence>
-        {showPricingModal && (
-          <PricingComingSoonModal onClose={() => setShowPricingModal(false)} />
-        )}
-      </AnimatePresence>
-    </>
   );
 }
