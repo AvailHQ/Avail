@@ -14,3 +14,92 @@ body {
   font-size: clamp(0.875rem, 0.8rem + 0.28vw, 1rem);
   overflow-x: hidden;
 }
+
+@keyframes hero-signal-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -92;
+  }
+}
+
+.hero-signal-line {
+  animation: hero-signal-flow 16s linear infinite;
+}
+
+.workflow-flow-dash {
+  animation: workflow-flow-dash 12s linear infinite;
+  opacity: 0.52;
+}
+
+.workflow-breathe {
+  animation: workflow-breathe 5.8s ease-in-out infinite;
+}
+
+@keyframes workflow-flow-dash {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -144;
+  }
+}
+
+@keyframes workflow-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(111, 191, 158, 0.12),
+      0 0 34px rgba(79, 163, 199, 0.14);
+    transform: scale(0.98);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(111, 191, 158, 0.34),
+      0 0 72px rgba(79, 163, 199, 0.24);
+    transform: scale(1.04);
+  }
+}
+
+.hero-node-icon {
+  position: relative;
+}
+
+.hero-node-icon::after {
+  animation: hero-node-ripple 10.5s ease-out infinite;
+  animation-delay: var(--ripple-delay, 0s);
+  border: 2px solid rgba(111, 191, 158, 0.82);
+  border-radius: inherit;
+  content: "";
+  inset: -2px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+@keyframes hero-node-ripple {
+  0%,
+  72%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  6% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  18% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-signal-line,
+  .hero-node-icon::after,
+  .workflow-flow-dash,
+  .workflow-breathe {
+    animation: none;
+  }
+}
