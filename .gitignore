@@ -214,3 +214,6 @@ credentials.json
 node_modules/
 dist/
 .vercel/
+
+# Claude Code
+.claude/worktrees/
