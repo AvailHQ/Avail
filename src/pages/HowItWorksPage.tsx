@@ -49,10 +49,10 @@ const PIPELINE_STAGES: PipelineStage[] = [
     eyebrow: "STAGE 01 // SIGNAL CAPTURE",
     title: "Athlete Context Intake",
     body: "Capture athlete context before training begins.",
-    cardX: 32,
+    cardX: 88,
     cardY: 260,
-    nodeX: 328,
-    nodeY: 370,
+    nodeX: 384,
+    nodeY: 334,
     nodeSide: "right",
   },
   {
@@ -61,9 +61,9 @@ const PIPELINE_STAGES: PipelineStage[] = [
     title: "Context Unification",
     body: "Unify fragmented athlete signals into one interpretable state.",
     cardX: 384,
-    cardY: 522,
+    cardY: 560,
     nodeX: 384,
-    nodeY: 630,
+    nodeY: 634,
     nodeSide: "left",
   },
   {
@@ -71,10 +71,10 @@ const PIPELINE_STAGES: PipelineStage[] = [
     eyebrow: "STAGE 03 // CONTEXT MODELING",
     title: "Individualized Interpretation",
     body: "Interpret load through individualized physiology.",
-    cardX: 48,
-    cardY: 780,
-    nodeX: 344,
-    nodeY: 888,
+    cardX: 88,
+    cardY: 860,
+    nodeX: 384,
+    nodeY: 934,
     nodeSide: "right",
   },
   {
@@ -83,9 +83,9 @@ const PIPELINE_STAGES: PipelineStage[] = [
     title: "Load Guidance Generation",
     body: "Turn physiology into actionable coaching support.",
     cardX: 384,
-    cardY: 1038,
+    cardY: 1160,
     nodeX: 384,
-    nodeY: 1146,
+    nodeY: 1234,
     nodeSide: "left",
   },
   {
@@ -93,10 +93,10 @@ const PIPELINE_STAGES: PipelineStage[] = [
     eyebrow: "STAGE 05 // TEAM VISIBILITY",
     title: "Structured Readiness View",
     body: "Surface readiness without exposing sensitive data.",
-    cardX: 32,
-    cardY: 1290,
-    nodeX: 328,
-    nodeY: 1398,
+    cardX: 88,
+    cardY: 1460,
+    nodeX: 384,
+    nodeY: 1534,
     nodeSide: "right",
   },
   {
@@ -105,9 +105,9 @@ const PIPELINE_STAGES: PipelineStage[] = [
     title: "Continuous Context Refinement",
     body: "Every season strengthens the system.",
     cardX: 384,
-    cardY: 1540,
+    cardY: 1760,
     nodeX: 384,
-    nodeY: 1648,
+    nodeY: 1834,
     nodeSide: "left",
   },
 ];
@@ -155,7 +155,7 @@ function StaticNarrativePanel() {
         <span className="h-2 w-2 rounded-full bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.72)]" />
         Contextual Pipelines
       </p>
-      <h2 className="max-w-[760px] whitespace-normal text-[clamp(2.75rem,4.1vw,4.95rem)] font-bold leading-[1.02] tracking-[-0.055em] text-[#111318] hero:whitespace-nowrap">
+      <h2 className="workflow-narrative-title max-w-[760px] whitespace-normal font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-4xl">
         Contextual Pipelines.
       </h2>
       <p className="mt-8 max-w-[590px] text-fluid-lg font-semibold leading-[1.82] tracking-[-0.01em] text-slate-500 wide:mt-9 wide:max-w-[660px] wide:text-fluid-xl">
@@ -167,7 +167,12 @@ function StaticNarrativePanel() {
 }
 
 const pipelinePath =
-  "M328 370 C448 382 494 504 384 630 C276 756 232 774 344 888 C496 1014 504 1068 384 1146 C270 1244 220 1306 328 1398 C476 1498 504 1596 384 1648";
+  "M384 334 C510 424 270 544 384 634 C270 724 510 844 384 934 C510 1024 270 1144 384 1234 C270 1324 510 1444 384 1534 C510 1624 270 1744 384 1834";
+
+const pipelineTrackEndY =
+  PIPELINE_STAGES[0].cardY -
+  PIPELINE_STAGES[PIPELINE_STAGES.length - 1].cardY -
+  80;
 
 function SignalPipelineCard({
   stage,
@@ -212,16 +217,16 @@ function SignalPipelineCard({
     progress,
     [stageStart, stageCenter, stageEnd],
     [
-      "0 0 0 rgba(79,163,199,0)",
-      "0 0 26px rgba(79,163,199,0.58), 0 0 48px rgba(111,191,158,0.22)",
-      "0 0 18px rgba(79,163,199,0.26)",
+      "0 0 0 rgba(53,199,234,0)",
+      "0 0 20px rgba(53,199,234,0.54), 0 0 38px rgba(79,163,199,0.18)",
+      "0 0 14px rgba(53,199,234,0.24)",
     ],
   );
 
   return (
     <>
       <motion.article
-        className="absolute w-[296px] rounded-[22px] border bg-white/88 p-5 text-left backdrop-blur-xl wide:w-[320px] wide:p-6"
+        className="absolute w-[296px] rounded-[20px] border bg-white/88 p-5 text-left backdrop-blur-xl"
         style={{
           left: stage.cardX,
           top: stage.cardY,
@@ -231,22 +236,22 @@ function SignalPipelineCard({
           boxShadow,
         }}
       >
-        <p className="text-[0.64rem] font-bold uppercase tracking-[0.19em] text-[#4FA3C7] wide:text-fluid-xs">
+        <p className="text-[0.64rem] font-bold uppercase tracking-[0.2em] text-[#4FA3C7]">
           {stage.eyebrow}
         </p>
-        <h3 className="mt-4 text-fluid-lg font-bold leading-[1.16] tracking-[-0.026em] text-[#111318] wide:text-fluid-xl">
+        <h3 className="mt-4 text-fluid-lg font-bold leading-[1.14] tracking-[-0.026em] text-[#111318]">
           {stage.title}
         </h3>
-        <p className="mt-3 max-w-[250px] text-fluid-xs font-semibold leading-[1.65] text-slate-500 wide:max-w-[270px] wide:text-fluid-sm">
+        <p className="mt-3 max-w-[255px] text-fluid-xs font-semibold leading-[1.58] text-slate-500">
           {stage.body}
         </p>
       </motion.article>
       <motion.span
         aria-hidden="true"
-        className="absolute h-4 w-4 rounded-full border-[3px] border-[#FEFEFC] bg-[#4FA3C7]"
+        className="absolute h-[18px] w-[18px] rounded-full border-2 border-[#E7FAFF] bg-[#35C7EA]"
         style={{
-          left: stage.nodeX - 8,
-          top: stage.nodeY - 8,
+          left: stage.nodeX - 9,
+          top: stage.nodeY - 9,
           opacity,
           boxShadow: dotShadow,
         }}
@@ -317,42 +322,37 @@ function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
 
 function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
   const smoothProgress = useSpring(progress, {
-    stiffness: 92,
-    damping: 34,
-    mass: 0.22,
+    stiffness: 220,
+    damping: 30,
+    mass: 0.12,
   });
-  const pathLength = useTransform(smoothProgress, [0.035, 0.94], [0, 1]);
-  const trackY = useTransform(smoothProgress, [0, 1], [0, -742]);
+  const pathLength = useTransform(smoothProgress, [0.035, 0.82], [0, 1]);
+  const trackY = useTransform(progress, [0, 0.82], [0, pipelineTrackEndY]);
 
   return (
     <>
-      <div className="relative hidden h-[min(78vh,760px)] min-h-[650px] overflow-visible hero:block wide:h-[min(80vh,880px)] wide:min-h-[760px]">
+      <div className="relative hidden h-[min(78vh,760px)] min-h-[650px] overflow-visible hero:block wide:h-[min(80vh,880px)] wide:min-h-[760px] wide:w-[704px] wide:justify-self-end">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_54%_45%,rgba(111,191,158,0.12),rgba(254,254,252,0)_58%)]" />
-        <div className="absolute left-[58%] top-0 h-[1780px] w-[704px] -translate-x-1/2 overflow-visible">
+        <div className="absolute left-[58%] top-0 h-[2000px] w-[704px] -translate-x-1/2 overflow-visible wide:left-1/2">
           <motion.div className="absolute inset-0 overflow-visible" style={{ y: trackY }}>
             <svg
-              viewBox="0 0 704 1780"
+              viewBox="0 0 704 2000"
               className="absolute inset-0 h-full w-full overflow-visible"
               aria-hidden="true"
             >
               <defs>
-                <filter id="pipeline-active-glow" x="-20%" y="-8%" width="140%" height="116%">
-                  <feGaussianBlur stdDeviation="4" result="blur" />
+                <filter id="pipeline-active-glow" x="-28%" y="-8%" width="156%" height="116%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
                   <feMerge>
                     <feMergeNode in="blur" />
                     <feMergeNode in="SourceGraphic" />
                   </feMerge>
                 </filter>
-                <radialGradient id="pipeline-pulse-gradient">
-                  <stop offset="0%" stopColor="#8EC8E5" stopOpacity="0.9" />
-                  <stop offset="54%" stopColor="#4FA3C7" stopOpacity="0.34" />
-                  <stop offset="100%" stopColor="#4FA3C7" stopOpacity="0" />
-                </radialGradient>
               </defs>
               <path
                 d={pipelinePath}
                 fill="none"
-                stroke="rgba(30,45,61,0.14)"
+                stroke="rgba(30,45,61,0.11)"
                 strokeLinecap="round"
                 strokeWidth="2"
               />
@@ -361,25 +361,19 @@ function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
                 fill="none"
                 filter="url(#pipeline-active-glow)"
                 pathLength={pathLength}
-                stroke="#4FA3C7"
+                stroke="#35C7EA"
                 strokeLinecap="round"
-                strokeWidth="7"
-                opacity="0.26"
+                strokeWidth="5"
+                opacity="0.18"
               />
               <motion.path
                 d={pipelinePath}
                 fill="none"
                 pathLength={pathLength}
-                stroke="#4FA3C7"
+                stroke="#35C7EA"
                 strokeLinecap="round"
-                strokeWidth="2.8"
+                strokeWidth="2.7"
               />
-              <circle r="14" fill="url(#pipeline-pulse-gradient)" opacity="0.54">
-                <animateMotion dur="14s" path={pipelinePath} repeatCount="indefinite" />
-              </circle>
-              <circle r="3.5" fill="#8EC8E5" opacity="0.58">
-                <animateMotion dur="14s" path={pipelinePath} repeatCount="indefinite" />
-              </circle>
             </svg>
             {PIPELINE_STAGES.map((stage, index) => (
               <SignalPipelineCard
@@ -407,12 +401,12 @@ function WorkflowNarrativeSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative border-y border-slate-200/70 bg-[#FEFEFC] hero:min-h-[300vh]"
+      className="relative border-y border-slate-200/70 bg-[#FEFEFC] hero:min-h-[300vh] wide:min-h-[305vh]"
       aria-labelledby="workflow-narrative-heading"
     >
       <div className="relative flex min-h-screen items-center overflow-visible px-6 py-24 hero:sticky hero:top-0 hero:overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(111,191,158,0.13),rgba(254,254,252,0)_70%)]" />
-        <div className="relative mx-auto grid w-full max-w-[1280px] gap-10 hero:grid-cols-[0.48fr_0.52fr] hero:items-start wide:max-w-[1660px] wide:grid-cols-[0.46fr_0.54fr] wide:gap-14">
+        <div className="workflow-narrative-grid relative mx-auto grid w-full max-w-[1280px] gap-10 hero:grid-cols-[0.48fr_0.52fr] hero:items-start wide:max-w-[1460px] wide:grid-cols-[minmax(0,620px)_704px] wide:gap-[136px]">
           <div>
             <h2 id="workflow-narrative-heading" className="sr-only">
               How Avail turns athlete context into coaching guidance

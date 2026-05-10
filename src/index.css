@@ -61,6 +61,19 @@ body {
   }
 }
 
+@media (min-width: 1800px) {
+  .workflow-narrative-grid {
+    grid-template-columns: minmax(0, 620px) 704px;
+    max-width: 1460px;
+    column-gap: 136px;
+  }
+
+  .workflow-narrative-title {
+    max-width: 640px;
+    white-space: normal;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-signal-line,
   .hero-node-icon::after {
