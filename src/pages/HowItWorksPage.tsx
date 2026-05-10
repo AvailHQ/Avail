@@ -401,7 +401,7 @@ function WorkflowNarrativeSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative border-y border-slate-200/70 bg-[#FEFEFC] hero:min-h-[300vh] wide:min-h-[305vh]"
+      className="relative overflow-x-hidden border-y border-slate-200/70 bg-[#FEFEFC] hero:min-h-[300vh] wide:min-h-[305vh]"
       aria-labelledby="workflow-narrative-heading"
     >
       <div className="relative flex min-h-screen items-center overflow-visible px-6 py-24 hero:sticky hero:top-0 hero:overflow-hidden">
