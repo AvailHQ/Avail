@@ -2,21 +2,14 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import PricingComingSoonModal from "./PricingComingSoonModal";
 
 export default function Nav() {
-  const [showPricingModal, setShowPricingModal] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
-  const openPricingModal = () => {
-    closeMobileMenu();
-    setShowPricingModal(true);
-  };
 
   return (
-    <>
-      <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-[#F7F9FC]/80 backdrop-blur-xl border-b border-[#E8ECF0] shadow-[0_1px_0_rgba(0,0,0,0.05)] wide:h-20">
+    <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-[#F7F9FC]/80 backdrop-blur-xl border-b border-[#E8ECF0] shadow-[0_1px_0_rgba(0,0,0,0.05)] wide:h-20">
         <nav
           className="max-w-[1160px] mx-auto h-full px-5 hero:px-8 flex items-center gap-8 wide:max-w-[1440px]"
           aria-label="Main navigation"
@@ -46,15 +39,6 @@ export default function Nav() {
               >
                 How it works
               </Link>
-            </li>
-            <li>
-              <button
-                type="button"
-                onClick={openPricingModal}
-                className="text-fluid-base font-medium text-[#4B5563] hover:text-[#111318] transition-colors duration-150"
-              >
-                Pricing
-              </button>
             </li>
           </ul>
 
@@ -94,13 +78,6 @@ export default function Nav() {
                 >
                   How it works
                 </Link>
-                <button
-                  type="button"
-                  onClick={openPricingModal}
-                  className="rounded-[8px] px-3 py-3 text-left text-fluid-md font-semibold text-[#374151] active:bg-[#EEF2F5]"
-                >
-                  Pricing
-                </button>
                 <Link
                   to="/join-pilot-programme"
                   onClick={closeMobileMenu}
@@ -113,13 +90,6 @@ export default function Nav() {
             </motion.div>
           )}
         </AnimatePresence>
-      </header>
-
-      <AnimatePresence>
-        {showPricingModal && (
-          <PricingComingSoonModal onClose={() => setShowPricingModal(false)} />
-        )}
-      </AnimatePresence>
-    </>
+    </header>
   );
 }
