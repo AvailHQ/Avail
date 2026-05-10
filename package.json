@@ -15,6 +15,7 @@
     "start": "node server/index.js"
   },
   "dependencies": {
+    "@iconify/react": "^6.0.2",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "framer-motion": "^11.3.0",
