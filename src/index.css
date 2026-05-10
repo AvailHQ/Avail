@@ -28,40 +28,6 @@ body {
   animation: hero-signal-flow 16s linear infinite;
 }
 
-.workflow-flow-dash {
-  animation: workflow-flow-dash 12s linear infinite;
-  opacity: 0.52;
-}
-
-.workflow-breathe {
-  animation: workflow-breathe 5.8s ease-in-out infinite;
-}
-
-@keyframes workflow-flow-dash {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: -144;
-  }
-}
-
-@keyframes workflow-breathe {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 1px rgba(111, 191, 158, 0.12),
-      0 0 34px rgba(79, 163, 199, 0.14);
-    transform: scale(0.98);
-  }
-  50% {
-    box-shadow:
-      0 0 0 1px rgba(111, 191, 158, 0.34),
-      0 0 72px rgba(79, 163, 199, 0.24);
-    transform: scale(1.04);
-  }
-}
-
 .hero-node-icon {
   position: relative;
 }
@@ -97,9 +63,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-signal-line,
-  .hero-node-icon::after,
-  .workflow-flow-dash,
-  .workflow-breathe {
+  .hero-node-icon::after {
     animation: none;
   }
 }

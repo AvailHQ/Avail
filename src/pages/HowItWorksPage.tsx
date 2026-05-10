@@ -1,5 +1,11 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   Activity,
@@ -9,8 +15,6 @@ import {
   LayoutDashboard,
   ShieldCheck,
   SlidersHorizontal,
-  Sparkles,
-  Users,
 } from "lucide-react";
 
 // Shared reveal timings used across the page so motion stays consistent.
@@ -27,71 +31,84 @@ const heroReveal = {
   transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
 };
 
-// The workflow data powers the scroll-driven narrative system.
-type MockupKind =
-  | "checkin"
-  | "signals"
-  | "engine"
-  | "score"
-  | "dashboard"
-  | "learning";
-
-interface WorkflowStep {
+interface PipelineStage {
   number: string;
+  eyebrow: string;
   title: string;
-  description: string;
-  supporting: string;
-  kind: MockupKind;
+  body: string;
+  cardX: number;
+  cardY: number;
+  nodeX: number;
+  nodeY: number;
+  nodeSide: "left" | "right";
 }
 
-const WORKFLOW_STEPS: WorkflowStep[] = [
+const PIPELINE_STAGES: PipelineStage[] = [
   {
     number: "01",
-    title: "Athlete Signals",
-    description: "Capture context before training begins.",
-    supporting:
-      "Athletes submit lightweight daily inputs including sleep, soreness, fatigue, and cycle-related context.",
-    kind: "checkin",
+    eyebrow: "STAGE 01 // SIGNAL CAPTURE",
+    title: "Athlete Context Intake",
+    body: "Capture athlete context before training begins.",
+    cardX: 32,
+    cardY: 260,
+    nodeX: 328,
+    nodeY: 370,
+    nodeSide: "right",
   },
   {
     number: "02",
-    title: "Signal Integration",
-    description: "Unify fragmented athlete signals.",
-    supporting:
-      "Avail transforms isolated wellness and training signals into one interpretable physiological state.",
-    kind: "signals",
+    eyebrow: "STAGE 02 // SIGNAL INTEGRATION",
+    title: "Context Unification",
+    body: "Unify fragmented athlete signals into one interpretable state.",
+    cardX: 384,
+    cardY: 522,
+    nodeX: 384,
+    nodeY: 630,
+    nodeSide: "left",
   },
   {
     number: "03",
-    title: "Context Layer",
-    description: "Interpret load through individualized physiology.",
-    supporting:
-      "The system models how each athlete may tolerate training under current physiological conditions.",
-    kind: "engine",
+    eyebrow: "STAGE 03 // CONTEXT MODELING",
+    title: "Individualized Interpretation",
+    body: "Interpret load through individualized physiology.",
+    cardX: 48,
+    cardY: 780,
+    nodeX: 344,
+    nodeY: 888,
+    nodeSide: "right",
   },
   {
     number: "04",
-    title: "Load Guidance",
-    description: "Turn physiology into actionable coaching support.",
-    supporting:
-      "Coaches receive decision-ready readiness guidance before sessions begin.",
-    kind: "score",
+    eyebrow: "STAGE 04 // DECISION LAYER",
+    title: "Load Guidance Generation",
+    body: "Turn physiology into actionable coaching support.",
+    cardX: 384,
+    cardY: 1038,
+    nodeX: 384,
+    nodeY: 1146,
+    nodeSide: "left",
   },
   {
     number: "05",
-    title: "Team Visibility",
-    description: "Surface readiness without exposing sensitive data.",
-    supporting:
-      "Performance staff see structured indicators, not raw physiological logs.",
-    kind: "dashboard",
+    eyebrow: "STAGE 05 // TEAM VISIBILITY",
+    title: "Structured Readiness View",
+    body: "Surface readiness without exposing sensitive data.",
+    cardX: 32,
+    cardY: 1290,
+    nodeX: 328,
+    nodeY: 1398,
+    nodeSide: "right",
   },
   {
     number: "06",
-    title: "Longitudinal Calibration",
-    description: "Every season strengthens the system.",
-    supporting:
-      "As more training cycles are captured, the system gains stronger calibration and more individualized context.",
-    kind: "learning",
+    eyebrow: "STAGE 06 // LONGITUDINAL CALIBRATION",
+    title: "Continuous Context Refinement",
+    body: "Every season strengthens the system.",
+    cardX: 384,
+    cardY: 1540,
+    nodeX: 384,
+    nodeY: 1648,
+    nodeSide: "left",
   },
 ];
 
@@ -131,328 +148,17 @@ function GradientButton({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Mockup helper for repeated score/progress rows inside device visuals.
-function MetricBar({
-  label,
-  value,
-  tone = "teal",
-}: {
-  label: string;
-  value: number;
-  tone?: "teal" | "blue" | "warm";
-}) {
-  const color =
-    tone === "warm"
-      ? "from-[#F5B76B] to-[#F07F5F]"
-      : tone === "blue"
-        ? "from-[#4FA3C7] to-[#8EC8E5]"
-        : "from-[#6FBF9E] to-[#4FA3C7]";
-
-  return (
-    <div>
-      <div className="mb-2 flex items-center justify-between text-fluid-xs font-semibold text-slate-500">
-        <span>{label}</span>
-        <span>{value}%</span>
-      </div>
-      <div className="h-2 rounded-full bg-slate-100">
-        <div
-          className={`h-full rounded-full bg-gradient-to-r ${color}`}
-          style={{ width: `${value}%` }}
-        />
-      </div>
-    </div>
-  );
-}
-
-// Floating UI fragments sit on top of product mockups for extra SaaS depth.
-function FloatingCard({
-  className = "",
-  children,
-  delay = 0,
-}: {
-  className?: string;
-  children: React.ReactNode;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      animate={{ y: [0, -8, 0] }}
-      transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay }}
-      className={`absolute rounded-2xl border border-slate-200/80 bg-white p-4 shadow-[0_18px_44px_rgba(15,23,42,0.12)] ${className}`}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-// Step 01 visual: athlete daily check-in phone.
-function PhoneCheckIn() {
-  return (
-    <img
-      src="/figure/step1.png"
-      alt="Athlete readiness check-in preview"
-      className="absolute inset-0 h-full w-full object-cover"
-    />
-  );
-}
-
-// Step 02 visual: multiple athlete signals converging into one integration layer.
-function SignalIntegrationMockup() {
-  return (
-    <img
-      src="/figure/step2.png"
-      alt="Signal integration preview showing wellness, cycle, load, and RPE inputs"
-      className="absolute inset-0 h-full w-full object-cover"
-    />
-  );
-}
-
-// Step 03 visual: AVAIL's physiology-aware engine.
-function EngineMockup() {
-  return (
-    <img
-      src="/figure/step3.png"
-      alt="AVAIL Engine preview showing physiology-aware load tolerance modeling"
-      className="absolute inset-0 h-full w-full object-cover"
-    />
-  );
-}
-
-// Step 04 visual: coach-ready daily Load Score.
-function LoadScoreMockup() {
-  return (
-    <div className="relative mx-auto w-full max-w-[540px] rounded-[34px] border border-slate-200/80 bg-white p-6 shadow-[0_30px_80px_rgba(15,23,42,0.09)]">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-fluid-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-            Daily Load Score
-          </p>
-          <p className="mt-2 text-fluid-5xl font-bold tracking-[-0.06em] text-[#111318]">
-            82
-          </p>
-        </div>
-        <div className="rounded-full bg-[#EAF8F2] px-3 py-1.5 text-fluid-xs font-bold text-[#27815D]">
-          High confidence
-        </div>
-      </div>
-      <div className="mt-5 h-4 overflow-hidden rounded-full bg-slate-100">
-        <div className="h-full w-[82%] rounded-full bg-gradient-to-r from-[#6FBF9E] to-[#4FA3C7]" />
-      </div>
-      <div className="mt-6 grid grid-cols-3 gap-3">
-        {["Reduce", "Maintain", "Increase"].map((label) => (
-          <div
-            key={label}
-            className={`rounded-2xl border p-4 text-center ${
-              label === "Maintain"
-                ? "border-[#6FBF9E]/40 bg-[#EAF8F2]"
-                : "border-slate-200/70 bg-[#FAFBF8]"
-            }`}
-          >
-            <p className="text-fluid-sm font-bold text-[#111318]">{label}</p>
-          </div>
-        ))}
-      </div>
-      <div className="mt-5 rounded-3xl border border-slate-200/80 bg-[#FAFBF8] p-5">
-        <p className="text-fluid-sm font-bold text-[#111318]">
-          Recommended action
-        </p>
-        <p className="mt-2 text-fluid-base leading-[1.6] text-slate-500">
-          Maintain planned load. Monitor late-session fatigue response.
-        </p>
-      </div>
-    </div>
-  );
-}
-
-// Step 05 visual: team dashboard for performance staff.
-function CoachDashboardMockup() {
-  const athletes = [
-    ["M. Carter", "86", "Ready"],
-    ["A. Singh", "71", "Monitor"],
-    ["L. Evans", "49", "Reduce"],
-  ];
-
-  return (
-    <div className="relative mx-auto w-full max-w-[620px] rounded-[34px] border border-slate-200/80 bg-white p-5 shadow-[0_30px_80px_rgba(15,23,42,0.1)]">
-      <div className="mb-5 flex items-center justify-between">
-        <div>
-          <p className="text-fluid-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-            Team dashboard
-          </p>
-          <h3 className="mt-1 text-fluid-2xl font-bold tracking-[-0.04em] text-[#111318]">
-            Pre-training readiness
-          </h3>
-        </div>
-        <Users className="h-8 w-8 text-[#4FA3C7]" />
-      </div>
-      <div className="grid grid-cols-[1fr_0.8fr] gap-4">
-        <div className="space-y-3">
-          {athletes.map(([name, score, status]) => (
-            <div
-              key={name}
-              className="flex items-center justify-between rounded-2xl border border-slate-200/70 bg-[#FAFBF8] p-4"
-            >
-              <div>
-                <p className="text-fluid-base font-bold text-[#111318]">
-                  {name}
-                </p>
-                <p className="text-fluid-xs font-semibold text-slate-400">
-                  {status}
-                </p>
-              </div>
-              <p className="text-fluid-2xl font-bold tracking-[-0.04em] text-[#111318]">
-                {score}
-              </p>
-            </div>
-          ))}
-        </div>
-        <div className="rounded-3xl border border-slate-200/70 bg-[#FAFBF8] p-4">
-          <p className="text-fluid-sm font-bold text-[#111318]">Weekly trend</p>
-          <div className="mt-7 flex h-32 items-end gap-2">
-            {[44, 58, 52, 71, 76, 68, 82].map((height, index) => (
-              <div
-                key={index}
-                className="flex-1 rounded-t-full bg-gradient-to-t from-[#6FBF9E] to-[#4FA3C7]"
-                style={{ height: `${height}%` }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Step 06 visual: longitudinal feedback and dataset growth.
-function LearningMockup() {
-  return (
-    <div className="relative mx-auto w-full max-w-[580px] rounded-[34px] border border-slate-200/80 bg-white p-6 shadow-[0_30px_80px_rgba(15,23,42,0.09)]">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-fluid-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-            Model refinement
-          </p>
-          <h3 className="mt-1 text-fluid-2xl font-bold tracking-[-0.04em] text-[#111318]">
-            Longitudinal intelligence
-          </h3>
-        </div>
-        <Sparkles className="h-8 w-8 text-[#6FBF9E]" />
-      </div>
-      <div className="mt-8 grid grid-cols-3 gap-4">
-        {["Outcomes", "Availability", "Feedback"].map((label, index) => (
-          <div
-            key={label}
-            className="rounded-3xl border border-slate-200/70 bg-[#FAFBF8] p-4"
-          >
-            <p className="text-fluid-sm font-bold text-[#111318]">{label}</p>
-            <p className="mt-4 text-fluid-3xl font-bold tracking-[-0.05em] text-[#111318]">
-              {["2.4k", "91%", "+18"][index]}
-            </p>
-          </div>
-        ))}
-      </div>
-      <div className="mt-6 rounded-3xl border border-slate-200/70 bg-[#FAFBF8] p-5">
-        <div className="mb-5 flex items-center justify-between text-fluid-sm font-bold text-slate-500">
-          <span>Dataset growth</span>
-          <span>Season 01-04</span>
-        </div>
-        <svg
-          viewBox="0 0 420 120"
-          className="h-32 w-full overflow-visible"
-          aria-hidden="true"
-        >
-          <path
-            d="M6 104 C72 90 88 72 142 78 C206 85 204 38 260 46 C312 53 328 22 414 16"
-            fill="none"
-            stroke="#4FA3C7"
-            strokeWidth="7"
-            strokeLinecap="round"
-          />
-          <path
-            d="M6 104 C72 90 88 72 142 78 C206 85 204 38 260 46 C312 53 328 22 414 16"
-            fill="none"
-            stroke="#6FBF9E"
-            strokeWidth="3"
-            strokeLinecap="round"
-          />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-// Chooses the right product visual for each workflow step.
-function StepMockup({ kind }: { kind: MockupKind }) {
-  const mockups: Record<MockupKind, React.ReactElement> = {
-    checkin: <PhoneCheckIn />,
-    signals: <SignalIntegrationMockup />,
-    engine: <EngineMockup />,
-    score: <LoadScoreMockup />,
-    dashboard: <CoachDashboardMockup />,
-    learning: <LearningMockup />,
-  };
-
-  if (kind === "checkin") {
-    return (
-      <div className="relative mx-auto aspect-[4/3] w-[78%] max-w-[340px] overflow-hidden rounded-[24px] border border-slate-200/70 bg-white shadow-[0_24px_64px_rgba(15,23,42,0.08)] sm:max-w-[500px] sm:rounded-[30px] hero:mx-0 hero:w-full hero:max-w-[620px]">
-        <PhoneCheckIn />
-      </div>
-    );
-  }
-
-  if (kind === "signals") {
-    return (
-      <div className="relative mx-auto aspect-[4/3] w-[78%] max-w-[340px] overflow-hidden rounded-[24px] sm:max-w-[500px] sm:rounded-[30px] hero:mx-0 hero:w-full hero:max-w-[620px]">
-        <SignalIntegrationMockup />
-      </div>
-    );
-  }
-
-  if (kind === "engine") {
-    return (
-      <div className="relative mx-auto aspect-[4/3] w-[78%] max-w-[340px] overflow-hidden rounded-[24px] sm:max-w-[500px] sm:rounded-[30px] hero:mx-0 hero:w-full hero:max-w-[620px]">
-        <EngineMockup />
-      </div>
-    );
-  }
-
-  return (
-    <div className="relative mx-auto aspect-[4/3] w-[78%] max-w-[340px] overflow-hidden rounded-[24px] border border-slate-200/70 bg-[radial-gradient(circle_at_50%_15%,rgba(111,191,158,0.18),rgba(250,251,248,0.9)_42%,rgba(255,255,255,0.95)_100%)] p-3 sm:max-w-[500px] sm:rounded-[30px] hero:mx-0 hero:w-full hero:max-w-[620px] hero:p-6">
-      <div className="absolute left-10 top-10 h-36 w-36 rounded-full bg-[#6FBF9E]/14 blur-3xl" />
-      <div className="absolute bottom-12 right-10 h-44 w-44 rounded-full bg-[#4FA3C7]/14 blur-3xl" />
-      <div className="relative z-10 flex h-full items-center justify-center">
-        {mockups[kind]}
-      </div>
-    </div>
-  );
-}
-
-const flowPath =
-  "M86 96 C164 46 245 58 305 122 C362 184 450 182 502 118 C566 40 660 58 708 136 C758 218 850 218 930 154";
-
-function stepWindow(index: number) {
-  const count = WORKFLOW_STEPS.length;
-  const center = count === 1 ? 0 : index / (count - 1);
-  const half = 0.13;
-
-  return [
-    Math.max(0, center - half),
-    center,
-    Math.min(1, center + half),
-  ] as const;
-}
-
 function StaticNarrativePanel() {
   return (
-    <div className="flex min-h-[430px] flex-col justify-center hero:min-h-[590px]">
-      <p className="mb-12 flex items-center gap-3 text-fluid-xs font-bold uppercase tracking-[0.2em] text-[#4FA3C7]">
-        <span className="h-2.5 w-2.5 rounded-full bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.72)]" />
+    <div className="flex min-h-[360px] flex-col pt-4 hero:min-h-[520px] hero:pt-20 wide:pt-24">
+      <p className="mb-12 flex items-center gap-3 text-fluid-xs font-bold uppercase tracking-[0.2em] text-[#4FA3C7] wide:mb-14">
+        <span className="h-2 w-2 rounded-full bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.72)]" />
         Contextual Pipelines
       </p>
-      <h2 className="max-w-[620px] text-[clamp(3.1rem,6.4vw,6.4rem)] font-bold leading-[0.96] tracking-[-0.06em] text-[#111318]">
+      <h2 className="max-w-[760px] whitespace-normal text-[clamp(2.75rem,4.1vw,4.95rem)] font-bold leading-[1.02] tracking-[-0.055em] text-[#111318] hero:whitespace-nowrap">
         Contextual Pipelines.
       </h2>
-      <p className="mt-10 max-w-[610px] text-fluid-xl font-semibold leading-[1.85] tracking-[-0.02em] text-slate-500 wide:text-fluid-2xl">
+      <p className="mt-8 max-w-[590px] text-fluid-lg font-semibold leading-[1.82] tracking-[-0.01em] text-slate-500 wide:mt-9 wide:max-w-[660px] wide:text-fluid-xl">
         Avail transforms fragmented athlete signals into individualized
         physiological context before coaching decisions are made.
       </p>
@@ -460,291 +166,234 @@ function StaticNarrativePanel() {
   );
 }
 
-function FlowNode({
+const pipelinePath =
+  "M328 370 C448 382 494 504 384 630 C276 756 232 774 344 888 C496 1014 504 1068 384 1146 C270 1244 220 1306 328 1398 C476 1498 504 1596 384 1648";
+
+function SignalPipelineCard({
+  stage,
   index,
   progress,
-  className,
-  label,
-  meta,
-  children,
-  featured = false,
 }: {
+  stage: PipelineStage;
   index: number;
   progress: MotionValue<number>;
-  className: string;
-  label: string;
-  meta: string;
-  children?: React.ReactNode;
-  featured?: boolean;
 }) {
-  const [start, center] = stepWindow(index);
-  const opacity = useTransform(progress, [Math.max(0, start - 0.02), center], [0.2, 1]);
-  const scale = useTransform(progress, [Math.max(0, start - 0.02), center], [0.94, 1]);
-  const glow = useTransform(
+  const stageCenter =
+    PIPELINE_STAGES.length === 1
+      ? 0
+      : index / (PIPELINE_STAGES.length - 1);
+  const stageStart = Math.max(0, stageCenter - 0.13);
+  const stageEnd = Math.min(1, stageCenter + 0.14);
+  const opacity = useTransform(
     progress,
-    [start, center, Math.min(1, center + 0.12)],
+    [0, stageStart, stageCenter, stageEnd, 1],
+    index === 0 ? [0.96, 0.96, 1, 0.76, 0.66] : [0.48, 0.62, 1, 0.76, 0.66],
+  );
+  const scale = useTransform(
+    progress,
+    [stageStart, stageCenter, stageEnd],
+    [0.985, 1, 0.99],
+  );
+  const borderColor = useTransform(
+    progress,
+    [stageStart, stageCenter, stageEnd],
+    ["rgba(148,163,184,0.18)", "rgba(79,163,199,0.42)", "rgba(148,163,184,0.2)"],
+  );
+  const boxShadow = useTransform(
+    progress,
+    [stageStart, stageCenter, stageEnd],
     [
-      "0 16px 44px rgba(15,23,42,0.06), 0 0 0 rgba(79,163,199,0)",
-      featured
-        ? "0 24px 80px rgba(79,163,199,0.22), 0 0 86px rgba(111,191,158,0.22)"
-        : "0 20px 64px rgba(79,163,199,0.14), 0 0 56px rgba(111,191,158,0.12)",
-      "0 16px 44px rgba(15,23,42,0.08), 0 0 34px rgba(111,191,158,0.08)",
+      "0 18px 52px rgba(15,23,42,0.045), 0 0 0 rgba(79,163,199,0)",
+      "0 24px 70px rgba(15,23,42,0.08), 0 0 46px rgba(79,163,199,0.12)",
+      "0 18px 52px rgba(15,23,42,0.052), 0 0 18px rgba(111,191,158,0.06)",
+    ],
+  );
+  const dotShadow = useTransform(
+    progress,
+    [stageStart, stageCenter, stageEnd],
+    [
+      "0 0 0 rgba(79,163,199,0)",
+      "0 0 26px rgba(79,163,199,0.58), 0 0 48px rgba(111,191,158,0.22)",
+      "0 0 18px rgba(79,163,199,0.26)",
     ],
   );
 
   return (
-    <motion.div
-      className={`absolute rounded-[22px] border border-slate-200/75 bg-white/86 p-4 shadow-[0_16px_44px_rgba(15,23,42,0.06)] backdrop-blur-xl ${className}`}
-      style={{ opacity, scale, boxShadow: glow }}
-    >
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-slate-400">
-            {meta}
-          </p>
-          <p className="mt-1 text-fluid-sm font-bold tracking-[-0.01em] text-[#111318]">
-            {label}
-          </p>
-        </div>
-        <span className="mt-1 h-2.5 w-2.5 rounded-full bg-[#6FBF9E] shadow-[0_0_18px_rgba(111,191,158,0.72)]" />
-      </div>
-      {children}
-    </motion.div>
-  );
-}
-
-function AthleteSignalCards({ progress }: { progress: MotionValue<number> }) {
-  const opacity = useTransform(progress, [0, 0.08, 0.22], [0, 1, 0.88]);
-  const y = useTransform(progress, [0, 0.12], [18, 0]);
-
-  return (
-    <motion.div
-      className="absolute left-[4%] top-[20%] hidden w-[170px] space-y-2 hero:block"
-      style={{ opacity, y }}
-    >
-      {["Sleep 7.8h", "Soreness low", "Cycle context"].map((item, index) => (
-        <motion.div
-          key={item}
-          animate={{ y: [0, -4, 0] }}
-          transition={{
-            duration: 4.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: index * 0.28,
-          }}
-          className="rounded-2xl border border-slate-200/70 bg-white/86 px-3 py-2 text-[0.72rem] font-bold text-slate-500 shadow-[0_12px_34px_rgba(15,23,42,0.06)] backdrop-blur-xl"
-        >
-          {item}
-        </motion.div>
-      ))}
-    </motion.div>
-  );
-}
-
-function LoadGuidancePanel({ progress }: { progress: MotionValue<number> }) {
-  const opacity = useTransform(progress, [0.5, 0.62, 0.82], [0, 1, 0.92]);
-  const y = useTransform(progress, [0.5, 0.62], [22, 0]);
-
-  return (
-    <motion.div
-      className="absolute bottom-[10%] left-[41%] w-[210px] rounded-[24px] border border-slate-200/80 bg-white/90 p-4 shadow-[0_20px_64px_rgba(15,23,42,0.09)] backdrop-blur-xl"
-      style={{ opacity, y }}
-    >
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-slate-400">
-            Load guidance
-          </p>
-          <p className="mt-2 text-fluid-3xl font-bold tracking-[-0.055em] text-[#111318]">
-            82
-          </p>
-        </div>
-        <span className="rounded-full bg-[#EAF8F2] px-2.5 py-1 text-[0.64rem] font-bold text-[#27815D]">
-          91%
-        </span>
-      </div>
-      <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-slate-100">
-        <div className="h-full w-[82%] rounded-full bg-gradient-to-r from-[#6FBF9E] to-[#4FA3C7]" />
-      </div>
-      <p className="mt-4 text-fluid-xs font-bold text-[#27815D]">
-        Maintain planned load
-      </p>
-    </motion.div>
-  );
-}
-
-function TeamVisibilityPanel({ progress }: { progress: MotionValue<number> }) {
-  const opacity = useTransform(progress, [0.66, 0.78, 0.94], [0, 1, 0.94]);
-  const scale = useTransform(progress, [0.66, 0.78], [0.96, 1]);
-
-  return (
-    <motion.div
-      className="absolute right-[5%] top-[18%] w-[255px] rounded-[24px] border border-slate-200/80 bg-white/90 p-4 shadow-[0_22px_70px_rgba(15,23,42,0.09)] backdrop-blur-xl"
-      style={{ opacity, scale }}
-    >
-      <div className="mb-4 flex items-center justify-between">
-        <p className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-slate-400">
-          Team visibility
+    <>
+      <motion.article
+        className="absolute w-[296px] rounded-[22px] border bg-white/88 p-5 text-left backdrop-blur-xl wide:w-[320px] wide:p-6"
+        style={{
+          left: stage.cardX,
+          top: stage.cardY,
+          opacity,
+          scale,
+          borderColor,
+          boxShadow,
+        }}
+      >
+        <p className="text-[0.64rem] font-bold uppercase tracking-[0.19em] text-[#4FA3C7] wide:text-fluid-xs">
+          {stage.eyebrow}
         </p>
-        <Users className="h-4 w-4 text-[#4FA3C7]" />
-      </div>
-      {[
-        ["Athlete A", "Ready", "bg-[#EAF8F2] text-[#27815D]"],
-        ["Athlete B", "Monitor", "bg-[#FFF3E7] text-[#A35E22]"],
-        ["Athlete C", "Ready", "bg-[#EAF8F2] text-[#27815D]"],
-      ].map(([name, state, tone]) => (
-        <div
-          key={name}
-          className="mb-2 flex items-center justify-between rounded-2xl bg-[#FAFBF8] px-3 py-2"
-        >
-          <span className="text-fluid-xs font-bold text-[#111318]">{name}</span>
-          <span className={`rounded-full px-2 py-1 text-[0.62rem] font-bold ${tone}`}>
-            {state}
-          </span>
-        </div>
-      ))}
-      <p className="mt-3 text-[0.68rem] font-semibold leading-[1.45] text-slate-400">
-        Structured indicators only
-      </p>
-    </motion.div>
-  );
-}
-
-function CalibrationPanel({ progress }: { progress: MotionValue<number> }) {
-  const opacity = useTransform(progress, [0.82, 0.94], [0, 1]);
-  const pathLength = useTransform(progress, [0.82, 1], [0, 1]);
-
-  return (
-    <motion.div
-      className="absolute bottom-[12%] right-[8%] w-[255px] rounded-[24px] border border-slate-200/80 bg-white/90 p-4 shadow-[0_22px_70px_rgba(15,23,42,0.09)] backdrop-blur-xl"
-      style={{ opacity }}
-    >
-      <div className="mb-3 flex items-center justify-between">
-        <p className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-slate-400">
-          Calibration
+        <h3 className="mt-4 text-fluid-lg font-bold leading-[1.16] tracking-[-0.026em] text-[#111318] wide:text-fluid-xl">
+          {stage.title}
+        </h3>
+        <p className="mt-3 max-w-[250px] text-fluid-xs font-semibold leading-[1.65] text-slate-500 wide:max-w-[270px] wide:text-fluid-sm">
+          {stage.body}
         </p>
-        <Database className="h-4 w-4 text-[#6FBF9E]" />
-      </div>
-      <svg viewBox="0 0 220 86" className="h-[86px] w-full overflow-visible">
-        <path
-          d="M8 72 C46 64 58 44 88 50 C128 58 132 22 164 28 C188 32 198 16 214 12"
-          fill="none"
-          stroke="rgba(148,163,184,0.18)"
-          strokeLinecap="round"
-          strokeWidth="5"
-        />
-        <motion.path
-          d="M8 72 C46 64 58 44 88 50 C128 58 132 22 164 28 C188 32 198 16 214 12"
-          fill="none"
-          pathLength={pathLength}
-          stroke="#6FBF9E"
-          strokeLinecap="round"
-          strokeWidth="3"
-        />
-      </svg>
-      <p className="text-fluid-xs font-bold text-[#111318]">
-        Season-level context strengthens over time.
-      </p>
-    </motion.div>
+      </motion.article>
+      <motion.span
+        aria-hidden="true"
+        className="absolute h-4 w-4 rounded-full border-[3px] border-[#FEFEFC] bg-[#4FA3C7]"
+        style={{
+          left: stage.nodeX - 8,
+          top: stage.nodeY - 8,
+          opacity,
+          boxShadow: dotShadow,
+        }}
+      />
+    </>
   );
 }
 
-function SystemArchitectureFlow({ progress }: { progress: MotionValue<number> }) {
-  const pathLength = useTransform(progress, [0.02, 0.98], [0.04, 1]);
+function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
+  const pathLength = useTransform(progress, [0.05, 0.96], [0, 1]);
 
   return (
-    <div className="relative min-h-[580px] overflow-hidden rounded-[34px] border border-slate-200/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(250,251,248,0.78))] shadow-[0_30px_90px_rgba(15,23,42,0.07)] backdrop-blur-xl hero:min-h-[650px]">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(111,191,158,0.12),rgba(255,255,255,0)_58%)]" />
-      <div className="absolute inset-8 rounded-[28px] border border-slate-200/50" />
-      <AthleteSignalCards progress={progress} />
+    <div className="relative mt-12 hero:hidden">
       <svg
-        viewBox="0 0 1000 360"
-        className="absolute left-1/2 top-[32%] h-[250px] w-[112%] -translate-x-1/2 overflow-visible"
+        className="absolute left-4 top-0 h-full w-10 overflow-visible"
+        viewBox="0 0 44 980"
+        preserveAspectRatio="none"
         aria-hidden="true"
       >
         <defs>
-          <filter id="workflow-flow-glow" x="-20%" y="-90%" width="140%" height="280%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+          <filter id="mobile-pipeline-glow" x="-120%" y="-10%" width="340%" height="120%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          <linearGradient id="workflow-flow-gradient" x1="0%" x2="100%">
-            <stop offset="0%" stopColor="#6FBF9E" stopOpacity="0.45" />
-            <stop offset="48%" stopColor="#4FA3C7" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#9EF0CE" stopOpacity="0.72" />
-          </linearGradient>
         </defs>
         <path
-          d={flowPath}
+          d="M24 18 C8 114 40 176 22 266 C8 356 40 424 22 514 C6 604 42 668 24 760 C10 852 38 910 22 962"
           fill="none"
-          stroke="rgba(30,45,61,0.11)"
+          stroke="rgba(30,45,61,0.12)"
           strokeLinecap="round"
           strokeWidth="2"
         />
         <motion.path
-          d={flowPath}
+          d="M24 18 C8 114 40 176 22 266 C8 356 40 424 22 514 C6 604 42 668 24 760 C10 852 38 910 22 962"
           fill="none"
-          filter="url(#workflow-flow-glow)"
+          filter="url(#mobile-pipeline-glow)"
           pathLength={pathLength}
-          stroke="url(#workflow-flow-gradient)"
+          stroke="#4FA3C7"
           strokeLinecap="round"
-          strokeWidth="3"
+          strokeWidth="2.5"
         />
-        <path
-          className="workflow-flow-dash"
-          d={flowPath}
-          fill="none"
-          filter="url(#workflow-flow-glow)"
-          stroke="#8EC8E5"
-          strokeDasharray="2 34"
-          strokeLinecap="round"
-          strokeWidth="5"
-        />
-        <circle r="5" fill="#8EC8E5" filter="url(#workflow-flow-glow)">
-          <animateMotion dur="9s" path={flowPath} repeatCount="indefinite" />
-        </circle>
       </svg>
-      <FlowNode
-        className="left-[9%] top-[42%] w-[160px]"
-        index={0}
-        label="Athlete Signals"
-        meta="Input"
-        progress={progress}
-      />
-      <FlowNode
-        className="left-[27%] top-[20%] w-[178px]"
-        index={1}
-        label="Signal Integration"
-        meta="Unify"
-        progress={progress}
-      >
-        <div className="mt-4 grid grid-cols-3 gap-1.5">
-          {[42, 68, 88].map((height) => (
-            <div key={height} className="h-12 rounded-full bg-slate-100">
-              <div
-                className="mt-auto rounded-full bg-gradient-to-t from-[#6FBF9E] to-[#4FA3C7]"
-                style={{ height: `${height}%` }}
-              />
-            </div>
-          ))}
-        </div>
-      </FlowNode>
-      <FlowNode
-        className="left-[40%] top-[43%] w-[190px]"
-        featured
-        index={2}
-        label="Context Layer"
-        meta="Interpret"
-        progress={progress}
-      >
-        <div className="workflow-breathe mx-auto mt-5 h-20 w-20 rounded-full border border-[#6FBF9E]/40 bg-[radial-gradient(circle,rgba(111,191,158,0.26),rgba(79,163,199,0.10)_52%,rgba(255,255,255,0)_68%)]" />
-      </FlowNode>
-      <LoadGuidancePanel progress={progress} />
-      <TeamVisibilityPanel progress={progress} />
-      <CalibrationPanel progress={progress} />
+      <div className="space-y-5 pl-14">
+        {PIPELINE_STAGES.map((stage) => (
+          <div
+            key={stage.number}
+            className="relative rounded-[22px] border border-slate-200/75 bg-white/86 p-5 shadow-[0_16px_44px_rgba(15,23,42,0.06)] backdrop-blur-xl"
+          >
+            <span className="absolute -left-[2.35rem] top-7 h-4 w-4 rounded-full border-[3px] border-[#FEFEFC] bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.42)]" />
+            <p className="text-[0.66rem] font-bold uppercase tracking-[0.16em] text-[#4FA3C7]">
+              {stage.eyebrow}
+            </p>
+            <h3 className="mt-4 text-fluid-lg font-bold tracking-[-0.02em] text-[#111318]">
+              {stage.title}
+            </h3>
+            <p className="mt-3 text-fluid-sm font-semibold leading-[1.65] text-slate-500">
+              {stage.body}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
+  );
+}
+
+function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
+  const smoothProgress = useSpring(progress, {
+    stiffness: 92,
+    damping: 34,
+    mass: 0.22,
+  });
+  const pathLength = useTransform(smoothProgress, [0.035, 0.94], [0, 1]);
+  const trackY = useTransform(smoothProgress, [0, 1], [0, -742]);
+
+  return (
+    <>
+      <div className="relative hidden h-[min(78vh,760px)] min-h-[650px] overflow-visible hero:block wide:h-[min(80vh,880px)] wide:min-h-[760px]">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_54%_45%,rgba(111,191,158,0.12),rgba(254,254,252,0)_58%)]" />
+        <div className="absolute left-[58%] top-0 h-[1780px] w-[704px] -translate-x-1/2 overflow-visible">
+          <motion.div className="absolute inset-0 overflow-visible" style={{ y: trackY }}>
+            <svg
+              viewBox="0 0 704 1780"
+              className="absolute inset-0 h-full w-full overflow-visible"
+              aria-hidden="true"
+            >
+              <defs>
+                <filter id="pipeline-active-glow" x="-20%" y="-8%" width="140%" height="116%">
+                  <feGaussianBlur stdDeviation="4" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <radialGradient id="pipeline-pulse-gradient">
+                  <stop offset="0%" stopColor="#8EC8E5" stopOpacity="0.9" />
+                  <stop offset="54%" stopColor="#4FA3C7" stopOpacity="0.34" />
+                  <stop offset="100%" stopColor="#4FA3C7" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              <path
+                d={pipelinePath}
+                fill="none"
+                stroke="rgba(30,45,61,0.14)"
+                strokeLinecap="round"
+                strokeWidth="2"
+              />
+              <motion.path
+                d={pipelinePath}
+                fill="none"
+                filter="url(#pipeline-active-glow)"
+                pathLength={pathLength}
+                stroke="#4FA3C7"
+                strokeLinecap="round"
+                strokeWidth="7"
+                opacity="0.26"
+              />
+              <motion.path
+                d={pipelinePath}
+                fill="none"
+                pathLength={pathLength}
+                stroke="#4FA3C7"
+                strokeLinecap="round"
+                strokeWidth="2.8"
+              />
+              <circle r="14" fill="url(#pipeline-pulse-gradient)" opacity="0.54">
+                <animateMotion dur="14s" path={pipelinePath} repeatCount="indefinite" />
+              </circle>
+              <circle r="3.5" fill="#8EC8E5" opacity="0.58">
+                <animateMotion dur="14s" path={pipelinePath} repeatCount="indefinite" />
+              </circle>
+            </svg>
+            {PIPELINE_STAGES.map((stage, index) => (
+              <SignalPipelineCard
+                key={stage.number}
+                index={index}
+                progress={smoothProgress}
+                stage={stage}
+              />
+            ))}
+          </motion.div>
+        </div>
+      </div>
+      <MobileSignalPipeline progress={smoothProgress} />
+    </>
   );
 }
 
@@ -758,19 +407,19 @@ function WorkflowNarrativeSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[540vh] border-y border-slate-200/70 bg-[#FEFEFC]"
+      className="relative border-y border-slate-200/70 bg-[#FEFEFC] hero:min-h-[300vh]"
       aria-labelledby="workflow-narrative-heading"
     >
-      <div className="sticky top-0 flex min-h-screen items-center overflow-hidden px-6 py-24">
+      <div className="relative flex min-h-screen items-center overflow-visible px-6 py-24 hero:sticky hero:top-0 hero:overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(111,191,158,0.13),rgba(254,254,252,0)_70%)]" />
-        <div className="relative mx-auto grid w-full max-w-[1120px] gap-12 hero:grid-cols-[0.43fr_0.57fr] hero:items-center wide:max-w-[1480px] wide:gap-16">
+        <div className="relative mx-auto grid w-full max-w-[1280px] gap-10 hero:grid-cols-[0.48fr_0.52fr] hero:items-start wide:max-w-[1660px] wide:grid-cols-[0.46fr_0.54fr] wide:gap-14">
           <div>
             <h2 id="workflow-narrative-heading" className="sr-only">
               How Avail turns athlete context into coaching guidance
             </h2>
             <StaticNarrativePanel />
           </div>
-          <SystemArchitectureFlow progress={scrollYProgress} />
+          <SignalPipelineFlow progress={scrollYProgress} />
         </div>
       </div>
     </section>
