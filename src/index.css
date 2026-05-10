@@ -64,8 +64,8 @@ body {
 @media (min-width: 1800px) {
   .workflow-narrative-grid {
     grid-template-columns: minmax(0, 620px) 704px;
-    max-width: 1460px;
-    column-gap: 136px;
+    max-width: 1560px;
+    column-gap: 236px;
   }
 
   .workflow-narrative-title {

@@ -406,7 +406,7 @@ function WorkflowNarrativeSection() {
     >
       <div className="relative flex min-h-screen items-center overflow-visible px-6 py-24 hero:sticky hero:top-0 hero:overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(111,191,158,0.13),rgba(254,254,252,0)_70%)]" />
-        <div className="workflow-narrative-grid relative mx-auto grid w-full max-w-[1280px] gap-10 hero:grid-cols-[0.48fr_0.52fr] hero:items-start wide:max-w-[1460px] wide:grid-cols-[minmax(0,620px)_704px] wide:gap-[136px]">
+        <div className="workflow-narrative-grid relative mx-auto grid w-full max-w-[1280px] gap-10 hero:grid-cols-[0.48fr_0.52fr] hero:items-start wide:max-w-[1560px] wide:grid-cols-[minmax(0,620px)_704px] wide:gap-[236px]">
           <div>
             <h2 id="workflow-narrative-heading" className="sr-only">
               How Avail turns athlete context into coaching guidance
