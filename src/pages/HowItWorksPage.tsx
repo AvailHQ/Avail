@@ -1,12 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 import {
   motion,
   useScroll,
   useSpring,
   useTransform,
   type MotionValue,
-} from "framer-motion";
-import { Link } from "react-router-dom";
+} from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   Activity,
   ArrowRight,
@@ -15,13 +15,13 @@ import {
   LayoutDashboard,
   ShieldCheck,
   SlidersHorizontal,
-} from "lucide-react";
+} from 'lucide-react';
 
 // Shared reveal timings used across the page so motion stays consistent.
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 22 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-70px" },
+  viewport: { once: true, margin: '-70px' },
   transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1], delay },
 });
 
@@ -40,98 +40,98 @@ interface PipelineStage {
   cardY: number;
   nodeX: number;
   nodeY: number;
-  nodeSide: "left" | "right";
+  nodeSide: 'left' | 'right';
 }
 
 const PIPELINE_STAGES: PipelineStage[] = [
   {
-    number: "01",
-    eyebrow: "STAGE 01 // SIGNAL CAPTURE",
-    title: "Daily Check-in",
-    body: "Athletes log symptoms, sleep, and subjective feel within 30 seconds.",
+    number: '01',
+    eyebrow: 'STAGE 01 // SIGNAL CAPTURE',
+    title: 'Daily Check-in',
+    body: 'Athletes log symptoms, sleep, and subjective feel within 30 seconds.',
     cardX: 88,
     cardY: 260,
     nodeX: 384,
     nodeY: 334,
-    nodeSide: "right",
+    nodeSide: 'right',
   },
   {
-    number: "02",
-    eyebrow: "STAGE 02 // SIGNAL INTEGRATION",
-    title: "Signal Integration",
-    body: "Check-in data combines with wearable feeds and training history into one unified readiness view.",
+    number: '02',
+    eyebrow: 'STAGE 02 // SIGNAL INTEGRATION',
+    title: 'Signal Integration',
+    body: 'Check-in data combines with wearable feeds and training history into one unified readiness view.',
     cardX: 384,
     cardY: 560,
     nodeX: 384,
     nodeY: 634,
-    nodeSide: "left",
+    nodeSide: 'left',
   },
   {
-    number: "03",
-    eyebrow: "STAGE 03 // CONTEXT MODELING",
-    title: "Cycle-aware Analysis",
+    number: '03',
+    eyebrow: 'STAGE 03 // CONTEXT MODELING',
+    title: 'Cycle-aware Analysis',
     body: "Avail reads the data through each athlete's unique cycle pattern — not a generic model.",
     cardX: 88,
     cardY: 860,
     nodeX: 384,
     nodeY: 934,
-    nodeSide: "right",
+    nodeSide: 'right',
   },
   {
-    number: "04",
-    eyebrow: "STAGE 04 // DECISION LAYER",
-    title: "Load Recommendation",
+    number: '04',
+    eyebrow: 'STAGE 04 // DECISION LAYER',
+    title: 'Load Recommendation',
     body: "The system generates a clear recommendation: maintain, reduce, or push today's load.",
     cardX: 384,
     cardY: 1160,
     nodeX: 384,
     nodeY: 1234,
-    nodeSide: "left",
+    nodeSide: 'left',
   },
   {
-    number: "05",
-    eyebrow: "STAGE 05 // TEAM VISIBILITY",
-    title: "Coach Dashboard",
-    body: "Staff sees readiness scores and guidance. No cycle details, no health records.",
+    number: '05',
+    eyebrow: 'STAGE 05 // TEAM VISIBILITY',
+    title: 'Coach Dashboard',
+    body: 'Staff sees readiness scores and guidance. No cycle details, no health records.',
     cardX: 88,
     cardY: 1460,
     nodeX: 384,
     nodeY: 1534,
-    nodeSide: "right",
+    nodeSide: 'right',
   },
   {
-    number: "06",
-    eyebrow: "STAGE 06 // LONGITUDINAL CALIBRATION",
-    title: "Continuous Learning",
+    number: '06',
+    eyebrow: 'STAGE 06 // LONGITUDINAL CALIBRATION',
+    title: 'Continuous Learning',
     body: "Predictions get sharper over months as the system learns each athlete's patterns.",
     cardX: 384,
     cardY: 1760,
     nodeX: 384,
     nodeY: 1834,
-    nodeSide: "left",
+    nodeSide: 'left',
   },
 ];
 
 const TRUST_CARDS = [
   {
-    title: "Athletes choose what to share",
-    body: "Athletes control what staff can see and can update access anytime.",
+    title: 'Athletes choose what to share',
+    body: 'Athletes control what staff can see and can update access anytime.',
   },
   {
-    title: "Coaches see scores, not logs",
-    body: "Coaches receive guidance and readiness signals, not raw cycle logs.",
+    title: 'Coaches see scores, not logs',
+    body: 'Coaches receive guidance and readiness signals, not raw cycle logs.',
   },
   {
-    title: "Performance tool, not medical device",
-    body: "AVAIL supports performance decisions and does not make medical claims.",
+    title: 'Performance tool, not medical device',
+    body: 'AVAIL supports performance decisions and does not make medical claims.',
   },
   {
-    title: "Consent at every step",
-    body: "Sensitive inputs stay tied to clear consent and team data boundaries.",
+    title: 'Consent at every step',
+    body: 'Sensitive inputs stay tied to clear consent and team data boundaries.',
   },
   {
-    title: "Privacy-Preserving Design",
-    body: "Performance workflows stay useful without exposing unnecessary detail.",
+    title: 'Privacy-Preserving Design',
+    body: 'Performance workflows stay useful without exposing unnecessary detail.',
   },
 ];
 
@@ -140,7 +140,7 @@ function GradientButton({ children }: { children: React.ReactNode }) {
     <Link
       to="/join-pilot-programme"
       className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-fluid-base font-bold text-white shadow-[0_12px_30px_rgba(79,163,199,0.24)] transition-all duration-150 hover:-translate-y-px hover:opacity-90 wide:h-[54px] wide:px-7"
-      style={{ background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }}
+      style={{ background: 'linear-gradient(45deg, #6FBF9E, #4FA3C7)' }}
     >
       {children}
       <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -168,7 +168,7 @@ function StaticNarrativePanel() {
 }
 
 const pipelinePath =
-  "M384 334 C510 424 270 544 384 634 C270 724 510 844 384 934 C510 1024 270 1144 384 1234 C270 1324 510 1444 384 1534 C510 1624 270 1744 384 1834";
+  'M384 334 C510 424 270 544 384 634 C270 724 510 844 384 934 C510 1024 270 1144 384 1234 C270 1324 510 1444 384 1534 C510 1624 270 1744 384 1834';
 
 const pipelineActivationStart = 0.035;
 const pipelineActivationEnd = 0.99;
@@ -178,7 +178,7 @@ const NODE_REACH_AT = PIPELINE_STAGES.map(
   (_, i) =>
     pipelineActivationStart +
     (i / (PIPELINE_STAGES.length - 1)) *
-      (pipelineActivationEnd - pipelineActivationStart),
+      (pipelineActivationEnd - pipelineActivationStart)
 );
 
 function SignalPipelineCard({
@@ -230,8 +230,8 @@ function SignalPipelineCard({
         deactivateAt + ramp * 2,
         1,
       ];
-  const borderActive = "rgba(79,163,199,0.42)";
-  const borderInactive = "rgba(148,163,184,0.18)";
+  const borderActive = 'rgba(79,163,199,0.42)';
+  const borderInactive = 'rgba(148,163,184,0.18)';
   const borderColor = useTransform(
     progress,
     borderInput,
@@ -244,7 +244,7 @@ function SignalPipelineCard({
           borderActive,
           borderInactive,
           borderInactive,
-        ],
+        ]
   );
 
   const shadowInput = isFirst
@@ -258,9 +258,9 @@ function SignalPipelineCard({
         1,
       ];
   const shadowActive =
-    "0 24px 70px rgba(15,23,42,0.08), 0 0 46px rgba(79,163,199,0.12)";
+    '0 24px 70px rgba(15,23,42,0.08), 0 0 46px rgba(79,163,199,0.12)';
   const shadowInactive =
-    "0 18px 52px rgba(15,23,42,0.045), 0 0 0 rgba(79,163,199,0)";
+    '0 18px 52px rgba(15,23,42,0.045), 0 0 0 rgba(79,163,199,0)';
   const boxShadow = useTransform(
     progress,
     shadowInput,
@@ -273,7 +273,7 @@ function SignalPipelineCard({
           shadowActive,
           shadowInactive,
           shadowInactive,
-        ],
+        ]
   );
 
   const dotInput = isFirst
@@ -287,8 +287,8 @@ function SignalPipelineCard({
         1,
       ];
   const dotActive =
-    "0 0 20px rgba(53,199,234,0.54), 0 0 38px rgba(79,163,199,0.18)";
-  const dotInactive = "0 0 0 rgba(53,199,234,0)";
+    '0 0 20px rgba(53,199,234,0.54), 0 0 38px rgba(79,163,199,0.18)';
+  const dotInactive = '0 0 0 rgba(53,199,234,0)';
   const dotShadow = useTransform(
     progress,
     dotInput,
@@ -301,7 +301,7 @@ function SignalPipelineCard({
           dotActive,
           dotInactive,
           dotInactive,
-        ],
+        ]
   );
 
   return (
@@ -395,7 +395,7 @@ function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
         />
       </svg>
       <div className="space-y-5 pl-14">
-        {PIPELINE_STAGES.map((stage) => (
+        {PIPELINE_STAGES.map(stage => (
           <div
             key={stage.number}
             className="relative rounded-[22px] border border-slate-200/75 bg-white/86 p-5 shadow-[0_16px_44px_rgba(15,23,42,0.06)] backdrop-blur-xl"
@@ -426,7 +426,7 @@ function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
   const pathLength = useTransform(
     smoothProgress,
     [pipelineActivationStart, pipelineActivationEnd],
-    [0, 1],
+    [0, 1]
   );
 
   return (
@@ -511,7 +511,7 @@ function WorkflowNarrativeSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end end"],
+    offset: ['start start', 'end end'],
   });
 
   return (
@@ -541,55 +541,55 @@ function WorkflowNarrativeSection() {
 // Hero system diagram showing athlete signals flowing through AVAIL's context layer.
 function HeroDiagram() {
   const signalPath =
-    "M70 138 C155 102 222 102 312 136 C410 174 482 160 560 120 C644 78 724 88 802 130 C874 168 920 162 984 126";
+    'M70 138 C155 102 222 102 312 136 C410 174 482 160 560 120 C644 78 724 88 802 130 C874 168 920 162 984 126';
   const mobileSignalPath =
-    "M180 0 C156 92 204 148 180 220 C156 302 204 356 180 434 C158 520 202 588 180 760";
+    'M180 0 C156 92 204 148 180 220 C156 302 204 356 180 434 C158 520 202 588 180 760';
   const nodes = [
     {
-      label: "Athlete Inputs",
-      subtitle: "Raw Signals",
+      label: 'Athlete Inputs',
+      subtitle: 'Raw Signals',
       Icon: Activity,
       desktopPosition:
-        "hero:right-auto hero:left-[4%] hero:top-[72px] hero:translate-x-0",
-      mobilePosition: "left-1/2 top-2 -translate-x-1/2",
-      rippleDelay: "0s",
+        'hero:right-auto hero:left-[4%] hero:top-[72px] hero:translate-x-0',
+      mobilePosition: 'left-1/2 top-2 -translate-x-1/2',
+      rippleDelay: '0s',
     },
     {
-      label: "Signal Process",
-      subtitle: "Normalization",
+      label: 'Signal Process',
+      subtitle: 'Normalization',
       Icon: SlidersHorizontal,
       desktopPosition:
-        "hero:right-auto hero:left-[25%] hero:top-[82px] hero:translate-x-0",
-      mobilePosition: "left-1/2 top-[142px] -translate-x-1/2",
-      rippleDelay: "2.5s",
+        'hero:right-auto hero:left-[25%] hero:top-[82px] hero:translate-x-0',
+      mobilePosition: 'left-1/2 top-[142px] -translate-x-1/2',
+      rippleDelay: '2.5s',
     },
     {
-      label: "Context Layer",
-      subtitle: "Interpretation",
+      label: 'Context Layer',
+      subtitle: 'Interpretation',
       Icon: Brain,
       featured: true,
       desktopPosition:
-        "hero:right-auto hero:left-1/2 hero:top-[58px] hero:-translate-x-1/2",
-      mobilePosition: "left-1/2 top-[284px] -translate-x-1/2",
-      rippleDelay: "5s",
+        'hero:right-auto hero:left-1/2 hero:top-[58px] hero:-translate-x-1/2',
+      mobilePosition: 'left-1/2 top-[284px] -translate-x-1/2',
+      rippleDelay: '5s',
     },
     {
-      label: "Coaching Decisions",
-      subtitle: "Action Layer",
+      label: 'Coaching Decisions',
+      subtitle: 'Action Layer',
       Icon: LayoutDashboard,
       desktopPosition:
-        "hero:left-auto hero:right-[23%] hero:top-[66px] hero:translate-x-0",
-      mobilePosition: "left-1/2 top-[446px] -translate-x-1/2",
-      rippleDelay: "7.3s",
+        'hero:left-auto hero:right-[23%] hero:top-[66px] hero:translate-x-0',
+      mobilePosition: 'left-1/2 top-[446px] -translate-x-1/2',
+      rippleDelay: '7.3s',
     },
     {
-      label: "Longitudinal Calibration",
-      subtitle: "Continuous Learning",
+      label: 'Longitudinal Calibration',
+      subtitle: 'Continuous Learning',
       Icon: Database,
       desktopPosition:
-        "hero:left-auto hero:right-[4%] hero:top-[72px] hero:translate-x-0",
-      mobilePosition: "left-1/2 top-[590px] -translate-x-1/2",
-      rippleDelay: "9.5s",
+        'hero:left-auto hero:right-[4%] hero:top-[72px] hero:translate-x-0',
+      mobilePosition: 'left-1/2 top-[590px] -translate-x-1/2',
+      rippleDelay: '9.5s',
     },
   ];
 
@@ -750,13 +750,13 @@ function HeroDiagram() {
             <div
               key={label}
               className={`absolute flex h-[120px] w-[120px] flex-col items-center justify-center border-0 bg-transparent p-2 text-center shadow-none outline-none hero:h-[132px] hero:w-[132px] ${mobilePosition} ${desktopPosition} ${
-                featured ? "hero:h-[150px] hero:w-[150px]" : ""
+                featured ? 'hero:h-[150px] hero:w-[150px]' : ''
               }`}
             >
               <motion.div
                 style={
                   {
-                    "--ripple-delay": rippleDelay,
+                    '--ripple-delay': rippleDelay,
                   } as React.CSSProperties
                 }
                 animate={
@@ -765,26 +765,26 @@ function HeroDiagram() {
                         y: [0, -6, 0],
                         scale: [1, 1.025, 1],
                         boxShadow: [
-                          "0 0 0 1px rgba(111,191,158,0.34), 0 18px 60px rgba(111,191,158,0.24), 0 0 86px rgba(111,191,158,0.18)",
-                          "0 0 0 1px rgba(111,191,158,0.58), 0 24px 78px rgba(111,191,158,0.34), 0 0 112px rgba(111,191,158,0.26)",
-                          "0 0 0 1px rgba(111,191,158,0.34), 0 18px 60px rgba(111,191,158,0.24), 0 0 86px rgba(111,191,158,0.18)",
+                          '0 0 0 1px rgba(111,191,158,0.34), 0 18px 60px rgba(111,191,158,0.24), 0 0 86px rgba(111,191,158,0.18)',
+                          '0 0 0 1px rgba(111,191,158,0.58), 0 24px 78px rgba(111,191,158,0.34), 0 0 112px rgba(111,191,158,0.26)',
+                          '0 0 0 1px rgba(111,191,158,0.34), 0 18px 60px rgba(111,191,158,0.24), 0 0 86px rgba(111,191,158,0.18)',
                         ],
                       }
                     : undefined
                 }
                 transition={
                   featured
-                    ? { duration: 5.8, repeat: Infinity, ease: "easeInOut" }
+                    ? { duration: 5.8, repeat: Infinity, ease: 'easeInOut' }
                     : undefined
                 }
                 className={`hero-node-icon mb-3 flex items-center justify-center rounded-[18px] border bg-white/90 text-[#4FA3C7] shadow-[0_14px_36px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-300 ${
                   featured
-                    ? "h-20 w-20 border-[#6FBF9E]/60 bg-white/95 shadow-[0_0_0_1px_rgba(111,191,158,0.34),0_18px_60px_rgba(111,191,158,0.24),0_0_86px_rgba(111,191,158,0.18)]"
-                    : "h-14 w-14 border-slate-200/80"
+                    ? 'h-20 w-20 border-[#6FBF9E]/60 bg-white/95 shadow-[0_0_0_1px_rgba(111,191,158,0.34),0_18px_60px_rgba(111,191,158,0.24),0_0_86px_rgba(111,191,158,0.18)]'
+                    : 'h-14 w-14 border-slate-200/80'
                 }`}
               >
                 <Icon
-                  className={featured ? "h-9 w-9" : "h-6 w-6"}
+                  className={featured ? 'h-9 w-9' : 'h-6 w-6'}
                   strokeWidth={1.9}
                   aria-hidden="true"
                 />
@@ -792,21 +792,21 @@ function HeroDiagram() {
               <div className="w-[190px] max-w-[72vw] text-center">
                 <p
                   className={`font-bold leading-[1.16] tracking-[0.01em] text-[#111318] ${
-                    featured ? "text-fluid-base" : "text-fluid-sm opacity-70"
+                    featured ? 'text-fluid-base' : 'text-fluid-sm opacity-70'
                   }`}
                 >
                   {label}
                 </p>
                 <p
                   className={`mt-1.5 text-[0.7rem] font-semibold leading-[1.2] text-slate-500 sm:text-fluid-xs ${
-                    featured ? "" : "opacity-70"
+                    featured ? '' : 'opacity-70'
                   }`}
                 >
                   {subtitle}
                 </p>
               </div>
             </div>
-          ),
+          )
         )}
       </div>
     </motion.div>
@@ -833,7 +833,7 @@ export default function HowItWorksPage() {
             {...heroReveal}
             transition={{ ...heroReveal.transition, delay: 0.06 }}
             id="how-it-works-hero"
-            className="mx-auto max-w-[900px] font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-4xl wide:max-w-[1180px]"
+            className="mx-auto max-w-[1100px] font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-4xl wide:max-w-[1560px]"
           >
             From cycle check-in to load guidance in under a minute
           </motion.h1>
@@ -882,7 +882,7 @@ export default function HowItWorksPage() {
             {...fadeUp(0.08)}
             className="mt-16 grid gap-7 hero:grid-cols-3 wide:gap-9"
           >
-            {TRUST_CARDS.map((card) => (
+            {TRUST_CARDS.map(card => (
               <div
                 key={card.title}
                 className="group rounded-[25px] bg-gradient-to-br from-slate-200/80 via-slate-200/70 to-slate-200/80 p-px transition-all duration-200 hover:-translate-y-[2px] hover:from-[#6FBF9E] hover:via-[#A7ECD0] hover:to-[#4FA3C7] hover:shadow-[0_22px_54px_rgba(15,23,42,0.10)]"
@@ -907,7 +907,7 @@ export default function HowItWorksPage() {
           {...fadeUp(0)}
           className="mx-auto max-w-[1080px] overflow-hidden rounded-[36px] border border-slate-200/70 bg-gradient-to-b from-white via-[#F7FBFF] to-[#DDEBFF] p-8 text-center shadow-[0_30px_80px_rgba(15,23,42,0.10)] hero:p-16 wide:max-w-[1320px]"
         >
-          <h2 className="mx-auto max-w-[680px] text-[1.5rem] font-bold leading-[1.08] tracking-[-0.035em] text-[#111318] sm:text-fluid-4xl sm:leading-[1.05] sm:tracking-[-0.045em] wide:max-w-[820px]">
+          <h2 className="mx-auto max-w-[960px] text-[1.5rem] font-bold leading-[1.08] tracking-[-0.035em] text-[#111318] sm:text-fluid-4xl sm:leading-[1.05] sm:tracking-[-0.045em] wide:max-w-[960px]">
             Women's sport was never built for population averages
           </h2>
           <p className="mx-auto mt-5 max-w-[560px] text-fluid-base leading-[1.7] text-slate-500 sm:text-fluid-lg sm:leading-[1.75]">
