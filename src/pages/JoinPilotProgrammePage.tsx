@@ -753,20 +753,22 @@ export default function JoinPilotProgrammePage() {
                   </div>
                 </motion.div>
               ))}
-              <section className="py-8 text-center">
-                <div className="flex items-center w-full mb-6">
-                  <p className="text-fluid-sm text-gray-400 uppercase tracking-wider text-center pr-3">
-                    Validated By
-                  </p>
-                  <p className="w-[70%] h-px bg-black opacity-20"></p>
-                </div>
+              {false && (
+                <section className="py-8 text-center">
+                  <div className="flex items-center w-full mb-6">
+                    <p className="text-fluid-sm text-gray-400 uppercase tracking-wider text-center pr-3">
+                      Validated By
+                    </p>
+                    <p className="w-[70%] h-px bg-black opacity-20"></p>
+                  </div>
 
-                <div className="flex justify-center gap-10 opacity-50">
-                  <div className="text-gray-400">Women's Football Club</div>
-                  <div className="text-gray-400">Elite Academy</div>
-                  <div className="text-gray-400">Performance Team</div>
-                </div>
-              </section>
+                  <div className="flex justify-center gap-10 opacity-50">
+                    <div className="text-gray-400">Women's Football Club</div>
+                    <div className="text-gray-400">Elite Academy</div>
+                    <div className="text-gray-400">Performance Team</div>
+                  </div>
+                </section>
+              )}
             </div>
 
             {/* Footer note */}

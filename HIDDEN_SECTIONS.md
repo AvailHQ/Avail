@@ -2,6 +2,36 @@
 
 This file tracks UI sections and navigation items that are temporarily hidden, plus how to enable them again.
 
+## Join waitlist validated by
+
+Status: hidden from the Join waitlist page right-side panel.
+
+### Hidden files
+
+- `src/pages/JoinPilotProgrammePage.tsx`
+
+### How to enable
+
+1. In `src/pages/JoinPilotProgrammePage.tsx`, find the `Validated By` section near the bottom of the right-side value props panel.
+
+2. Remove the temporary conditional wrapper:
+
+```tsx
+{false && (
+  <section className="py-8 text-center">
+    ...
+  </section>
+)}
+```
+
+Restore it to:
+
+```tsx
+<section className="py-8 text-center">
+  ...
+</section>
+```
+
 ## Team section
 
 Status: hidden from the home page, header navigation, and footer links.
