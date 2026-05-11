@@ -169,14 +169,15 @@ function StaticNarrativePanel() {
 const pipelinePath =
   "M384 334 C510 424 270 544 384 634 C270 724 510 844 384 934 C510 1024 270 1144 384 1234 C270 1324 510 1444 384 1534 C510 1624 270 1744 384 1834";
 
-const pipelineTrackEndY =
-  PIPELINE_STAGES[0].cardY -
-  PIPELINE_STAGES[PIPELINE_STAGES.length - 1].cardY -
-  80;
+const pipelineActivationStart = 0.035;
+const pipelineActivationEnd = 0.99;
 
 // smoothProgress value at which the animated line reaches node i
 const NODE_REACH_AT = PIPELINE_STAGES.map(
-  (_, i) => 0.035 + (i / (PIPELINE_STAGES.length - 1)) * 0.785,
+  (_, i) =>
+    pipelineActivationStart +
+    (i / (PIPELINE_STAGES.length - 1)) *
+      (pipelineActivationEnd - pipelineActivationStart),
 );
 
 function SignalPipelineCard({
@@ -369,15 +370,18 @@ function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
     damping: 30,
     mass: 0.12,
   });
-  const pathLength = useTransform(smoothProgress, [0.035, 0.82], [0, 1]);
-  const trackY = useTransform(progress, [0, 0.82], [0, pipelineTrackEndY]);
+  const pathLength = useTransform(
+    smoothProgress,
+    [pipelineActivationStart, pipelineActivationEnd],
+    [0, 1],
+  );
 
   return (
     <>
-      <div className="relative hidden h-[min(78vh,760px)] min-h-[650px] overflow-visible hero:block wide:h-[min(80vh,880px)] wide:min-h-[760px] wide:w-[704px] wide:justify-self-end">
+      <div className="relative hidden h-[2000px] overflow-visible hero:block wide:h-[2080px] wide:w-[704px] wide:justify-self-end">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_54%_45%,rgba(111,191,158,0.12),rgba(254,254,252,0)_58%)]" />
-        <div className="absolute left-[44%] top-0 h-[2000px] w-[704px] -translate-x-1/2 overflow-visible wide:left-1/2">
-          <motion.div className="absolute inset-0 overflow-visible" style={{ y: trackY }}>
+        <div className="absolute left-[44%] top-0 h-full w-[704px] -translate-x-1/2 overflow-visible wide:left-1/2">
+          <div className="absolute inset-0 overflow-visible">
             <svg
               viewBox="0 0 704 2000"
               className="absolute inset-0 h-full w-full overflow-visible"
@@ -442,7 +446,7 @@ function SignalPipelineFlow({ progress }: { progress: MotionValue<number> }) {
                 stage={stage}
               />
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
       <MobileSignalPipeline progress={smoothProgress} />
@@ -460,17 +464,19 @@ function WorkflowNarrativeSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative border-y border-slate-200/70 bg-[#FEFEFC] hero:min-h-[300vh] wide:min-h-[305vh]"
+      className="relative border-y border-slate-200/70 bg-[#FEFEFC]"
       aria-labelledby="workflow-narrative-heading"
     >
-      <div className="relative flex min-h-screen items-center overflow-visible px-6 py-24 hero:sticky hero:top-0 hero:overflow-hidden">
+      <div className="relative overflow-visible px-6 py-24 hero:py-0">
         <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(111,191,158,0.13),rgba(254,254,252,0)_70%)]" />
         <div className="workflow-narrative-grid relative mx-auto grid w-full max-w-[1120px] gap-10 hero:grid-cols-[0.48fr_0.52fr] hero:items-start wide:max-w-[1560px] wide:grid-cols-[minmax(0,620px)_704px] wide:gap-[236px]">
-          <div>
+          <div className="relative hero:min-h-[2000px] wide:min-h-[2080px]">
             <h2 id="workflow-narrative-heading" className="sr-only">
               How Avail turns athlete context into coaching guidance
             </h2>
-            <StaticNarrativePanel />
+            <div className="hero:sticky hero:top-[clamp(72px,13vh,128px)]">
+              <StaticNarrativePanel />
+            </div>
           </div>
           <SignalPipelineFlow progress={scrollYProgress} />
         </div>
