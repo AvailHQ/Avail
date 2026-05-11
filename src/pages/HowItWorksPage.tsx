@@ -47,8 +47,8 @@ const PIPELINE_STAGES: PipelineStage[] = [
   {
     number: "01",
     eyebrow: "STAGE 01 // SIGNAL CAPTURE",
-    title: "Athlete Context Intake",
-    body: "Capture athlete context before training begins.",
+    title: "Daily Check-in",
+    body: "Athletes log symptoms, sleep, and subjective feel within 30 seconds.",
     cardX: 88,
     cardY: 260,
     nodeX: 384,
@@ -58,8 +58,8 @@ const PIPELINE_STAGES: PipelineStage[] = [
   {
     number: "02",
     eyebrow: "STAGE 02 // SIGNAL INTEGRATION",
-    title: "Context Unification",
-    body: "Unify fragmented athlete signals into one interpretable state.",
+    title: "Signal Integration",
+    body: "Check-in data combines with wearable feeds and training history into one unified readiness view.",
     cardX: 384,
     cardY: 560,
     nodeX: 384,
@@ -69,8 +69,8 @@ const PIPELINE_STAGES: PipelineStage[] = [
   {
     number: "03",
     eyebrow: "STAGE 03 // CONTEXT MODELING",
-    title: "Individualized Interpretation",
-    body: "Interpret load through individualized physiology.",
+    title: "Cycle-aware Analysis",
+    body: "Avail reads the data through each athlete's unique cycle pattern — not a generic model.",
     cardX: 88,
     cardY: 860,
     nodeX: 384,
@@ -80,8 +80,8 @@ const PIPELINE_STAGES: PipelineStage[] = [
   {
     number: "04",
     eyebrow: "STAGE 04 // DECISION LAYER",
-    title: "Load Guidance Generation",
-    body: "Turn physiology into actionable coaching support.",
+    title: "Load Recommendation",
+    body: "The system generates a clear recommendation: maintain, reduce, or push today's load.",
     cardX: 384,
     cardY: 1160,
     nodeX: 384,
@@ -91,8 +91,8 @@ const PIPELINE_STAGES: PipelineStage[] = [
   {
     number: "05",
     eyebrow: "STAGE 05 // TEAM VISIBILITY",
-    title: "Structured Readiness View",
-    body: "Surface readiness without exposing sensitive data.",
+    title: "Coach Dashboard",
+    body: "Staff sees readiness scores and guidance. No cycle details, no health records.",
     cardX: 88,
     cardY: 1460,
     nodeX: 384,
@@ -102,8 +102,8 @@ const PIPELINE_STAGES: PipelineStage[] = [
   {
     number: "06",
     eyebrow: "STAGE 06 // LONGITUDINAL CALIBRATION",
-    title: "Continuous Context Refinement",
-    body: "Every season strengthens the system.",
+    title: "Continuous Learning",
+    body: "Predictions get sharper over months as the system learns each athlete's patterns.",
     cardX: 384,
     cardY: 1760,
     nodeX: 384,
@@ -114,19 +114,19 @@ const PIPELINE_STAGES: PipelineStage[] = [
 
 const TRUST_CARDS = [
   {
-    title: "Athlete Data Control",
-    body: "Athletes choose what is shared and keep sensitive context protected.",
+    title: "Athletes choose what to share",
+    body: "Athletes control what staff can see and can update access anytime.",
   },
   {
-    title: "Structured Coach Insights",
+    title: "Coaches see scores, not logs",
     body: "Coaches receive guidance and readiness signals, not raw cycle logs.",
   },
   {
-    title: "Non-Diagnostic Guidance",
+    title: "Performance tool, not medical device",
     body: "AVAIL supports performance decisions and does not make medical claims.",
   },
   {
-    title: "Consent-First Workflow",
+    title: "Consent at every step",
     body: "Sensitive inputs stay tied to clear consent and team data boundaries.",
   },
   {
@@ -153,14 +153,15 @@ function StaticNarrativePanel() {
     <div className="flex min-h-[360px] flex-col pt-4 hero:min-h-[520px] hero:pt-20 wide:pt-24">
       <p className="mb-12 flex items-center gap-3 text-fluid-xs font-bold uppercase tracking-[0.2em] text-[#4FA3C7] wide:mb-14">
         <span className="h-2 w-2 rounded-full bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.72)]" />
-        Contextual Pipelines
+        UNDER THE HOOD
       </p>
       <h2 className="workflow-narrative-title max-w-[760px] whitespace-normal font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-3xl wide:text-fluid-4xl">
-        Contextual Pipelines.
+        How Avail turns raw data into clear guidance
       </h2>
       <p className="mt-8 max-w-[590px] text-fluid-lg font-semibold leading-[1.82] tracking-[-0.01em] text-slate-500 wide:mt-9 wide:max-w-[660px] wide:text-fluid-xl">
-        Avail transforms fragmented athlete signals into individualized
-        physiological context before coaching decisions are made.
+        Six steps from athlete check-in to coaching recommendation
+        <br />
+        Fully automated, fully private.
       </p>
     </div>
   );
@@ -198,7 +199,14 @@ function SignalPipelineCard({
   // Active: opacity 1 / Inactive: 0.52
   const opacityInput = isFirst
     ? [0, deactivateAt - ramp, deactivateAt + ramp, 1]
-    : [0, activateAt - ramp, activateAt + ramp, deactivateAt - ramp, deactivateAt + ramp, 1];
+    : [
+        0,
+        activateAt - ramp,
+        activateAt + ramp,
+        deactivateAt - ramp,
+        deactivateAt + ramp,
+        1,
+      ];
   const opacityOutput = isFirst
     ? [1, 1, 0.52, 0.52]
     : [0.52, 0.52, 1, 1, 0.52, 0.52];
@@ -214,7 +222,14 @@ function SignalPipelineCard({
 
   const borderInput = isFirst
     ? [0, deactivateAt, deactivateAt + ramp * 2, 1]
-    : [0, activateAt, activateAt + ramp * 2, deactivateAt, deactivateAt + ramp * 2, 1];
+    : [
+        0,
+        activateAt,
+        activateAt + ramp * 2,
+        deactivateAt,
+        deactivateAt + ramp * 2,
+        1,
+      ];
   const borderActive = "rgba(79,163,199,0.42)";
   const borderInactive = "rgba(148,163,184,0.18)";
   const borderColor = useTransform(
@@ -222,33 +237,71 @@ function SignalPipelineCard({
     borderInput,
     isFirst
       ? [borderActive, borderActive, borderInactive, borderInactive]
-      : [borderInactive, borderInactive, borderActive, borderActive, borderInactive, borderInactive],
+      : [
+          borderInactive,
+          borderInactive,
+          borderActive,
+          borderActive,
+          borderInactive,
+          borderInactive,
+        ],
   );
 
   const shadowInput = isFirst
     ? [0, deactivateAt, deactivateAt + ramp * 2, 1]
-    : [0, activateAt, activateAt + ramp * 2, deactivateAt, deactivateAt + ramp * 2, 1];
-  const shadowActive = "0 24px 70px rgba(15,23,42,0.08), 0 0 46px rgba(79,163,199,0.12)";
-  const shadowInactive = "0 18px 52px rgba(15,23,42,0.045), 0 0 0 rgba(79,163,199,0)";
+    : [
+        0,
+        activateAt,
+        activateAt + ramp * 2,
+        deactivateAt,
+        deactivateAt + ramp * 2,
+        1,
+      ];
+  const shadowActive =
+    "0 24px 70px rgba(15,23,42,0.08), 0 0 46px rgba(79,163,199,0.12)";
+  const shadowInactive =
+    "0 18px 52px rgba(15,23,42,0.045), 0 0 0 rgba(79,163,199,0)";
   const boxShadow = useTransform(
     progress,
     shadowInput,
     isFirst
       ? [shadowActive, shadowActive, shadowInactive, shadowInactive]
-      : [shadowInactive, shadowInactive, shadowActive, shadowActive, shadowInactive, shadowInactive],
+      : [
+          shadowInactive,
+          shadowInactive,
+          shadowActive,
+          shadowActive,
+          shadowInactive,
+          shadowInactive,
+        ],
   );
 
   const dotInput = isFirst
     ? [0, deactivateAt, deactivateAt + ramp * 2, 1]
-    : [0, activateAt, activateAt + ramp * 2, deactivateAt, deactivateAt + ramp * 2, 1];
-  const dotActive = "0 0 20px rgba(53,199,234,0.54), 0 0 38px rgba(79,163,199,0.18)";
+    : [
+        0,
+        activateAt,
+        activateAt + ramp * 2,
+        deactivateAt,
+        deactivateAt + ramp * 2,
+        1,
+      ];
+  const dotActive =
+    "0 0 20px rgba(53,199,234,0.54), 0 0 38px rgba(79,163,199,0.18)";
   const dotInactive = "0 0 0 rgba(53,199,234,0)";
   const dotShadow = useTransform(
     progress,
     dotInput,
     isFirst
       ? [dotActive, dotActive, dotInactive, dotInactive]
-      : [dotInactive, dotInactive, dotActive, dotActive, dotInactive, dotInactive],
+      : [
+          dotInactive,
+          dotInactive,
+          dotActive,
+          dotActive,
+          dotInactive,
+          dotInactive,
+        ],
   );
 
   return (
@@ -782,16 +835,16 @@ export default function HowItWorksPage() {
             id="how-it-works-hero"
             className="mx-auto max-w-[900px] font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-4xl wide:max-w-[1180px]"
           >
-            Turning athlete context into better training decisions.
+            From cycle check-in to load guidance in under a minute
           </motion.h1>
           <motion.p
             {...heroReveal}
             transition={{ ...heroReveal.transition, delay: 0.12 }}
             className="mx-auto mt-7 max-w-[660px] text-fluid-lg leading-[1.8] text-slate-500 wide:max-w-[760px]"
           >
-            Avail surfaces individualized physiological context before training
-            decisions are made, helping coaching staff interpret load beyond
-            population averages.
+            Each morning, athletes complete a quick check-in. Before training
+            begins, coaching staff receive readiness context and clear load
+            guidance for the day.
           </motion.p>
           <HeroDiagram />
         </div>
@@ -819,9 +872,9 @@ export default function HowItWorksPage() {
               </span>
               Private by design.
             </h2>
-            <p className="mt-6 max-w-[520px] text-fluid-lg leading-[1.8] text-slate-500">
-              Athletes retain control while coaches receive structured guidance,
-              not raw cycle logs or diagnostic claims.
+            <p className="mt-6 max-w-[720px] text-fluid-lg leading-[1.8] text-slate-500">
+              Athletes control what's shared. Coaches get structured guidance
+              instead of raw cycle logs or medical interpretations.
             </p>
           </motion.div>
 

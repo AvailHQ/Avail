@@ -180,7 +180,7 @@ export default function ProblemSection() {
           {...inView(0)}
           className="text-center text-fluid-xs font-semibold tracking-[0.14em] uppercase text-[#9CA3AF] mb-5"
         >
-          The Load Management Landscape
+          WHY EXISTING TOOLS AREN'T ENOUGH
         </motion.p>
 
         <motion.h2
@@ -189,18 +189,17 @@ export default function ProblemSection() {
           className="text-center font-bold tracking-normal text-[#111318] leading-[1.13] mb-5 text-[clamp(0.98rem,5.1vw,3.25rem)] sm:text-fluid-4xl"
         >
           <span className="block whitespace-nowrap">
-            Built for physiological variability
+            Women’s sport SITLL runs on
           </span>
-          <span className="block whitespace-nowrap">
-            NOT population averages
-          </span>
+          <span className="block whitespace-nowrap">male-default systems</span>
         </motion.h2>
 
         <motion.p
           {...inView(0.13)}
           className="text-center text-fluid-lg leading-[1.65] text-[#6B7280] max-w-[460px] mx-auto mb-14 wide:max-w-[620px] wide:mb-16"
         >
-          Transforming physiological variability into actionable decisions.
+          Avail sits where no other tool does, combining physiology context with
+          real load decisions.
         </motion.p>
 
         <motion.div

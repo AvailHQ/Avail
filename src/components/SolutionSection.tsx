@@ -75,20 +75,20 @@ interface Capability {
 
 const CAPABILITIES: Capability[] = [
   {
-    title: "Context before decisions",
+    title: "Pre-session decision support",
     description:
-      "Avail surfaces individualized physiological context before training begins.",
+      "Before training begins, coaches know who can push and who needs recovery.",
     Icon: IcCycleModel,
   },
   {
-    title: "Built for women’s sport",
-    description: "Not retrofitted from male performance data.",
+    title: "Built for female special",
+    description: "Built for female athletes. Not adapted from male data.",
     Icon: IcDecisionEngine,
   },
   {
-    title: "Athlete-owned data",
+    title: "Her data stays hers",
     description:
-      "Performance insight without exposing private health information.",
+      "Private health data stays private. Coaches see structured readiness signals only.",
     Icon: IcMultiSignal,
   },
 ];
@@ -124,7 +124,7 @@ export default function SolutionSection() {
         <motion.div {...fadeUp(0)} className="mb-12 max-w-[760px] hero:mb-16">
           <p className="mb-8 flex items-center gap-3 text-fluid-xs font-semibold tracking-[0.15em] uppercase text-[#6FBF9E]">
             <span className="h-2 w-2 rounded-full bg-[#4FA3C7]" />
-            Solution
+            WHAT YOU GET
           </p>
           <h2
             id="solution-headline"
@@ -170,16 +170,15 @@ export default function SolutionSection() {
 
               <div>
                 <h3 className="mb-5 text-fluid-xl font-bold leading-[1.15] tracking-[-0.02em] text-[#111318]">
-                  Longitudinal Intelligence Layer
+                  Gets smarter every season
                 </h3>
                 <p className="max-w-[920px] text-fluid-base leading-[1.65] text-[#667085]">
-                  Avail continuously builds one of the first longitudinal,
-                  performance-linked datasets designed specifically around
-                  female athletes.
+                  Every training session adds to a growing dataset that links
+                  cycle patterns to real performance outcomes.
                   <br />
-                  Over time, this creates a continuously improving
-                  decision-support system shaped by real training environments,
-                  not retrospective assumptions.
+                  The longer you use it, the more precise the guidance becomes.
+                  <br />
+                  It's learning from your athletes, not from a textbook.
                 </p>
               </div>
             </div>

@@ -30,8 +30,8 @@ export default function HeroCopy() {
         {...fadeUp(0.25)}
         className="text-fluid-lg leading-[1.68] text-[#4B5563] tracking-[-0.01em] max-w-[500px] mx-auto mb-9 wide:max-w-[680px]"
       >
-        Avail surfaces individualized physiological context that current
-        load-management systems miss.
+        Avail tells your coaching staff which players need adjusted load today,
+        based on where they are in their cycle.
       </motion.p>
 
       <motion.div
