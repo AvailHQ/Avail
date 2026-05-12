@@ -81,7 +81,7 @@ const CAPABILITIES: Capability[] = [
     Icon: IcCycleModel,
   },
   {
-    title: "Built for female special",
+    title: "Built for female athletes",
     description: "Built for female athletes. Not adapted from male data.",
     Icon: IcDecisionEngine,
   },

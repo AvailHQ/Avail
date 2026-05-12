@@ -40,7 +40,7 @@ export default function DeviceMockup() {
 
             {/*===== Add back when having actual interface =======*/}
             {/* <img
-              src="/figure/Example.svg"
+              src="/figure/coach_dashboard.png"
               alt="Avail example screen"
               className="block w-full h-full object-cover object-top select-none pointer-events-none"
               draggable={false}
