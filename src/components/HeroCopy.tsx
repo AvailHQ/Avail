@@ -23,7 +23,7 @@ export default function HeroCopy() {
         {...fadeUp(0.15)}
         className="mx-auto mb-5 max-w-[1180px] font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-4xl wide:max-w-[1320px]"
       >
-        Individualized load intelligence for female athletes
+        Individualized load intelligence for women athletes
       </motion.h1>
 
       <motion.p

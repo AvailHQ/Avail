@@ -61,6 +61,20 @@ body {
   }
 }
 
+@keyframes hero-image-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.hero-image-marquee {
+  animation: hero-image-marquee 28s linear infinite;
+  will-change: transform;
+}
+
 @media (min-width: 1800px) {
   .workflow-narrative-grid {
     grid-template-columns: minmax(0, 620px) 704px;
@@ -76,7 +90,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-signal-line,
-  .hero-node-icon::after {
+  .hero-node-icon::after,
+  .hero-image-marquee {
     animation: none;
   }
 }
