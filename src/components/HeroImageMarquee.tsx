@@ -6,11 +6,18 @@ const images = [
   { src: "/figure/football.png", alt: "Female football player training" },
   { src: "/figure/ice_hockey.png", alt: "Female ice hockey player training" },
   { src: "/figure/running.png", alt: "Female runner training on a track" },
+  {
+    src: "/figure/cricket.png",
+    alt: "Female cricket player training on a track",
+  },
 ];
 
 function ImageSet({ hidden = false }: { hidden?: boolean }) {
   return (
-    <div className="flex shrink-0 gap-4 px-2 sm:gap-5 sm:px-2.5 wide:gap-6 wide:px-3" aria-hidden={hidden}>
+    <div
+      className="flex shrink-0 gap-4 px-2 sm:gap-5 sm:px-2.5 wide:gap-6 wide:px-3"
+      aria-hidden={hidden}
+    >
       {images.map((image) => (
         <figure
           key={`${hidden ? "clone" : "primary"}-${image.src}`}
