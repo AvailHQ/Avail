@@ -3,18 +3,10 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { submitDemoRequest } from "../lib/api";
 
-const ROLES = ["Coach", "Performance Staff", "Sports Scientist", "Other"];
-const TEAM_LEVELS = ["Elite", "Academy", "Other"];
-
 interface FormState {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
-  org: string;
-  role: string;
-  level: string;
-  message: string;
-  consent: boolean;
+  phone: string;
 }
 
 type FormErrors = Partial<Record<keyof FormState, string>>;
@@ -80,109 +72,12 @@ function Input({
   );
 }
 
-function Select({
-  label,
-  error,
-  options,
-  value,
-  onChange,
-  placeholder,
-  name,
-}: {
-  label: string;
-  name: string;
-  placeholder: string;
-  options: string[];
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  error?: string;
-}) {
-  const f = useField();
-  return (
-    <div className="flex flex-col gap-[5px]">
-      <label className="text-fluid-sm font-medium text-[#374151]">{label}</label>
-      <div className="relative">
-        <select
-          name={name}
-          value={value}
-          onChange={onChange}
-          onFocus={f.onFocus}
-          onBlur={f.onBlur}
-          className={`${BASE} h-[42px] pl-[14px] pr-10 appearance-none cursor-pointer wide:h-[50px] wide:pl-4`}
-          style={{ ...f.borderStyle, color: value ? "#111318" : "#B0B8C4" }}
-        >
-          <option value="" disabled>
-            {placeholder}
-          </option>
-          {options.map((option) => (
-            <option key={option} value={option} style={{ color: "#111318" }}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <svg
-          viewBox="0 0 12 12"
-          fill="none"
-          className="absolute right-3 top-1/2 h-[10px] w-[10px] -translate-y-1/2 pointer-events-none"
-          aria-hidden="true"
-        >
-          <path
-            d="M2 4l4 4 4-4"
-            stroke="#9CA3AF"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
-      {error && <p className="text-fluid-xs text-red-400">{error}</p>}
-    </div>
-  );
-}
-
-function Textarea({
-  label,
-  placeholder,
-  value,
-  onChange,
-  name,
-}: {
-  label: string;
-  name: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-}) {
-  const f = useField();
-  return (
-    <div className="flex flex-col gap-[5px]">
-      <label className="text-fluid-sm font-medium text-[#374151]">{label}</label>
-      <textarea
-        name={name}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        rows={4}
-        onFocus={f.onFocus}
-        onBlur={f.onBlur}
-        className={`${BASE} resize-none px-[14px] py-[10px] leading-[1.65] wide:px-4 wide:py-3`}
-        style={f.borderStyle}
-      />
-    </div>
-  );
-}
-
 export default function WaitlistFormPanel() {
   const navigate = useNavigate();
   const [form, setForm] = useState<FormState>({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
-    org: "",
-    role: "",
-    level: "",
-    message: "",
-    consent: false,
+    phone: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitError, setSubmitError] = useState("");
@@ -208,22 +103,15 @@ export default function WaitlistFormPanel() {
     ) =>
       setForm((current) => ({
         ...current,
-        [key]:
-          e.target.type === "checkbox"
-            ? (e.target as HTMLInputElement).checked
-            : e.target.value,
+        [key]: e.target.value,
       }));
 
   function validate(): FormErrors {
     const nextErrors: FormErrors = {};
-    if (!form.firstName.trim()) nextErrors.firstName = "Required";
-    if (!form.lastName.trim()) nextErrors.lastName = "Required";
+    if (!form.name.trim()) nextErrors.name = "Required";
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) {
       nextErrors.email = "Valid email required";
     }
-    if (!form.org.trim()) nextErrors.org = "Required";
-    if (!form.role) nextErrors.role = "Please select a role";
-    if (!form.consent) nextErrors.consent = "Please agree to continue";
     return nextErrors;
   }
 
@@ -311,31 +199,21 @@ export default function WaitlistFormPanel() {
           Join waitlist
         </h2>
         <p className="text-fluid-base leading-[1.65] text-[#6B7280]">
-          Share a few details and we’ll add your team to the AVAIL waitlist.
+          Share your details and we’ll add you to the AVAIL waitlist.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <Input
-          label="First Name"
-          name="firstName"
-          placeholder="Sarah"
-          value={form.firstName}
-          onChange={set("firstName")}
-          error={errors.firstName}
-        />
-        <Input
-          label="Last Name"
-          name="lastName"
-          placeholder="Robertson"
-          value={form.lastName}
-          onChange={set("lastName")}
-          error={errors.lastName}
-        />
-      </div>
+      <Input
+        label="Name"
+        name="name"
+        placeholder="Sarah Robertson"
+        value={form.name}
+        onChange={set("name")}
+        error={errors.name}
+      />
 
       <Input
-        label="Work Email"
+        label="Email"
         name="email"
         type="email"
         placeholder="sarah@club.com"
@@ -345,40 +223,13 @@ export default function WaitlistFormPanel() {
       />
 
       <Input
-        label="Team / Organization"
-        name="org"
-        placeholder="Manchester City FC"
-        value={form.org}
-        onChange={set("org")}
-        error={errors.org}
-      />
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <Select
-          label="Role"
-          name="role"
-          options={ROLES}
-          value={form.role}
-          onChange={set("role")}
-          placeholder="Select role"
-          error={errors.role}
-        />
-        <Select
-          label="Team Level"
-          name="level"
-          options={TEAM_LEVELS}
-          value={form.level}
-          onChange={set("level")}
-          placeholder="Select level"
-        />
-      </div>
-
-      <Textarea
-        label="Message"
-        name="message"
-        placeholder="What are you looking to explore?"
-        value={form.message}
-        onChange={set("message")}
+        label="Phone number (optional)"
+        name="phone"
+        type="tel"
+        placeholder="+44 7700 900123"
+        value={form.phone}
+        onChange={set("phone")}
+        error={errors.phone}
       />
 
       {submitError && (
@@ -386,45 +237,6 @@ export default function WaitlistFormPanel() {
           {submitError}
         </div>
       )}
-
-      <div className="flex flex-col gap-[5px]">
-        <label className="flex cursor-pointer items-start gap-3">
-          <div className="relative mt-[1px]">
-            <input
-              type="checkbox"
-              name="consent"
-              checked={form.consent}
-              onChange={set("consent")}
-              className="peer sr-only"
-            />
-            <div
-              className="flex h-[16px] w-[16px] flex-shrink-0 items-center justify-center rounded-[4px] border transition-all duration-150 peer-focus-visible:ring-2 peer-focus-visible:ring-[#74C7A7]/30"
-              style={{
-                background: form.consent ? "#74C7A7" : "#fff",
-                borderColor: form.consent ? "#74C7A7" : "#D1D5DB",
-              }}
-            >
-              {form.consent && (
-                <svg viewBox="0 0 10 10" fill="none" className="h-[9px] w-[9px]" aria-hidden="true">
-                  <path
-                    d="M1.5 5l2.5 2.5 5-5"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              )}
-            </div>
-          </div>
-          <span className="text-fluid-sm leading-[1.5] text-[#6B7280]">
-            I agree to be contacted about AVAIL
-          </span>
-        </label>
-        {errors.consent && (
-          <p className="pl-7 text-fluid-xs text-red-400">{errors.consent}</p>
-        )}
-      </div>
 
       <div className="flex flex-col gap-2 pt-1">
         <button

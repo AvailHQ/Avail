@@ -3,6 +3,17 @@ import { env } from "../config/env.js";
 import { AppError } from "../utils/demoRequest.js";
 
 let sheetsClient;
+const WAITLIST_HEADERS = [
+  "Submitted At",
+  "Name",
+  "Email",
+  "Phone",
+  "",
+  "",
+  "",
+  "",
+  "",
+];
 
 function getSheetsClient() {
   if (sheetsClient) {
@@ -37,22 +48,26 @@ function getSheetsClient() {
 export async function appendDemoRequestRow(record) {
   const sheets = getSheetsClient();
 
+  await sheets.spreadsheets.values.update({
+    spreadsheetId: env.googleSheetsSpreadsheetId,
+    range: `${env.googleSheetsSheetName}!A1:I1`,
+    valueInputOption: "RAW",
+    requestBody: {
+      values: [WAITLIST_HEADERS],
+    },
+  });
+
   await sheets.spreadsheets.values.append({
     spreadsheetId: env.googleSheetsSpreadsheetId,
-    range: `${env.googleSheetsSheetName}!A:I`,
-    valueInputOption: "USER_ENTERED",
+    range: `${env.googleSheetsSheetName}!A:D`,
+    valueInputOption: "RAW",
     requestBody: {
       values: [
         [
           record.createdAt,
-          record.firstName,
-          record.lastName,
+          record.name,
           record.email,
-          record.org,
-          record.role,
-          record.level,
-          record.message,
-          record.consent ? "Yes" : "No",
+          record.phone,
         ],
       ],
     },
@@ -64,7 +79,7 @@ export async function getDemoRequestCount() {
 
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: env.googleSheetsSpreadsheetId,
-    range: `${env.googleSheetsSheetName}!A:I`,
+    range: `${env.googleSheetsSheetName}!A:D`,
     majorDimension: "ROWS",
   });
 

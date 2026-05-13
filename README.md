@@ -21,8 +21,8 @@ cp .env.example .env
 ```
 
 The Vite dev server proxies `/api` requests to `http://localhost:3001`, so the
-demo form on `/book-demo` will submit directly to the Express backend during
-local development.
+waitlist form will submit directly to the Express backend during local
+development.
 
 ## API
 
@@ -32,14 +32,9 @@ Example payload:
 
 ```json
 {
-  "firstName": "Sarah",
-  "lastName": "Robertson",
+  "name": "Sarah Robertson",
   "email": "sarah@club.com",
-  "org": "Manchester City FC",
-  "role": "Coach",
-  "level": "Elite",
-  "message": "Looking for a walkthrough",
-  "consent": true
+  "phone": "+44 7700 900123"
 }
 ```
 
@@ -47,7 +42,7 @@ Example payload:
 
 - `server/config/env.js`: loads and normalizes environment variables
 - `server/routes/demoRequestRoutes.js`: API route definitions
-- `server/controllers/demoRequestController.js`: request handler for demo submissions
+- `server/controllers/demoRequestController.js`: request handler for waitlist submissions
 - `server/services/demoRequestService.js`: orchestration for validation, Sheets, and emails
 - `server/services/googleSheetsService.js`: appends each request into Google Sheets
 - `server/services/emailService.js`: sends the requester confirmation email and the internal team notification email
@@ -70,6 +65,6 @@ Example payload:
 
 1. Frontend submits the form to `POST /api/demo-requests`
 2. Backend validates and normalizes the payload
-3. Backend appends the request to Google Sheets
+3. Backend syncs the Google Sheet headers and appends the request
 4. Backend sends a confirmation email to the requester
 5. Backend sends a notification email to your team

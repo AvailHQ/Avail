@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     const result = await createDemoRequest(req.body ?? {});
 
     return res.status(201).json({
-      message: "Demo request received.",
+      message: "Waitlist request received.",
       request: result.record,
     });
   } catch (error) {

@@ -81,12 +81,12 @@ const CAPABILITIES: Capability[] = [
     Icon: IcCycleModel,
   },
   {
-    title: "Built for female athletes",
-    description: "Built for female athletes. Not adapted from male data.",
+    title: "Built for women athletes",
+    description: "Built for women athletes. Not adapted from male data.",
     Icon: IcDecisionEngine,
   },
   {
-    title: "Her data stays hers",
+    title: "Your data stays yours",
     description:
       "Private health data stays private. Coaches see structured readiness signals only.",
     Icon: IcMultiSignal,

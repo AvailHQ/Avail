@@ -1,12 +1,7 @@
 interface DemoRequestPayload {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
-  org: string;
-  role: string;
-  level: string;
-  message: string;
-  consent: boolean;
+  phone: string;
 }
 
 type FieldErrors = Partial<Record<keyof DemoRequestPayload, string>>;

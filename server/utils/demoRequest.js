@@ -14,24 +14,11 @@ export class AppError extends Error {
 export function validateDemoRequest(body) {
   const errors = {};
 
-  if (!normalizeText(body.firstName)) errors.firstName = "First name is required.";
-  if (!normalizeText(body.lastName)) errors.lastName = "Last name is required.";
+  if (!normalizeText(body.name)) errors.name = "Name is required.";
 
   const email = normalizeText(body.email);
   if (!email || !/\S+@\S+\.\S+/.test(email)) {
     errors.email = "A valid email is required.";
-  }
-
-  if (!normalizeText(body.org)) {
-    errors.org = "Team or organization is required.";
-  }
-
-  if (!normalizeText(body.role)) {
-    errors.role = "Role is required.";
-  }
-
-  if (body.consent !== true) {
-    errors.consent = "Consent is required.";
   }
 
   return errors;
@@ -39,14 +26,9 @@ export function validateDemoRequest(body) {
 
 export function buildDemoRequestRecord(body) {
   return {
-    firstName: normalizeText(body.firstName),
-    lastName: normalizeText(body.lastName),
+    name: normalizeText(body.name),
     email: normalizeText(body.email),
-    org: normalizeText(body.org),
-    role: normalizeText(body.role),
-    level: normalizeText(body.level),
-    message: normalizeText(body.message),
-    consent: body.consent === true,
+    phone: normalizeText(body.phone),
     createdAt: new Date().toISOString(),
   };
 }

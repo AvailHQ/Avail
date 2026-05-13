@@ -18,7 +18,7 @@ export async function submitDemoRequest(req, res, next) {
     const result = await createDemoRequest(req.body ?? {});
 
     res.status(201).json({
-      message: "Demo request received.",
+      message: "Waitlist request received.",
       request: result.record,
     });
   } catch (error) {

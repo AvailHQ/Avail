@@ -4,10 +4,6 @@ import { TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getDemoRequestStats, submitDemoRequest } from "../lib/api";
 
-// ─── Field options ────────────────────────────────────────────────────────────
-const ROLES = ["Coach", "Performance Staff", "Sports Scientist", "Other"];
-const TEAM_LEVELS = ["Elite", "Academy", "Other"];
-
 // ─── Right-side value propositions ───────────────────────────────────────────
 const VALUES = [
   {
@@ -84,32 +80,6 @@ const VALUES = [
     desc: "Let us know about your team and we’ll keep you updated on access.",
   },
   {
-    Icon: () => (
-      <svg
-        viewBox="0 0 22 22"
-        fill="none"
-        className="w-5 h-5"
-        aria-hidden="true"
-      >
-        <path
-          d="M11 2L3.5 5.5v6c0 4.5 3.2 7.8 7.5 8.5 4.3-.7 7.5-4 7.5-8.5v-6L11 2z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M8.5 11l2 2 3.5-3.5"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-    title: "Protect athlete data from day one",
-    desc: "Coaches see decision-ready insights, not raw sensitive cycle data.",
-  },
-  {
     Icon: () => <TrendingUp className="w-5 h-5" aria-hidden="true" />,
     title: "Improve athlete availability",
     desc: "Reduce over- and under-loading by aligning training decisions with physiological readiness.",
@@ -119,14 +89,9 @@ const VALUES = [
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface FormState {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
-  org: string;
-  role: string;
-  level: string;
-  message: string;
-  consent: boolean;
+  phone: string;
 }
 
 type FormErrors = Partial<Record<keyof FormState, string>>;
@@ -139,24 +104,6 @@ interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
   type?: string;
-}
-
-interface SelectProps {
-  label: string;
-  name: string;
-  placeholder: string;
-  options: string[];
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  error?: string;
-}
-
-interface TextareaProps {
-  label: string;
-  name: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 interface FieldStyle {
@@ -216,95 +163,12 @@ function Input({
   );
 }
 
-function Select({
-  label,
-  error,
-  options,
-  value,
-  onChange,
-  placeholder,
-  name,
-}: SelectProps) {
-  const f = useField();
-  return (
-    <div className="flex flex-col gap-[5px]">
-      <label className="text-fluid-sm font-medium text-[#374151]">{label}</label>
-      <div className="relative">
-        <select
-          name={name}
-          value={value}
-          onChange={onChange}
-          onFocus={f.onFocus}
-          onBlur={f.onBlur}
-          className={`${BASE} h-[42px] pl-[14px] pr-10 appearance-none cursor-pointer wide:h-[50px] wide:pl-4`}
-          style={{ ...f.borderStyle, color: value ? "#111318" : "#B0B8C4" }}
-        >
-          <option value="" disabled>
-            {placeholder}
-          </option>
-          {options.map((o) => (
-            <option key={o} value={o} style={{ color: "#111318" }}>
-              {o}
-            </option>
-          ))}
-        </select>
-        <svg
-          viewBox="0 0 12 12"
-          fill="none"
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-[10px] h-[10px] pointer-events-none"
-          aria-hidden="true"
-        >
-          <path
-            d="M2 4l4 4 4-4"
-            stroke="#9CA3AF"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
-      {error && <p className="text-fluid-xs text-red-400">{error}</p>}
-    </div>
-  );
-}
-
-function Textarea({
-  label,
-  placeholder,
-  value,
-  onChange,
-  name,
-}: TextareaProps) {
-  const f = useField();
-  return (
-    <div className="flex flex-col gap-[5px]">
-      <label className="text-fluid-sm font-medium text-[#374151]">{label}</label>
-      <textarea
-        name={name}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        rows={4}
-        onFocus={f.onFocus}
-        onBlur={f.onBlur}
-        className={`${BASE} px-[14px] py-[10px] resize-none leading-[1.65] wide:px-4 wide:py-3`}
-        style={f.borderStyle}
-      />
-    </div>
-  );
-}
-
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function JoinPilotProgrammePage() {
   const [form, setForm] = useState<FormState>({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
-    org: "",
-    role: "",
-    level: "",
-    message: "",
-    consent: false,
+    phone: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitError, setSubmitError] = useState("");
@@ -341,21 +205,14 @@ export default function JoinPilotProgrammePage() {
     ) =>
       setForm((f) => ({
         ...f,
-        [k]:
-          e.target.type === "checkbox"
-            ? (e.target as HTMLInputElement).checked
-            : e.target.value,
+        [k]: e.target.value,
       }));
 
   function validate(): FormErrors {
     const e: FormErrors = {};
-    if (!form.firstName.trim()) e.firstName = "Required";
-    if (!form.lastName.trim()) e.lastName = "Required";
+    if (!form.name.trim()) e.name = "Required";
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email))
       e.email = "Valid email required";
-    if (!form.org.trim()) e.org = "Required";
-    if (!form.role) e.role = "Please select a role";
-    if (!form.consent) e.consent = "Please agree to continue";
     return e;
   }
 
@@ -542,33 +399,21 @@ export default function JoinPilotProgrammePage() {
                     Join waitlist
                   </h2>
                   <p className="text-fluid-base leading-[1.65] text-[#6B7280]">
-                    Share a few details and we’ll add your team to the AVAIL
-                    waitlist.
+                    Share your details and we’ll add you to the AVAIL waitlist.
                   </p>
                 </div>
 
-                {/* Name row */}
-                <div className="grid grid-cols-2 gap-4">
-                  <Input
-                    label="First Name"
-                    name="firstName"
-                    placeholder="Sarah"
-                    value={form.firstName}
-                    onChange={set("firstName")}
-                    error={errors.firstName}
-                  />
-                  <Input
-                    label="Last Name"
-                    name="lastName"
-                    placeholder="Robertson"
-                    value={form.lastName}
-                    onChange={set("lastName")}
-                    error={errors.lastName}
-                  />
-                </div>
+                <Input
+                  label="Name"
+                  name="name"
+                  placeholder="Sarah Robertson"
+                  value={form.name}
+                  onChange={set("name")}
+                  error={errors.name}
+                />
 
                 <Input
-                  label="Work Email"
+                  label="Email"
                   name="email"
                   type="email"
                   placeholder="sarah@club.com"
@@ -578,40 +423,13 @@ export default function JoinPilotProgrammePage() {
                 />
 
                 <Input
-                  label="Team / Organization"
-                  name="org"
-                  placeholder="Manchester City FC"
-                  value={form.org}
-                  onChange={set("org")}
-                  error={errors.org}
-                />
-
-                <div className="grid grid-cols-2 gap-4">
-                  <Select
-                    label="Role"
-                    name="role"
-                    options={ROLES}
-                    value={form.role}
-                    onChange={set("role")}
-                    placeholder="Select role"
-                    error={errors.role}
-                  />
-                  <Select
-                    label="Team Level"
-                    name="level"
-                    options={TEAM_LEVELS}
-                    value={form.level}
-                    onChange={set("level")}
-                    placeholder="Select level"
-                  />
-                </div>
-
-                <Textarea
-                  label="Message"
-                  name="message"
-                  placeholder="What are you looking to explore?"
-                  value={form.message}
-                  onChange={set("message")}
+                  label="Phone number (optional)"
+                  name="phone"
+                  type="tel"
+                  placeholder="+44 7700 900123"
+                  value={form.phone}
+                  onChange={set("phone")}
+                  error={errors.phone}
                 />
 
                 {submitError && (
@@ -619,53 +437,6 @@ export default function JoinPilotProgrammePage() {
                     {submitError}
                   </div>
                 )}
-
-                {/* Consent */}
-                <div className="flex flex-col gap-[5px]">
-                  <label className="flex items-start gap-3 cursor-pointer">
-                    <div className="relative mt-[1px]">
-                      <input
-                        type="checkbox"
-                        name="consent"
-                        checked={form.consent}
-                        onChange={set("consent")}
-                        className="sr-only peer"
-                      />
-                      <div
-                        className="w-[16px] h-[16px] rounded-[4px] border flex items-center justify-center flex-shrink-0 transition-all duration-150 peer-focus-visible:ring-2 peer-focus-visible:ring-[#74C7A7]/30"
-                        style={{
-                          background: form.consent ? "#74C7A7" : "#fff",
-                          borderColor: form.consent ? "#74C7A7" : "#D1D5DB",
-                        }}
-                      >
-                        {form.consent && (
-                          <svg
-                            viewBox="0 0 10 10"
-                            fill="none"
-                            className="w-[9px] h-[9px]"
-                            aria-hidden="true"
-                          >
-                            <path
-                              d="M1.5 5l2.5 2.5 5-5"
-                              stroke="white"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        )}
-                      </div>
-                    </div>
-                    <span className="text-fluid-sm text-[#6B7280] leading-[1.5]">
-                      I agree to be contacted about AVAIL
-                    </span>
-                  </label>
-                  {errors.consent && (
-                    <p className="text-fluid-xs text-red-400 pl-7">
-                      {errors.consent}
-                    </p>
-                  )}
-                </div>
 
                 {/* Submit */}
                 <div className="flex flex-col gap-2 pt-1">
