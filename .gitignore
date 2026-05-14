@@ -217,4 +217,4 @@ dist/
 
 # Claude Code
 .claude/worktrees/
-.claude
+claude/
