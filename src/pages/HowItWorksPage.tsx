@@ -352,12 +352,14 @@ function SignalPipelineCard({
 
 function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
   const pathLength = useTransform(progress, [0.05, 0.96], [0, 1]);
+  const mobilePipelinePath =
+    "M91 110 C108 146 108 205 92 244 C76 292 24 350 9 386 C0 408 1 456 16 498 C34 550 76 616 91 662 C100 684 99 732 84 774 C66 826 24 902 9 938 C0 960 1 1008 16 1050 C34 1102 76 1168 91 1214 C100 1236 99 1284 84 1326 C66 1378 24 1454 9 1490";
 
   return (
     <div className="relative mt-12 hero:hidden">
       <svg
-        className="pointer-events-none absolute left-8 top-0 z-20 h-full w-10 overflow-visible"
-        viewBox="0 0 44 980"
+        className="pointer-events-none absolute inset-0 z-10 h-full w-full overflow-visible"
+        viewBox="0 0 100 1632"
         preserveAspectRatio="none"
         aria-hidden="true"
       >
@@ -387,29 +389,38 @@ function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
           </filter>
         </defs>
         <path
-          d="M24 18 C8 114 40 176 22 266 C8 356 40 424 22 514 C6 604 42 668 24 760 C10 852 38 910 22 962"
+          d={mobilePipelinePath}
           fill="none"
           stroke="rgba(30,45,61,0.12)"
           strokeLinecap="round"
-          strokeWidth="2"
+          strokeWidth="1"
+          vectorEffect="non-scaling-stroke"
         />
         <motion.path
-          d="M24 18 C8 114 40 176 22 266 C8 356 40 424 22 514 C6 604 42 668 24 760 C10 852 38 910 22 962"
+          d={mobilePipelinePath}
           fill="none"
           filter="url(#mobile-pipeline-glow)"
           pathLength={pathLength}
           stroke="url(#mobile-pipeline-theme-gradient)"
           strokeLinecap="round"
-          strokeWidth="2.5"
+          strokeWidth="1.45"
+          vectorEffect="non-scaling-stroke"
         />
       </svg>
-      <div className="relative z-10 space-y-5 pl-14">
-        {PIPELINE_STAGES.map((stage) => (
+      <div className="relative z-20 flex flex-col gap-14 pb-8">
+        {PIPELINE_STAGES.map((stage, index) => {
+          const nodeOnRight = index % 2 === 0;
+
+          return (
           <div
             key={stage.number}
-            className="relative rounded-[22px] border border-slate-200/75 bg-white/86 p-5 shadow-[0_16px_44px_rgba(15,23,42,0.06)] backdrop-blur-xl"
+            className="relative mx-auto flex h-[220px] w-[82%] max-w-[340px] flex-col justify-center rounded-[22px] border border-slate-200/75 bg-white/86 p-5 shadow-[0_16px_44px_rgba(15,23,42,0.06)] backdrop-blur-xl"
           >
-            <span className="absolute left-0 top-1/2 z-30 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-[#FEFEFC] bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.42)]" />
+            <span
+              className={`absolute top-1/2 z-30 h-4 w-4 -translate-y-1/2 rounded-full border-[3px] border-[#FEFEFC] bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.42)] ${
+                nodeOnRight ? "right-0 translate-x-1/2" : "left-0 -translate-x-1/2"
+              }`}
+            />
             <p className="text-[0.66rem] font-bold uppercase tracking-[0.16em] text-[#4FA3C7]">
               {stage.eyebrow}
             </p>
@@ -420,7 +431,8 @@ function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
               {stage.body}
             </p>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
