@@ -100,7 +100,7 @@ function FAQItem({ q, a, index }: FAQItemProps) {
             {String(index + 1).padStart(2, "0")}
           </span>
           <span
-            className="text-fluid-lg font-semibold leading-snug tracking-[-0.01em] transition-colors duration-150"
+            className="text-[0.9rem] font-semibold leading-snug tracking-[-0.01em] transition-colors duration-150 md:text-fluid-lg"
             style={{ color: open ? "#111318" : "#374151" }}
           >
             {q}
@@ -145,7 +145,7 @@ function FAQItem({ q, a, index }: FAQItemProps) {
               {a.map((para, i) => (
                 <p
                   key={i}
-                  className="text-fluid-md leading-[1.72] text-[#6B7280]"
+                  className="text-[0.78rem] leading-[1.58] text-[#6B7280] md:text-fluid-md md:leading-[1.72]"
                 >
                   {para}
                 </p>

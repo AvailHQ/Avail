@@ -114,6 +114,77 @@ function pos(mx: number, my: number): PosStyle {
   };
 }
 
+function AvailMatrixCard({
+  hovered,
+  compact = false,
+}: {
+  hovered: boolean;
+  compact?: boolean;
+}) {
+  return (
+    <>
+      <div
+        className="absolute -inset-[20px] rounded-[28px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse, rgba(116,199,167,0.18) 0%, transparent 65%)",
+          filter: "blur(14px)",
+        }}
+      />
+      <div
+        className="absolute -inset-[6px] rounded-[20px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse, rgba(116,199,167,0.30) 0%, transparent 70%)",
+          filter: "blur(5px)",
+        }}
+      />
+      <motion.div
+        animate={
+          hovered
+            ? {
+                scale: 1.025,
+                y: -5,
+                boxShadow:
+                  "0 10px 34px rgba(111,191,158,0.42), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
+              }
+            : {
+                scale: 1,
+                y: 0,
+                boxShadow:
+                  "0 4px 30px rgba(111,191,158,0.40), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
+              }
+        }
+        transition={{ duration: 0.045, ease: "linear" }}
+        className="relative bg-white rounded-[16px] cursor-default"
+        style={{
+          width: compact ? 222 : 248,
+          padding: compact ? "13px 16px" : "16px 19px",
+          border: "2px solid #74c7a7",
+        }}
+      >
+        <div className="flex items-center gap-[8px] mb-[8px]">
+          <img
+            src="/figure/logo.svg"
+            alt=""
+            className="flex-shrink-0"
+            style={{ width: compact ? 20 : 22, height: compact ? 20 : 22 }}
+            aria-hidden="true"
+          />
+          <span className="text-fluid-lg font-bold text-[#1A7A55] tracking-[0.06em] leading-none">
+            AVAIL
+          </span>
+        </div>
+        <p className="text-fluid-sm font-semibold leading-[1.5] text-[#4aaa82]">
+          Pre-session load intelligence
+          <br />
+          for elite women's sport
+        </p>
+      </motion.div>
+    </>
+  );
+}
+
 const COMPETITORS: Competitor[] = [
   {
     name: "WHOOP",
@@ -331,7 +402,7 @@ export default function ProblemSection() {
           {COMPETITORS.map(({ name, Icon, mx, my, desc }, i) => (
             <motion.div
               key={name}
-              className="absolute z-10"
+              className={`absolute z-10 ${name === "Oura" ? "hidden sm:block" : ""}`}
               style={pos(mx, my)}
               initial={{ opacity: 0, scale: 0.72 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -386,7 +457,7 @@ export default function ProblemSection() {
           ))}
 
           <motion.div
-            className="absolute z-20"
+            className="absolute z-20 hidden sm:block"
             style={pos(0.83, 0.92)}
             initial={{ opacity: 0, scale: 0.6 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -402,64 +473,28 @@ export default function ProblemSection() {
             }}
           >
             <div className="-translate-x-1/2 -translate-y-1/2 scale-[var(--matrix-card-scale)] origin-center">
-              <div
-                className="absolute -inset-[20px] rounded-[28px] pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(ellipse, rgba(116,199,167,0.18) 0%, transparent 65%)",
-                  filter: "blur(14px)",
-                }}
-              />
-              <div
-                className="absolute -inset-[6px] rounded-[20px] pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(ellipse, rgba(116,199,167,0.30) 0%, transparent 70%)",
-                  filter: "blur(5px)",
-                }}
-              />
-              <motion.div
-                animate={
-                  hoveredCard === "AVAIL"
-                    ? {
-                        scale: 1.025,
-                        y: -5,
-                        boxShadow:
-                          "0 10px 34px rgba(111,191,158,0.42), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
-                      }
-                    : {
-                        scale: 1,
-                        y: 0,
-                        boxShadow:
-                          "0 4px 30px rgba(111,191,158,0.40), 0 0 0 7px rgba(116,199,167,0.13), 0 1px 4px rgba(0,0,0,0.06)",
-                      }
-                }
-                transition={{ duration: 0.045, ease: "linear" }}
-                className="relative bg-white rounded-[16px] cursor-default"
-                style={{
-                  width: 248,
-                  padding: "16px 19px",
-                  border: "2px solid #74c7a7",
-                }}
-              >
-                <div className="flex items-center gap-[8px] mb-[8px]">
-                  <img
-                    src="/figure/logo.svg"
-                    alt=""
-                    className="flex-shrink-0"
-                    style={{ width: 22, height: 22 }}
-                    aria-hidden="true"
-                  />
-                  <span className="text-fluid-lg font-bold text-[#1A7A55] tracking-[0.06em] leading-none">
-                    AVAIL
-                  </span>
-                </div>
-                <p className="text-fluid-sm font-semibold leading-[1.5] text-[#4aaa82]">
-                  Pre-session load intelligence
-                  <br />
-                  for elite women's sport
-                </p>
-              </motion.div>
+              <AvailMatrixCard hovered={hoveredCard === "AVAIL"} />
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="absolute z-20 sm:hidden"
+            style={pos(0.72, 0.78)}
+            initial={{ opacity: 0, scale: 0.7 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+            onMouseEnter={() => {
+              setHoveredCard("AVAIL");
+              setActiveAxes(getAxes(0.72, 0.78));
+            }}
+            onMouseLeave={() => {
+              setHoveredCard(null);
+              setActiveAxes(null);
+            }}
+          >
+            <div className="-translate-x-1/2 -translate-y-1/2 scale-[var(--matrix-card-scale)] origin-center">
+              <AvailMatrixCard hovered={hoveredCard === "AVAIL"} compact />
             </div>
           </motion.div>
         </motion.div>

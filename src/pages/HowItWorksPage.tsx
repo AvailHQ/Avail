@@ -356,7 +356,7 @@ function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
   return (
     <div className="relative mt-12 hero:hidden">
       <svg
-        className="absolute left-4 top-0 h-full w-10 overflow-visible"
+        className="pointer-events-none absolute left-8 top-0 z-20 h-full w-10 overflow-visible"
         viewBox="0 0 44 980"
         preserveAspectRatio="none"
         aria-hidden="true"
@@ -403,13 +403,13 @@ function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
           strokeWidth="2.5"
         />
       </svg>
-      <div className="space-y-5 pl-14">
+      <div className="relative z-10 space-y-5 pl-14">
         {PIPELINE_STAGES.map((stage) => (
           <div
             key={stage.number}
             className="relative rounded-[22px] border border-slate-200/75 bg-white/86 p-5 shadow-[0_16px_44px_rgba(15,23,42,0.06)] backdrop-blur-xl"
           >
-            <span className="absolute -left-[2.35rem] top-7 h-4 w-4 rounded-full border-[3px] border-[#FEFEFC] bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.42)]" />
+            <span className="absolute left-0 top-1/2 z-30 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-[#FEFEFC] bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.42)]" />
             <p className="text-[0.66rem] font-bold uppercase tracking-[0.16em] text-[#4FA3C7]">
               {stage.eyebrow}
             </p>
