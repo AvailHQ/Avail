@@ -1,8 +1,9 @@
 import HeroCopy from '../components/HeroCopy'
 import HeroImageMarquee from '../components/HeroImageMarquee'
-import ProblemSection from '../components/ProblemSection'
 import SolutionSection from '../components/SolutionSection'
+import CompetitionSection from '../components/CompetitionSection'
 import FAQSection from '../components/FAQSection'
+import FinalCTASection from '../components/FinalCTASection'
 
 export default function HomePage() {
   return (
@@ -22,14 +23,17 @@ export default function HomePage() {
         </main>
       </div>
 
-      {/* ─── Problem ──────────────────────────────────────── */}
-      <ProblemSection />
-
       {/* ─── Solution ─────────────────────────────────────── */}
       <SolutionSection />
 
+      {/* ─── Competition ──────────────────────────────────── */}
+      <CompetitionSection />
+
       {/* ─── FAQ ──────────────────────────────────────────── */}
       <FAQSection />
+
+      {/* ─── Final CTA ────────────────────────────────────── */}
+      <FinalCTASection />
     </>
   )
 }
