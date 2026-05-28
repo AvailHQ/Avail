@@ -15,7 +15,7 @@ export default function HeroCopy() {
         className="inline-flex items-center gap-2 text-fluid-xs font-semibold tracking-[0.1em] uppercase text-[#6FBF9E] mb-6"
       >
         <span className="w-5 h-[1.5px] bg-[#6FBF9E] rounded-full" />
-        Load Management Intelligence
+        CURRENT WOMEN’S SPORT SYSTEMS WERE BUILT ON MALE DATA
         <span className="w-5 h-[1.5px] bg-[#6FBF9E] rounded-full" />
       </motion.div>
 
@@ -23,15 +23,15 @@ export default function HeroCopy() {
         {...fadeUp(0.15)}
         className="mx-auto mb-5 max-w-[1180px] font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-4xl wide:max-w-[1320px]"
       >
-        Individualized load intelligence for women athletes
+        Current load systems treat women like adjusted averages
       </motion.h1>
 
       <motion.p
         {...fadeUp(0.25)}
         className="text-fluid-lg leading-[1.68] text-[#4B5563] tracking-[-0.01em] max-w-[500px] mx-auto mb-9 wide:max-w-[680px]"
       >
-        Avail gives coaching staff physiological context before training
-        decisions are made
+        Avail gives coaches physiological context before training decisions are
+        made, Not after
       </motion.p>
 
       <motion.div
