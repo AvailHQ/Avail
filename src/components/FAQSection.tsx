@@ -163,7 +163,7 @@ function FAQItem({ q, a, index }: FAQItemProps) {
 export default function FAQSection() {
   return (
     <section
-      className="w-full bg-white pt-36 pb-28 px-6 wide:pt-40 wide:pb-32"
+      className="w-full bg-white pt-20 pb-20 px-6 wide:pt-24 wide:pb-24"
       aria-labelledby="faq-headline"
     >
       <div className="max-w-[720px] mx-auto wide:max-w-[980px]">
