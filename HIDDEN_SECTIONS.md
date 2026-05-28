@@ -2,6 +2,34 @@
 
 This file tracks UI sections and navigation items that are temporarily hidden, plus how to enable them again.
 
+## Problem section (competitor matrix)
+
+Status: hidden from the home page. Replaced by `CompetitionSection`.
+
+The component renders an interactive positioning matrix plotting AVAIL vs competitors (WHOOP, Oura, Catapult, Kitman Labs, FitrWoman) on "Tracking ↔ Decision Integration" and "Data Collection ↔ Female-Specific Models" axes with hover interactions.
+
+### Hidden files
+
+- `src/pages/HomePage.tsx`
+- `src/components/ProblemSection.tsx` (component file preserved, not deleted)
+
+### How to enable
+
+1. In `src/pages/HomePage.tsx`, add the import back:
+
+```tsx
+import ProblemSection from '../components/ProblemSection'
+```
+
+2. In `src/pages/HomePage.tsx`, render the section (e.g. between Hero and SolutionSection):
+
+```tsx
+{/* ─── Problem ──────────────────────────────────────── */}
+<ProblemSection />
+```
+
+---
+
 ## Join waitlist validated by
 
 Status: hidden from the Join waitlist page right-side panel.
