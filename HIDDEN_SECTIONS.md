@@ -2,6 +2,34 @@
 
 This file tracks UI sections and navigation items that are temporarily hidden, plus how to enable them again.
 
+## Competition section (comparison table)
+
+Status: hidden from the home page.
+
+The component renders a styled comparison table showing AVAIL vs FitrWomen, WHOOP, Oura, Garmin, Catapult Sports, and Kitman Labs across four columns: Female-specific modelling, Data tracking, Decision integration, Continuous learning.
+
+### Hidden files
+
+- `src/pages/HomePage.tsx`
+- `src/components/CompetitionSection.tsx` (component file preserved, not deleted)
+
+### How to enable
+
+1. In `src/pages/HomePage.tsx`, add the import back:
+
+```tsx
+import CompetitionSection from '../components/CompetitionSection'
+```
+
+2. In `src/pages/HomePage.tsx`, render the section between `SolutionSection` and `FAQSection`:
+
+```tsx
+{/* ─── Competition ──────────────────────────────────── */}
+<CompetitionSection />
+```
+
+---
+
 ## Problem section (competitor matrix)
 
 Status: hidden from the home page. Replaced by `CompetitionSection`.
