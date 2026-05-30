@@ -319,7 +319,13 @@ export default function CompetitionSection() {
           >
             <div className="mt-6">
               {/* Column headers */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 pb-6 border-b border-[#E0E4EA]">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 pb-6 border-b border-[#E0E4EA]"
+              >
                 <div>
                   <p className="text-fluid-xs font-semibold tracking-[0.14em] uppercase text-[#4AAA82] mb-2">
                     Avail
@@ -336,13 +342,17 @@ export default function CompetitionSection() {
                     {tabData.leftHeadline}
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {tabData.rows.map(({ left, right }, i) => {
                 const Icon = RIGHT_ICONS[i];
                 return (
-                  <div
+                  <motion.div
                     key={i}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.07 }}
                     className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 pt-10 pb-3 border-t border-[#E0E4EA] last:border-b last:border-b-[#E0E4EA]"
                   >
                     {/* Left: AVAIL item */}
@@ -377,7 +387,7 @@ export default function CompetitionSection() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
