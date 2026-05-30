@@ -235,20 +235,36 @@ export default function CompetitionSection() {
       <div className="mx-auto max-w-[1160px] wide:max-w-[1560px]">
         {/* ── Header: centered copy + tabs below ──────────── */}
         <div className="mb-0 text-center">
-          <p className="text-fluid-xs font-semibold tracking-[0.14em] uppercase text-[#9CA3AF] mb-5">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="text-fluid-xs font-semibold tracking-[0.14em] uppercase text-[#9CA3AF] mb-5"
+          >
             The Problem With Current Systems
-          </p>
-          <h2
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
             id="competition-headline"
             className="text-[clamp(0.98rem,5.1vw,3.25rem)] sm:text-fluid-4xl font-bold text-[#111318] leading-[1.13] tracking-normal mb-5"
           >
             Every Tool Looks Backwards
-          </h2>
-          <p className="text-fluid-lg leading-[1.65] text-[#6B7280] max-w-[720px] mx-auto wide:max-w-[860px] mb-12">
-            Most athlete data only tells you what already went wrong
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.16 }}
+            className="text-fluid-lg leading-[1.65] text-[#6B7280] max-w-[720px] mx-auto wide:max-w-[860px] mb-12"
+          >
+            Most athlete data only tells you what already went wrong.
             <br />
-            Avail helps coaches make changes before it does
-          </p>
+            Avail helps coaches make changes before it does.
+          </motion.p>
 
           {/* Tab bar — centered pill switcher with sliding card */}
           <div className="flex justify-center">
