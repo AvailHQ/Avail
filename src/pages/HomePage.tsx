@@ -5,7 +5,7 @@ import WhoItsForSection from '../components/WhoItsForSection'
 import ProofSection from '../components/ProofSection'
 import CompetitionSection from '../components/CompetitionSection'
 import FAQSection from '../components/FAQSection'
-import FinalCTASection from '../components/FinalCTASection'
+import PilotTestimonialSection from '../components/PilotTestimonialSection'
 
 export default function HomePage() {
   return (
@@ -40,8 +40,8 @@ export default function HomePage() {
       {/* ─── FAQ ──────────────────────────────────────────── */}
       <FAQSection />
 
-      {/* ─── Final CTA ────────────────────────────────────── */}
-      <FinalCTASection />
+      {/* ─── Pilot CTA + Testimonials ─────────────────────── */}
+      <PilotTestimonialSection />
     </>
   )
 }

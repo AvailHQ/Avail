@@ -26,7 +26,7 @@ Based on investor feedback — June 2026
 ## Proof & Credibility
 
 - [x] Add at least one data point to support the problem statement — e.g. "ACL injury rate is 78% higher in the luteal phase" or "Only 7 out of 780 academic papers studied this rigorously" — currently zero evidence on the site
-- [ ] Add a quote or placeholder for a coach testimonial / pilot feedback — investor specifically asked for case studies
+- [x] Add a quote or placeholder for a coach testimonial / pilot feedback — investor specifically asked for case studies
 
 ---
 
@@ -45,7 +45,7 @@ Based on investor feedback — June 2026
 
 ## Final CTA Section
 
-- [ ] Rewrite Final CTA — current copy ("Women's sport was never built for population averages") repeats the Hero and adds no new information. Replace with a pilot-focused call to action, e.g.:
+- [x] Rewrite Final CTA — current copy ("Women's sport was never built for population averages") repeats the Hero and adds no new information. Replace with a pilot-focused call to action, e.g.:
   - H2: "We're selecting our first pilot clubs now."
   - Subtitle: "WSL and Championship clubs only. Limited spots. Season 1 is a calibration season — you get the product, we build the dataset together."
 
