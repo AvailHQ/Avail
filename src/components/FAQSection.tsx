@@ -8,7 +8,7 @@ const FAQS = [
     q: "Does this mean coaches will see athletes\u2019 cycle data?",
     a: [
       "No. AVAIL does not expose raw cycle data to coaches.",
-      "Coaches only receive a structured Load Score and training recommendation.",
+      "Coaches only receive a structured Load Score and training context.",
       "Athletes retain full control over what is shared.",
     ],
   },
@@ -22,8 +22,17 @@ const FAQS = [
   {
     q: "How is this different from tools like Catapult or Kitman Labs?",
     a: [
-      "Most existing systems are built on male-dominant datasets and focus on external load.",
-      "AVAIL integrates physiological variability into load tolerance, helping coaches decide how much load an athlete can actually handle \u2014 before training.",
+      "Catapult shows what happened in training.",
+      "Kitman helps manage athlete records and risk.",
+      "Avail gives coaches physiological context before the session starts.",
+    ],
+  },
+  {
+    q: "Why couldn\u2019t a coach just use ChatGPT?",
+    a: [
+      "ChatGPT can explain the topic.",
+      "It does not know your players, their check-ins, their sessions, or how they usually respond.",
+      "Avail gets better because the team uses it every week.",
     ],
   },
   {

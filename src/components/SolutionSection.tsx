@@ -75,20 +75,21 @@ interface Capability {
 
 const CAPABILITIES: Capability[] = [
   {
-    title: "Pre-session decision support",
+    title: "Learns Each Player",
     description:
-      "Before training begins, coaches know who can push and who needs recovery.",
+      "Every check-in and session helps Avail understand what is normal for her.",
     Icon: IcCycleModel,
   },
   {
-    title: "Built for women athletes",
-    description: "Built for women athletes. Not adapted from male data.",
+    title: "Biology Others Ignore",
+    description:
+      "Recovery and training response can shift across her cycle.",
     Icon: IcDecisionEngine,
   },
   {
-    title: "Your data stays yours",
+    title: "Privacy stays clear",
     description:
-      "Private health data stays private. Coaches see structured readiness signals only.",
+      "Players share privately. Coaches see simple decision context.",
     Icon: IcMultiSignal,
   },
 ];
@@ -124,16 +125,16 @@ export default function SolutionSection() {
         <motion.div {...fadeUp(0)} className="mb-12 max-w-[760px] hero:mb-16">
           <p className="mb-8 flex items-center gap-3 text-fluid-xs font-semibold tracking-[0.15em] uppercase text-[#6FBF9E]">
             <span className="h-2 w-2 rounded-full bg-[#4FA3C7]" />
-            WHAT YOU GET
+            WHY AVAIL IS DIFFERENT
           </p>
           <h2
             id="solution-headline"
             className="mb-5 max-w-[680px] text-fluid-4xl font-bold leading-[1.08] tracking-[-0.03em] text-[#111318]"
           >
-            Core capabilities
+            It Learns The Player
           </h2>
           <p className="max-w-[560px] text-fluid-lg leading-[1.65] text-[#6B7280]">
-            Everything you need to make smarter decisions for female athletes.
+            Avail gets better by learning what is normal for each athlete, not the average.
           </p>
         </motion.div>
 
@@ -170,15 +171,10 @@ export default function SolutionSection() {
 
               <div>
                 <h3 className="mb-5 text-fluid-xl font-bold leading-[1.15] tracking-[-0.02em] text-[#111318]">
-                  Gets smarter every season
+                  Real Data Makes It Harder To Copy
                 </h3>
                 <p className="max-w-[920px] text-fluid-base leading-[1.65] text-[#667085]">
-                  Every training session adds to a growing dataset that links
-                  cycle patterns to real performance outcomes.
-                  <br />
-                  The longer you use it, the more precise the guidance becomes.
-                  <br />
-                  It's learning from your athletes, not from a textbook.
+                  Generic tools can explain the topic. Avail learns from your players' real check-ins, sessions, and outcomes. Every week makes it more specific to your team.
                 </p>
               </div>
             </div>
