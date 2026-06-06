@@ -1,6 +1,7 @@
 import HeroCopy from '../components/HeroCopy'
 import HeroImageMarquee from '../components/HeroImageMarquee'
 import SolutionSection from '../components/SolutionSection'
+import WhoItsForSection from '../components/WhoItsForSection'
 import CompetitionSection from '../components/CompetitionSection'
 import FAQSection from '../components/FAQSection'
 import FinalCTASection from '../components/FinalCTASection'
@@ -22,6 +23,9 @@ export default function HomePage() {
           <HeroImageMarquee />
         </main>
       </div>
+
+      {/* ─── Who It's For ─────────────────────────────────── */}
+      <WhoItsForSection />
 
       {/* ─── Solution ─────────────────────────────────────── */}
       <SolutionSection />
