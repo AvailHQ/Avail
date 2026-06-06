@@ -47,7 +47,7 @@ function getAvatarCropStyle(avatarCrop: AvatarCrop, size: number): CSSProperties
 
 const AUDIENCES: Audience[] = [
   {
-    title: "Coach",
+    title: "Coaches",
     tagline: "Shouldn't Have To Guess.",
     bullets: [
       "See who's ready",
@@ -59,13 +59,13 @@ const AUDIENCES: Audience[] = [
     title: "Athletes",
     tagline: "Shouldn't Have To Explain Themselves.",
     bullets: [
-      "A Quick Check-In.",
-      "A Clearer Picture.",
-      "Without Sharing Everything",
+      "A 30-second check-in",
+      "Know where you stand today",
+      "Without sharing everything",
     ],
   },
   {
-    title: "Performance Teams",
+    title: "Performance Staff",
     tagline: "Need The Full Picture.",
     bullets: ["One view", "Every athlete", "Before decisions are made"],
   },
@@ -116,11 +116,22 @@ export default function WhoItsForSection() {
       <div className="relative z-10 mx-auto grid max-w-[1240px] gap-16 hero:grid-cols-[3fr_2fr] hero:items-center hero:gap-16 wide:max-w-[1520px] wide:gap-20">
         <motion.div
           {...fadeUp(0.12)}
-          className="relative hidden h-[560px] overflow-hidden rounded-[22px] border border-slate-300 shadow-[0_24px_80px_rgba(15,23,42,0.13)] hero:block wide:h-[600px]"
-          style={{ background: "#ECECEC" }}
+          className="relative hidden h-[560px] hero:block wide:h-[600px]"
           aria-label="Dashboard mockup"
         >
-          <div className="flex h-full flex-col">
+          {mockupOrder.map((mockupIndex) => (
+            <motion.div
+              key={mockupIndex}
+              className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[22px] border border-slate-300 shadow-[0_24px_80px_rgba(15,23,42,0.13)]"
+              animate={getMockupStackStyle(mockupIndex)}
+              transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                background: "#ECECEC",
+                transformOrigin: "center center",
+                willChange: "opacity, transform",
+              }}
+              aria-hidden={mockupIndex !== activeIndex}
+            >
           {/* macOS title bar */}
           <div className="flex h-12 flex-shrink-0 items-center gap-2 border-b border-slate-200 px-4" style={{ background: "#ECECEC" }}>
             <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
@@ -129,19 +140,7 @@ export default function WhoItsForSection() {
           </div>
 
           {/* content area */}
-          <div className="relative flex-1 overflow-hidden bg-white">
-            {mockupOrder.map((mockupIndex) => (
-              <motion.div
-                key={mockupIndex}
-                className="absolute inset-0 overflow-hidden bg-white"
-                animate={getMockupStackStyle(mockupIndex)}
-                transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  transformOrigin: "center center",
-                  willChange: "opacity, transform",
-                }}
-                aria-hidden={mockupIndex !== activeIndex}
-              >
+          <div className="flex-1 overflow-hidden bg-white">
 
           {/* Coach mockup */}
           {mockupIndex === 0 && (
@@ -258,15 +257,15 @@ export default function WhoItsForSection() {
                 <p className="mb-4 text-[10px] text-[#9CA3AF]">⏱ Takes about 30 seconds</p>
                 <div className="space-y-4">
                   {[
-                    { label: "Sleep quality", lo: "Difficult", hi: "Restful", val: 55 },
-                    { label: "Energy level", lo: "Very tired", hi: "Full of energy", val: 55 },
-                    { label: "Body feeling", lo: "Very sore", hi: "Feeling good", val: 55 },
-                    { label: "Mental readiness", lo: "Low", hi: "High", val: 55 },
-                  ].map(({ label, lo, hi, val }) => (
+                    { label: "Sleep quality", lo: "Difficult", hi: "Restful", val: 72, score: 4 },
+                    { label: "Energy level", lo: "Very tired", hi: "Full of energy", val: 48, score: 2 },
+                    { label: "Body feeling", lo: "Very sore", hi: "Feeling good", val: 65, score: 3 },
+                    { label: "Mental readiness", lo: "Low", hi: "High", val: 80, score: 4 },
+                  ].map(({ label, lo, hi, val, score }) => (
                     <div key={label}>
                       <div className="mb-1 flex items-center justify-between">
                         <p className="text-[11px] font-semibold text-[#111318]">{label}</p>
-                        <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold text-white" style={{ background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }}>3</span>
+                        <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold text-white" style={{ background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }}>{score}</span>
                       </div>
                       <div className="relative h-2 rounded-full bg-slate-200">
                         <div className="absolute inset-y-0 left-0 rounded-full" style={{ width: `${val}%`, background: "linear-gradient(45deg, #6FBF9E, #4FA3C7)" }} />
@@ -338,28 +337,28 @@ export default function WhoItsForSection() {
                     {/* Y axis labels */}
                     {[{ y: 10, label: "80" }, { y: 35, label: "55" }, { y: 60, label: "30" }].map(({ y, label }) => (
                       <g key={label}>
-                        <text x="18" y={y + 3} fontSize="7" fill="#CBD5E1" textAnchor="end">{label}</text>
-                        <line x1="22" y1={y} x2="420" y2={y} stroke="#F1F5F9" strokeWidth="1" />
+                        <text x="18" y={y + 3} fontSize="7" fill="#94A3B8" textAnchor="end">{label}</text>
+                        <line x1="22" y1={y} x2="420" y2={y} stroke="#CBD5E1" strokeWidth="1" />
                       </g>
                     ))}
                     {/* Y axis line */}
-                    <line x1="22" y1="5" x2="22" y2="70" stroke="#E2E8F0" strokeWidth="1" />
+                    <line x1="22" y1="5" x2="22" y2="70" stroke="#94A3B8" strokeWidth="1" />
 
-                    {/* Priya — gentle zigzag with upward trend (green) */}
-                    <polyline points="22,55 78,47 134,50 190,40 246,44 302,32 358,36 420,14" fill="none" stroke="#2D7A50" strokeWidth="1.5" strokeLinejoin="round" />
-                    {/* Sofia — gentle zigzag with downward trend (amber) */}
-                    <polyline points="22,20 78,28 134,24 190,36 246,30 302,44 358,38 420,54" fill="none" stroke="#92690A" strokeWidth="1.5" strokeLinejoin="round" />
-                    {/* Chloe — gentle zigzag, slowly rising (purple) */}
-                    <polyline points="22,66 78,60 134,64 190,56 246,60 302,50 358,54 420,44" fill="none" stroke="#6F5BA8" strokeWidth="1.5" strokeLinejoin="round" />
-                    {/* Emma — returning from travel, observed but stable */}
-                    <polyline points="22,46 78,48 134,47 190,49 246,47 302,48 358,46 420,45" fill="none" stroke="#8FA8C5" strokeWidth="1.5" strokeLinejoin="round" />
+                    {/* Priya — rises from mid-low to top (green) */}
+                    <polyline points="22,62 78,52 134,57 190,44 246,49 302,28 358,33 420,10" fill="none" stroke="#2D7A50" strokeWidth="1.5" strokeLinejoin="round" />
+                    {/* Sofia — falls from top to bottom (amber) */}
+                    <polyline points="22,10 78,22 134,14 190,30 246,20 302,42 358,30 420,68" fill="none" stroke="#92690A" strokeWidth="1.5" strokeLinejoin="round" />
+                    {/* Chloe — rises slowly from bottom (purple) */}
+                    <polyline points="22,70 78,64 134,68 190,58 246,62 302,50 358,55 420,38" fill="none" stroke="#6F5BA8" strokeWidth="1.5" strokeLinejoin="round" />
+                    {/* Emma — flat, stays in upper-mid zone (blue-grey) */}
+                    <polyline points="22,36 78,38 134,33 190,40 246,34 302,42 358,36 420,54" fill="none" stroke="#8FA8C5" strokeWidth="1.5" strokeLinejoin="round" />
 
                     {/* Avatars + firstname at end of each line */}
                     {[
-                      { cy: 14, avatarCrop: AVATAR_CROPS.priya, name: "Priya" },
-                      { cy: 42, avatarCrop: AVATAR_CROPS.chloe, name: "Chloe" },
-                      { cy: 54, avatarCrop: AVATAR_CROPS.sofia, name: "Sofia" },
-                      { cy: 66, avatarCrop: AVATAR_CROPS.emma, name: "Emma" },
+                      { cy: 10, avatarCrop: AVATAR_CROPS.priya, name: "Priya" },
+                      { cy: 38, avatarCrop: AVATAR_CROPS.chloe, name: "Chloe" },
+                      { cy: 54, avatarCrop: AVATAR_CROPS.emma, name: "Emma" },
+                      { cy: 68, avatarCrop: AVATAR_CROPS.sofia, name: "Sofia" },
                     ].map(({ cy, avatarCrop, name }, i) => (
                       <g key={i}>
                         <foreignObject x="430" y={cy - 9} width="18" height="18">
@@ -380,22 +379,21 @@ export default function WhoItsForSection() {
 
                     {/* X axis labels */}
                     {["M","T","W","T","F","S","S"].map((d, i) => (
-                      <text key={i} x={22 + i * 56} y="80" fontSize="7" fill="#CBD5E1" textAnchor="middle">{d}</text>
+                      <text key={i} x={22 + i * 56} y="80" fontSize="7" fill="#94A3B8" textAnchor="middle">{d}</text>
                     ))}
                   </svg>
                 </div>
               </div>
             </div>
           )}
-              </motion.div>
-            ))}
           </div>{/* end white content area */}
           <div
             className="h-12 flex-shrink-0 border-t border-slate-200 px-4"
             style={{ background: "#ECECEC" }}
             aria-hidden="true"
           />
-          </div>{/* end flex column */}
+            </motion.div>
+          ))}
         </motion.div>
 
         <motion.div
@@ -404,7 +402,7 @@ export default function WhoItsForSection() {
         >
           <p className="mb-6 flex items-center gap-3 text-fluid-xs font-semibold uppercase tracking-[0.15em] text-[#6FBF9E]">
             <span className="h-2 w-2 rounded-full bg-[#4FA3C7]" />
-            BUILT AROUND THE PEOPLE MAKING THE CALLS
+            FOR COACHES, ATHLETES & PERFORMANCE STAFF
           </p>
           <h2
             id="who-its-for-headline"
@@ -492,6 +490,143 @@ export default function WhoItsForSection() {
               })}
             </div>
           </div>
+
+          {/* Mobile mockup card — visible only below hero breakpoint */}
+          <motion.div
+            {...fadeUp(0.1)}
+            className="mt-8 block hero:hidden"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_8px_32px_rgba(15,23,42,0.08)]"
+              >
+                {/* Coach */}
+                {activeIndex === 0 && (
+                  <div className="p-5">
+                    <div className="mb-4 grid grid-cols-2 gap-2">
+                      {[
+                        { count: 3, label: "Requires Attention", color: "#92690A", bg: "rgba(251,243,224,0.8)", icon: "⚠" },
+                        { count: 2, label: "Stable Context",      color: "#2D7A50", bg: "rgba(224,245,235,0.8)", icon: "✓" },
+                        { count: 1, label: "Pending Check-In",    color: "#2C5B8A", bg: "rgba(224,236,248,0.8)", icon: "◷" },
+                        { count: 1, label: "Unavailable",         color: "#8A929E", bg: "rgba(240,241,243,0.8)", icon: "◌" },
+                      ].map(({ count, label, color, bg, icon }) => (
+                        <div key={label} className="rounded-xl px-3 py-3" style={{ background: bg }}>
+                          <div className="mb-0.5 flex items-center justify-between">
+                            <span className="text-xl font-bold" style={{ color }}>{count}</span>
+                            <span style={{ color }}>{icon}</span>
+                          </div>
+                          <p className="text-[11px] font-semibold leading-tight" style={{ color }}>{label}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="space-y-3">
+                      {[
+                        { name: "Priya Sharma",    score: 64, color: "#2D7A50", width: "64%", avatarCrop: AVATAR_CROPS.priya },
+                        { name: "Sofia Rodriguez", score: 52, color: "#92690A", width: "52%", avatarCrop: AVATAR_CROPS.sofia },
+                        { name: "Chloe Williams",  score: 44, color: "#6F5BA8", width: "44%", avatarCrop: AVATAR_CROPS.chloe },
+                      ].map(({ name, score, color, width, avatarCrop }) => (
+                        <div key={name} className="flex items-center gap-2">
+                          <div className="h-6 w-6 flex-shrink-0 rounded-full bg-slate-200 bg-no-repeat" style={getAvatarCropStyle(avatarCrop, 24)} />
+                          <p className="w-28 flex-shrink-0 text-[12px] font-medium text-[#111318]">{name}</p>
+                          <div className="relative h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
+                            <div className="absolute inset-y-0 left-0 rounded-full" style={{ width, background: color }} />
+                          </div>
+                          <p className="w-8 text-right text-[12px] font-bold" style={{ color }}>{score}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Athletes */}
+                {activeIndex === 1 && (
+                  <div className="p-5">
+                    <div className="mb-4 flex items-center gap-4">
+                      <div className="relative flex h-20 w-20 flex-shrink-0 items-center justify-center">
+                        <svg className="absolute inset-0" viewBox="0 0 100 100">
+                          <defs>
+                            <linearGradient id="mScoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#6FBF9E" />
+                              <stop offset="100%" stopColor="#4FA3C7" />
+                            </linearGradient>
+                          </defs>
+                          <circle cx="50" cy="50" r="42" fill="none" stroke="#E5E7EB" strokeWidth="10" />
+                          <circle cx="50" cy="50" r="42" fill="none" stroke="url(#mScoreGrad)" strokeWidth="10" strokeLinecap="round" strokeDasharray="264" strokeDashoffset="66" transform="rotate(-90 50 50)" />
+                        </svg>
+                        <div className="text-center">
+                          <p className="text-xl font-bold" style={{ background: "linear-gradient(45deg,#6FBF9E,#4FA3C7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>78</p>
+                        </div>
+                      </div>
+                      <div>
+                        <span className="mb-1 inline-block rounded-full px-3 py-1 text-[12px] font-semibold text-white" style={{ background: "linear-gradient(45deg,#6FBF9E,#4FA3C7)" }}>Context: Maintain</span>
+                        <p className="text-[11px] text-[#9CA3AF]">Good Load Tolerance · Confidence: High</p>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      {[
+                        { label: "Sleep quality",   val: 72, score: 4 },
+                        { label: "Energy level",    val: 48, score: 2 },
+                        { label: "Mental readiness",val: 80, score: 4 },
+                      ].map(({ label, val, score }) => (
+                        <div key={label}>
+                          <div className="mb-1 flex items-center justify-between">
+                            <p className="text-[12px] font-semibold text-[#111318]">{label}</p>
+                            <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold text-white" style={{ background: "linear-gradient(45deg,#6FBF9E,#4FA3C7)" }}>{score}</span>
+                          </div>
+                          <div className="relative h-2 rounded-full bg-slate-200">
+                            <div className="absolute inset-y-0 left-0 rounded-full" style={{ width: `${val}%`, background: "linear-gradient(45deg,#6FBF9E,#4FA3C7)" }} />
+                            <div className="absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full shadow" style={{ left: `calc(${val}% - 8px)`, background: "linear-gradient(45deg,#6FBF9E,#4FA3C7)" }} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Performance Staff */}
+                {activeIndex === 2 && (
+                  <div className="p-5">
+                    <p className="mb-3 text-[12px] font-semibold text-[#111318]">7-day Load Trend</p>
+                    <svg viewBox="0 0 320 80" className="mb-3 w-full overflow-visible">
+                      {[{ y: 8, label: "80" }, { y: 30, label: "55" }, { y: 52, label: "30" }].map(({ y, label }) => (
+                        <g key={label}>
+                          <text x="14" y={y + 3} fontSize="7" fill="#94A3B8" textAnchor="end">{label}</text>
+                          <line x1="18" y1={y} x2="260" y2={y} stroke="#CBD5E1" strokeWidth="1" />
+                        </g>
+                      ))}
+                      <line x1="18" y1="4" x2="18" y2="62" stroke="#94A3B8" strokeWidth="1" />
+                      <polyline points="18,54 60,46 102,50 144,38 186,43 228,26 260,10" fill="none" stroke="#2D7A50" strokeWidth="1.5" strokeLinejoin="round" />
+                      <polyline points="18,10 60,20 102,13 144,28 186,18 228,38 260,58" fill="none" stroke="#92690A" strokeWidth="1.5" strokeLinejoin="round" />
+                      <polyline points="18,62 60,56 102,60 144,52 186,56 228,44 260,36" fill="none" stroke="#6F5BA8" strokeWidth="1.5" strokeLinejoin="round" />
+                      {["M","T","W","T","F","S","S"].map((d, i) => (
+                        <text key={i} x={18 + i * 40} y="72" fontSize="7" fill="#94A3B8" textAnchor="middle">{d}</text>
+                      ))}
+                    </svg>
+                    <div className="space-y-2">
+                      {[
+                        { name: "Priya Sharma",    avatarCrop: AVATAR_CROPS.priya, cycle: "Ovulatory",    load: 64, loadColor: "#2D7A50", direction: "Maintain", dirColor: "#2D7A50", dirBg: "rgba(45,122,80,0.08)" },
+                        { name: "Sofia Rodriguez", avatarCrop: AVATAR_CROPS.sofia, cycle: "Follicular",   load: 52, loadColor: "#92690A", direction: "Reduce",   dirColor: "#92690A", dirBg: "rgba(146,105,10,0.08)" },
+                        { name: "Chloe Williams",  avatarCrop: AVATAR_CROPS.chloe, cycle: "Late luteal",  load: 44, loadColor: "#6F5BA8", direction: "Recovery", dirColor: "#6F5BA8", dirBg: "rgba(111,91,168,0.08)" },
+                      ].map(({ name, avatarCrop, cycle, load, loadColor, direction, dirColor, dirBg }) => (
+                        <div key={name} className="flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-2">
+                          <div className="h-6 w-6 flex-shrink-0 rounded-full bg-slate-200 bg-no-repeat" style={getAvatarCropStyle(avatarCrop, 24)} />
+                          <p className="flex-1 text-[12px] font-medium text-[#111318]">{name}</p>
+                          <p className="text-[10px] text-[#9CA3AF]">{cycle}</p>
+                          <p className="w-6 text-center text-[12px] font-bold" style={{ color: loadColor }}>{load}</p>
+                          <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold" style={{ color: dirColor, background: dirBg }}>{direction}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
         </motion.div>
       </div>
     </section>

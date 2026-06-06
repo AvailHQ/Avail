@@ -11,7 +11,7 @@ Based on investor feedback — June 2026
 
 ## Product Clarity (what is Avail?)
 
-- [ ] Add a dashboard mockup section below Hero — use the Squad Load Overview design (list view with status cards: Requires Attention / Stable / Pending / Unavailable + progress bars per athlete). This answers "what does a coach actually see?" in 5 seconds.
+- [x] Add a dashboard mockup section below Hero — use the Squad Load Overview design (list view with status cards: Requires Attention / Stable / Pending / Unavailable + progress bars per athlete). This answers "what does a coach actually see?" in 5 seconds.
 
 ---
 
@@ -25,21 +25,21 @@ Based on investor feedback — June 2026
 
 ## Proof & Credibility
 
-- [ ] Add at least one data point to support the problem statement — e.g. "ACL injury rate is 78% higher in the luteal phase" or "Only 7 out of 780 academic papers studied this rigorously" — currently zero evidence on the site
+- [x] Add at least one data point to support the problem statement — e.g. "ACL injury rate is 78% higher in the luteal phase" or "Only 7 out of 780 academic papers studied this rigorously" — currently zero evidence on the site
 - [ ] Add a quote or placeholder for a coach testimonial / pilot feedback — investor specifically asked for case studies
 
 ---
 
 ## Competitive Differentiation (why not ChatGPT?)
 
-- [ ] Add a section or module that explains the proprietary data angle — the model learns each athlete individually over time, the dataset is exclusive, this is not a generic LLM
-- [ ] Update Solution Section cards — current copy is too vague ("Built for women athletes. Not adapted from male data." is one sentence with no substance). Each card should explain the mechanism, not just the claim.
+- [x] Add a section or module that explains the proprietary data angle — the model learns each athlete individually over time, the dataset is exclusive, this is not a generic LLM
+- [x] Update Solution Section cards — current copy is too vague ("Built for women athletes. Not adapted from male data." is one sentence with no substance). Each card should explain the mechanism, not just the claim.
 
 ---
 
 ## Target Customer Clarity
 
-- [ ] Make it explicit that this is for WSL / Championship level clubs — currently the site could be read as targeting any level. Add "WSL and Championship clubs" somewhere visible above the fold or in the WhoItsFor section.
+- [x] Target is any women's team (not WSL/Championship only) — WhoItsFor eyebrow already makes the audience clear. No change needed.
 
 ---
 
@@ -53,7 +53,7 @@ Based on investor feedback — June 2026
 
 ## FAQ Section
 
-- [ ] Add or rewrite one FAQ to directly answer "why can't a coach just use ChatGPT?" — current FAQs are defensive ("this is not a period tracker") but don't explain the data moat
-- [ ] Strengthen the "How is this different from Catapult or Kitman Labs?" answer — current answer is generic
+- [x] Add or rewrite one FAQ to directly answer "why can't a coach just use ChatGPT?" — current FAQs are defensive ("this is not a period tracker") but don't explain the data moat
+- [x] Strengthen the "How is this different from Catapult or Kitman Labs?" answer — current answer is generic
 
 ---
