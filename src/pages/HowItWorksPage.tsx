@@ -147,8 +147,7 @@ const TRUST_CARDS = [
 function StaticNarrativePanel() {
   return (
     <div className="flex min-h-[360px] flex-col pt-4 hero:min-h-[520px] hero:pt-20 wide:pt-24">
-      <p className="mb-12 flex items-center gap-3 text-fluid-xs font-bold uppercase tracking-[0.2em] text-[#4FA3C7] wide:mb-14">
-        <span className="h-2 w-2 rounded-full bg-[#4FA3C7] shadow-[0_0_18px_rgba(79,163,199,0.72)]" />
+      <p className="mb-12 text-fluid-xs font-bold uppercase tracking-[0.2em] text-[#4FA3C7] wide:mb-14">
         UNDER THE HOOD
       </p>
       <h2 className="workflow-narrative-title max-w-[760px] whitespace-normal font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-3xl wide:text-fluid-4xl">

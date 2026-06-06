@@ -123,8 +123,7 @@ export default function SolutionSection() {
 
       <div className="relative z-10 mx-auto max-w-[1160px] wide:max-w-[1440px]">
         <motion.div {...fadeUp(0)} className="mb-12 max-w-[760px] hero:mb-16">
-          <p className="mb-8 flex items-center gap-3 text-fluid-xs font-semibold tracking-[0.15em] uppercase text-[#6FBF9E]">
-            <span className="h-2 w-2 rounded-full bg-[#4FA3C7]" />
+          <p className="mb-8 text-fluid-xs font-semibold tracking-[0.15em] uppercase text-[#6FBF9E]">
             WHY AVAIL IS DIFFERENT
           </p>
           <h2

@@ -400,8 +400,7 @@ export default function WhoItsForSection() {
           {...fadeUp(0)}
           className="hero:max-w-[640px] wide:max-w-[700px]"
         >
-          <p className="mb-6 flex items-center gap-3 text-fluid-xs font-semibold uppercase tracking-[0.15em] text-[#6FBF9E]">
-            <span className="h-2 w-2 rounded-full bg-[#4FA3C7]" />
+          <p className="mb-6 text-fluid-xs font-semibold uppercase tracking-[0.15em] text-[#6FBF9E]">
             FOR COACHES, ATHLETES & PERFORMANCE STAFF
           </p>
           <h2
