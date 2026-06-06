@@ -28,10 +28,10 @@ export default function HeroCopy() {
 
       <motion.p
         {...fadeUp(0.25)}
-        className="text-fluid-lg leading-[1.68] text-[#4B5563] tracking-[-0.01em] max-w-[500px] mx-auto mb-9 wide:max-w-[680px]"
+        className="text-fluid-lg leading-[1.68] text-[#4B5563] tracking-[-0.01em] max-w-[600px] mx-auto mb-9 wide:max-w-[680px]"
       >
-        Avail gives coaches physiological context before training decisions are
-        made, Not after
+        Predictive physiological modelling, individual to each athlete.
+        <br />A Load Score for every athlete, before every session.
       </motion.p>
 
       <motion.div
