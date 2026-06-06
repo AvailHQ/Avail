@@ -2,6 +2,7 @@ import HeroCopy from '../components/HeroCopy'
 import HeroImageMarquee from '../components/HeroImageMarquee'
 import SolutionSection from '../components/SolutionSection'
 import WhoItsForSection from '../components/WhoItsForSection'
+import ProofSection from '../components/ProofSection'
 import CompetitionSection from '../components/CompetitionSection'
 import FAQSection from '../components/FAQSection'
 import FinalCTASection from '../components/FinalCTASection'
@@ -26,6 +27,9 @@ export default function HomePage() {
 
       {/* ─── Who It's For ─────────────────────────────────── */}
       <WhoItsForSection />
+
+      {/* ─── Proof ────────────────────────────────────────── */}
+      <ProofSection />
 
       {/* ─── Solution ─────────────────────────────────────── */}
       <SolutionSection />
