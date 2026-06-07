@@ -146,7 +146,7 @@ const TRUST_CARDS = [
 
 function StaticNarrativePanel() {
   return (
-    <div className="flex min-h-[360px] flex-col pt-4 hero:min-h-[520px] hero:pt-20 wide:pt-24">
+    <div className="flex min-h-0 flex-col pt-4 hero:min-h-[520px] hero:pt-20 wide:pt-24">
       <p className="mb-12 text-fluid-xs font-bold uppercase tracking-[0.2em] text-[#4FA3C7] wide:mb-14">
         UNDER THE HOOD
       </p>
@@ -342,7 +342,7 @@ function MobileSignalPipeline({ progress }: { progress: MotionValue<number> }) {
     "M91 110 C108 146 108 205 92 244 C76 292 24 350 9 386 C0 408 1 456 16 498 C34 550 76 616 91 662 C100 684 99 732 84 774 C66 826 24 902 9 938 C0 960 1 1008 16 1050 C34 1102 76 1168 91 1214 C100 1236 99 1284 84 1326 C66 1378 24 1454 9 1490";
 
   return (
-    <div className="relative mt-12 hero:hidden">
+    <div className="relative mt-4 hero:hidden">
       <svg
         className="pointer-events-none absolute inset-0 z-10 h-full w-full overflow-visible"
         viewBox="0 0 100 1632"
@@ -527,9 +527,9 @@ function WorkflowNarrativeSection() {
       className="relative border-y border-slate-200/70 bg-[#FEFEFC]"
       aria-labelledby="workflow-narrative-heading"
     >
-      <div className="relative overflow-visible px-6 py-24 hero:py-0">
+      <div className="relative overflow-visible px-6 py-10 hero:py-0">
         <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(111,191,158,0.13),rgba(254,254,252,0)_70%)]" />
-        <div className="workflow-narrative-grid relative mx-auto grid w-full max-w-[1120px] gap-10 hero:grid-cols-[0.48fr_0.52fr] hero:items-start wide:max-w-[1560px] wide:grid-cols-[minmax(0,620px)_704px] wide:gap-[236px]">
+        <div className="workflow-narrative-grid relative mx-auto grid w-full max-w-[1120px] gap-0 hero:gap-10 hero:grid-cols-[0.48fr_0.52fr] hero:items-start wide:max-w-[1560px] wide:grid-cols-[minmax(0,620px)_704px] wide:gap-[236px]">
           <div className="relative hero:min-h-[2000px] wide:min-h-[2080px]">
             <h2 id="workflow-narrative-heading" className="sr-only">
               How Avail turns athlete context into coaching guidance
@@ -558,7 +558,7 @@ function HeroDiagram() {
       Icon: Activity,
       desktopPosition:
         "hero:right-auto hero:left-[4%] hero:top-[72px] hero:translate-x-0",
-      mobilePosition: "left-1/2 top-2 -translate-x-1/2",
+      mobilePosition: "left-[1.6%] top-[40px]",
       rippleDelay: "0s",
     },
     {
@@ -567,7 +567,7 @@ function HeroDiagram() {
       Icon: SlidersHorizontal,
       desktopPosition:
         "hero:right-auto hero:left-[25%] hero:top-[82px] hero:translate-x-0",
-      mobilePosition: "left-1/2 top-[142px] -translate-x-1/2",
+      mobilePosition: "left-[21.6%] top-[50px]",
       rippleDelay: "2.5s",
     },
     {
@@ -577,7 +577,7 @@ function HeroDiagram() {
       featured: true,
       desktopPosition:
         "hero:right-auto hero:left-1/2 hero:top-[58px] hero:-translate-x-1/2",
-      mobilePosition: "left-1/2 top-[284px] -translate-x-1/2",
+      mobilePosition: "left-1/2 -translate-x-1/2 top-[32px]",
       rippleDelay: "5s",
     },
     {
@@ -586,7 +586,7 @@ function HeroDiagram() {
       Icon: LayoutDashboard,
       desktopPosition:
         "hero:left-auto hero:right-[23%] hero:top-[66px] hero:translate-x-0",
-      mobilePosition: "left-1/2 top-[446px] -translate-x-1/2",
+      mobilePosition: "right-[21.6%] top-[40px]",
       rippleDelay: "7.3s",
     },
     {
@@ -595,7 +595,7 @@ function HeroDiagram() {
       Icon: Database,
       desktopPosition:
         "hero:left-auto hero:right-[4%] hero:top-[72px] hero:translate-x-0",
-      mobilePosition: "left-1/2 top-[590px] -translate-x-1/2",
+      mobilePosition: "right-[1.6%] top-[50px]",
       rippleDelay: "9.5s",
     },
   ];
@@ -604,14 +604,14 @@ function HeroDiagram() {
     <motion.div
       {...heroReveal}
       transition={{ ...heroReveal.transition, delay: 0.18 }}
-      className="relative mx-auto mt-16 max-w-[1180px] overflow-hidden rounded-[36px] border border-slate-200/70 bg-white/82 px-5 py-8 shadow-[0_30px_90px_rgba(15,23,42,0.08)] backdrop-blur-xl hero:px-8 hero:py-10 wide:max-w-[1480px] wide:px-12"
+      className="relative mx-auto mt-8 hero:mt-16 max-w-[1180px] overflow-hidden rounded-[36px] border border-slate-200/70 bg-white/82 px-5 py-8 shadow-[0_30px_90px_rgba(15,23,42,0.08)] backdrop-blur-xl hero:px-8 hero:py-10 wide:max-w-[1480px] wide:px-12"
     >
       <div className="absolute -left-8 top-12 h-36 w-36 rounded-full bg-[#6FBF9E]/18 blur-3xl" />
       <div className="absolute -right-8 bottom-12 h-44 w-44 rounded-full bg-[#4FA3C7]/16 blur-3xl" />
 
       <svg
         viewBox="0 0 1050 260"
-        className="pointer-events-none absolute left-1/2 top-8 hidden h-[260px] w-[calc(100%-56px)] -translate-x-1/2 overflow-visible hero:block"
+        className="pointer-events-none absolute left-1/2 top-[57px] block h-auto w-[calc(100%-40px)] -translate-x-1/2 overflow-visible hero:top-8 hero:h-[260px] hero:w-[calc(100%-56px)]"
         aria-hidden="true"
       >
         <defs>
@@ -673,10 +673,10 @@ function HeroDiagram() {
         </circle>
       </svg>
 
-      <div className="relative min-h-[760px] hero:min-h-[300px]">
+      <div className="relative min-h-[160px] hero:min-h-[300px]">
         <svg
           viewBox="0 0 360 760"
-          className="pointer-events-none absolute inset-0 h-full w-full hero:hidden"
+          className="hidden"
           aria-hidden="true"
         >
           <defs>
@@ -756,7 +756,7 @@ function HeroDiagram() {
           }) => (
             <div
               key={label}
-              className={`absolute flex h-[120px] w-[120px] flex-col items-center justify-center border-0 bg-transparent p-2 text-center shadow-none outline-none hero:h-[132px] hero:w-[132px] ${mobilePosition} ${desktopPosition} ${
+              className={`absolute flex w-[44px] flex-col items-center justify-start border-0 bg-transparent pt-2 text-center shadow-none outline-none hero:h-[132px] hero:w-[132px] hero:justify-center hero:pt-0 ${mobilePosition} ${desktopPosition} ${
                 featured ? "hero:h-[150px] hero:w-[150px]" : ""
               }`}
             >
@@ -784,14 +784,14 @@ function HeroDiagram() {
                     ? { duration: 5.8, repeat: Infinity, ease: "easeInOut" }
                     : undefined
                 }
-                className={`hero-node-icon mb-3 flex items-center justify-center rounded-[18px] border bg-white/90 text-[#4FA3C7] shadow-[0_14px_36px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-300 ${
+                className={`hero-node-icon mb-1 hero:mb-3 flex items-center justify-center rounded-[18px] border bg-white/90 text-[#4FA3C7] shadow-[0_14px_36px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-300 ${
                   featured
-                    ? "h-20 w-20 border-[#6FBF9E]/60 bg-white/95 shadow-[0_0_0_1px_rgba(111,191,158,0.34),0_18px_60px_rgba(111,191,158,0.24),0_0_86px_rgba(111,191,158,0.18)]"
-                    : "h-14 w-14 border-slate-200/80"
+                    ? "h-9 w-9 hero:h-20 hero:w-20 border-[#6FBF9E]/60 bg-white/95 shadow-[0_0_0_1px_rgba(111,191,158,0.34),0_18px_60px_rgba(111,191,158,0.24),0_0_86px_rgba(111,191,158,0.18)]"
+                    : "h-7 w-7 hero:h-14 hero:w-14 border-slate-200/80"
                 }`}
               >
                 <Icon
-                  className={featured ? "h-9 w-9" : "h-6 w-6"}
+                  className={featured ? "h-4 w-4 hero:h-9 hero:w-9" : "h-3 w-3 hero:h-6 hero:w-6"}
                   strokeWidth={1.9}
                   aria-hidden="true"
                 />
@@ -799,13 +799,13 @@ function HeroDiagram() {
               <div className="w-[190px] max-w-[72vw] text-center">
                 <p
                   className={`font-bold leading-[1.16] tracking-[0.01em] text-[#111318] ${
-                    featured ? "text-fluid-base" : "text-fluid-sm opacity-70"
+                    featured ? "text-[0.55rem] hero:text-fluid-base" : "text-[0.5rem] hero:text-fluid-sm opacity-70"
                   }`}
                 >
                   {label}
                 </p>
                 <p
-                  className={`mt-1.5 text-[0.7rem] font-semibold leading-[1.2] text-slate-500 sm:text-fluid-xs ${
+                  className={`mt-1.5 text-[0.42rem] hero:text-[0.7rem] font-semibold leading-[1.2] text-slate-500 ${
                     featured ? "" : "opacity-70"
                   }`}
                 >
@@ -825,7 +825,7 @@ export default function HowItWorksPage() {
     <main className="bg-[#FAFBF8] text-[#111318]">
       {/* Hero: page promise and high-level product flow. */}
       <section
-        className="relative overflow-hidden px-6 pb-28 pt-32 hero:pt-40 wide:pb-32"
+        className="relative overflow-hidden px-6 pb-10 pt-16 hero:pb-28 hero:pt-32 wide:pb-32"
         aria-labelledby="how-it-works-hero"
       >
         <div className="absolute inset-x-0 top-0 h-[620px] bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(111,191,158,0.20),rgba(250,251,248,0)_68%)]" />
@@ -862,7 +862,7 @@ export default function HowItWorksPage() {
 
       {/* Privacy and trust: clarifies data boundaries and non-medical positioning. */}
       <section
-        className="px-6 py-28 wide:py-32"
+        className="px-6 py-16 hero:py-28 wide:py-32"
         aria-labelledby="privacy-heading"
       >
         <div className="mx-auto max-w-[980px] wide:max-w-[1320px]">

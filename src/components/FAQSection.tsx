@@ -189,11 +189,11 @@ export default function FAQSection() {
           </p>
           <h2
             id="faq-headline"
-            className="font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-4 text-fluid-3xl"
+            className="font-bold tracking-[-0.03em] text-[#111318] leading-[1.13] mb-4 text-fluid-4xl"
           >
             Common questions
           </h2>
-          <p className="text-fluid-lg text-[#6B7280] leading-[1.65] max-w-[380px] mx-auto wide:max-w-[520px]">
+          <p className="text-fluid-base sm:text-fluid-lg text-[#6B7280] leading-[1.65] max-w-[380px] mx-auto wide:max-w-[520px]">
             Everything you need to know before getting started.
           </p>
         </motion.div>

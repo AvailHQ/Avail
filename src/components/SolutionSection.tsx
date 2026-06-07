@@ -132,7 +132,7 @@ export default function SolutionSection() {
           >
             It Learns The Player
           </h2>
-          <p className="max-w-[560px] text-fluid-lg leading-[1.65] text-[#6B7280]">
+          <p className="max-w-[560px] text-fluid-base sm:text-fluid-lg leading-[1.65] text-[#6B7280]">
             Avail gets better by learning what is normal for each athlete, not the average.
           </p>
         </motion.div>
@@ -145,7 +145,7 @@ export default function SolutionSection() {
               className="rounded-[24px] bg-gradient-to-br from-slate-200/70 via-slate-200/70 to-slate-200/70 p-px shadow-[0_18px_54px_rgba(15,23,42,0.05)] transition-colors duration-150 hover:from-[#6FBF9E] hover:via-[#A7ECD0] hover:to-[#4FA3C7]"
             >
               <div className="h-full rounded-[23px] bg-[#FEFEFC] px-6 py-7 hero:px-7 hero:py-8 wide:p-9">
-                <div className="mb-16 flex hero:mb-20 wide:mb-24">
+                <div className="mb-4 flex hero:mb-14 wide:mb-18">
                   <Icon />
                 </div>
 

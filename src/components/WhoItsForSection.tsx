@@ -405,7 +405,7 @@ export default function WhoItsForSection() {
           </p>
           <h2
             id="who-its-for-headline"
-            className="mb-10 text-fluid-3xl font-bold leading-[1.08] tracking-[-0.03em] text-[#111318] hero:mb-12 hero:text-fluid-4xl"
+            className="mb-10 text-fluid-4xl font-bold leading-[1.08] tracking-[-0.03em] text-[#111318] hero:mb-12"
           >
             Who It's For
           </h2>

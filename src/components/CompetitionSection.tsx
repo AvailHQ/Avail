@@ -250,7 +250,7 @@ export default function CompetitionSection() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
             id="competition-headline"
-            className="text-[clamp(0.98rem,5.1vw,3.25rem)] sm:text-fluid-4xl font-bold text-[#111318] leading-[1.13] tracking-normal mb-5"
+            className="text-fluid-4xl font-bold text-[#111318] leading-[1.13] tracking-[-0.03em] mb-5"
           >
             Every Tool Looks Backwards
           </motion.h2>
@@ -259,7 +259,7 @@ export default function CompetitionSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.16 }}
-            className="text-fluid-lg leading-[1.65] text-[#6B7280] max-w-[720px] mx-auto wide:max-w-[860px] mb-12"
+            className="text-fluid-base sm:text-fluid-lg leading-[1.65] text-[#6B7280] max-w-[720px] mx-auto wide:max-w-[860px] mb-12"
           >
             Most athlete data only tells you what already went wrong.
             <br />

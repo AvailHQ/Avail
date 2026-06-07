@@ -12,12 +12,12 @@ export default function HomePage() {
     <>
       {/* ─── Hero ─────────────────────────────────────────── */}
       <div
-        className="relative min-h-screen overflow-hidden"
+        className="relative overflow-hidden sm:min-h-screen"
         style={{
           background: 'radial-gradient(ellipse 120% 100% at 50% 0%, #ffffff 30%, #F8F8F6 100%)',
         }}
       >
-        <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-5 pt-24 pb-20 wide:pt-28 wide:pb-24" role="main">
+        <main className="relative z-10 flex flex-col items-center justify-start px-5 pt-20 pb-14 sm:min-h-screen sm:justify-center sm:pt-28 sm:pb-20 wide:pt-32 wide:pb-24" role="main">
           <div className="relative z-10 text-center px-6 max-w-[980px] wide:max-w-[1180px]">
             <HeroCopy />
           </div>

@@ -40,7 +40,7 @@ export default function ProofSection() {
           >
             Did You Know?
           </h2>
-          <p className="mt-6 max-w-[680px] text-fluid-lg leading-[1.65] text-white/62">
+          <p className="mt-6 max-w-[680px] text-fluid-base sm:text-fluid-lg leading-[1.65] text-white/62">
             Most training tools were built without the data women&apos;s sport actually needs.
           </p>
         </motion.div>

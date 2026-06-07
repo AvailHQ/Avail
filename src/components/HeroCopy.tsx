@@ -21,14 +21,14 @@ export default function HeroCopy() {
 
       <motion.h1
         {...fadeUp(0.15)}
-        className="mx-auto mb-5 max-w-[1180px] font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-[1rem] min-[390px]:text-[1.04rem] sm:text-fluid-4xl wide:max-w-[1320px]"
+        className="mx-auto mb-5 max-w-[1180px] font-bold leading-[1.13] tracking-[-0.03em] text-[#111318] text-fluid-4xl wide:max-w-[1320px]"
       >
         Current load systems treat women like adjusted averages
       </motion.h1>
 
       <motion.p
         {...fadeUp(0.25)}
-        className="text-fluid-lg leading-[1.68] text-[#4B5563] tracking-[-0.01em] max-w-[600px] mx-auto mb-9 wide:max-w-[680px]"
+        className="text-fluid-base sm:text-fluid-lg leading-[1.68] text-[#4B5563] tracking-[-0.01em] max-w-[600px] mx-auto mb-9 wide:max-w-[680px]"
       >
         Predictive physiological modelling, individual to each athlete.
         <br />A Load Score for every athlete, before every session.

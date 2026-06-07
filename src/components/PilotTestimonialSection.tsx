@@ -70,7 +70,7 @@ export default function PilotTestimonialSection() {
           <p className="mb-7 text-fluid-xs font-semibold uppercase tracking-[0.15em] text-[#6FBF9E]">
             PILOT PROGRAMME
           </p>
-          <h2 className="text-[1.65rem] font-bold leading-[1.08] tracking-[-0.035em] text-[#111318] sm:text-fluid-4xl sm:leading-[1.05]">
+          <h2 className="text-fluid-4xl font-bold leading-[1.08] tracking-[-0.03em] text-[#111318]">
             We&apos;re expanding our pilot network now
           </h2>
           <p className="mt-6 max-w-[460px] text-fluid-base leading-[1.7] text-slate-500 sm:text-fluid-lg sm:leading-[1.75]">
