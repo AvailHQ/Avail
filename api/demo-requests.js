@@ -16,6 +16,7 @@ export default async function handler(req, res) {
     return res.status(201).json({
       message: "Waitlist request received.",
       request: result.record,
+      emailStatus: result.emailStatus,
     });
   } catch (error) {
     if (error instanceof AppError) {

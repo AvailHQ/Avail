@@ -8,12 +8,21 @@ const WAITLIST_HEADERS = [
   "Name",
   "Email",
   "Phone",
-  "",
-  "",
-  "",
+  "Team Email",
+  "Submitter Email",
+  "Email Error",
   "",
   "",
 ];
+
+function getRowNumberFromAppendRange(updatedRange) {
+  if (!updatedRange) {
+    return null;
+  }
+
+  const match = String(updatedRange).match(/[A-Z]+(\d+):/);
+  return match ? Number(match[1]) : null;
+}
 
 function getSheetsClient() {
   if (sheetsClient) {
@@ -57,7 +66,7 @@ export async function appendDemoRequestRow(record) {
     },
   });
 
-  await sheets.spreadsheets.values.append({
+  const response = await sheets.spreadsheets.values.append({
     spreadsheetId: env.googleSheetsSpreadsheetId,
     range: `${env.googleSheetsSheetName}!A:D`,
     valueInputOption: "RAW",
@@ -68,6 +77,33 @@ export async function appendDemoRequestRow(record) {
           record.name,
           record.email,
           record.phone,
+        ],
+      ],
+    },
+  });
+
+  return {
+    rowNumber: getRowNumberFromAppendRange(response.data.updates?.updatedRange),
+  };
+}
+
+export async function updateDemoRequestEmailStatus(rowNumber, emailStatus) {
+  if (!rowNumber) {
+    return;
+  }
+
+  const sheets = getSheetsClient();
+
+  await sheets.spreadsheets.values.update({
+    spreadsheetId: env.googleSheetsSpreadsheetId,
+    range: `${env.googleSheetsSheetName}!E${rowNumber}:G${rowNumber}`,
+    valueInputOption: "RAW",
+    requestBody: {
+      values: [
+        [
+          emailStatus.team,
+          emailStatus.submitter,
+          emailStatus.errorMessage,
         ],
       ],
     },

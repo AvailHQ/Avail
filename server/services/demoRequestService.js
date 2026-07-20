@@ -1,6 +1,7 @@
 import {
   appendDemoRequestRow,
   getDemoRequestCount,
+  updateDemoRequestEmailStatus,
 } from "./googleSheetsService.js";
 import {
   buildSubmitterConfirmationEmail,
@@ -13,6 +14,41 @@ import {
   validateDemoRequest,
 } from "../utils/demoRequest.js";
 
+function getEmailErrorMessage(error) {
+  if (!error) {
+    return "";
+  }
+
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return String(error);
+}
+
+async function sendDemoRequestEmails(record) {
+  const [submitterResult, teamResult] = await Promise.allSettled([
+    sendEmail(buildSubmitterConfirmationEmail(record)),
+    sendEmail(buildTeamNotificationEmail(record)),
+  ]);
+
+  const failures = [];
+
+  if (submitterResult.status === "rejected") {
+    failures.push(`submitter: ${getEmailErrorMessage(submitterResult.reason)}`);
+  }
+
+  if (teamResult.status === "rejected") {
+    failures.push(`team: ${getEmailErrorMessage(teamResult.reason)}`);
+  }
+
+  return {
+    submitter: submitterResult.status === "fulfilled" ? "Sent" : "Failed",
+    team: teamResult.status === "fulfilled" ? "Sent" : "Failed",
+    errorMessage: failures.join(" | "),
+  };
+}
+
 export async function createDemoRequest(payload) {
   const errors = validateDemoRequest(payload);
 
@@ -22,14 +58,19 @@ export async function createDemoRequest(payload) {
 
   const record = buildDemoRequestRecord(payload);
 
-  await appendDemoRequestRow(record);
+  const appendedRow = await appendDemoRequestRow(record);
+  const emailStatus = await sendDemoRequestEmails(record);
 
-  await Promise.all([
-    sendEmail(buildSubmitterConfirmationEmail(record)),
-    sendEmail(buildTeamNotificationEmail(record)),
-  ]);
+  if (emailStatus.errorMessage) {
+    console.error("Demo request email failure", {
+      record,
+      emailStatus,
+    });
+  }
 
-  return { record };
+  await updateDemoRequestEmailStatus(appendedRow.rowNumber, emailStatus);
+
+  return { record, emailStatus };
 }
 
 export async function getDemoRequestStats() {

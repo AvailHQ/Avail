@@ -20,6 +20,7 @@ export async function submitDemoRequest(req, res, next) {
     res.status(201).json({
       message: "Waitlist request received.",
       request: result.record,
+      emailStatus: result.emailStatus,
     });
   } catch (error) {
     next(error);
