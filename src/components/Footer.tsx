@@ -53,6 +53,7 @@ const IconEmail = () => (
 const NAV_LINKS = [
   { label: "Overview", to: "/" },
   { label: "How it works", to: "/how-it-works" },
+  { label: "Privacy Policy", to: "/privacy" },
   { label: "Contact", href: "mailto:miaoyulun380@gmail.com" },
 ];
 

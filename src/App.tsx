@@ -6,6 +6,7 @@ import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
 import HowItWorksPage from './pages/HowItWorksPage'
 import JoinPilotProgrammePage from './pages/JoinPilotProgrammePage'
+import PrivacyPage from './pages/PrivacyPage'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/how-it-works" element={<HowItWorksPage />} />
         <Route path="/join-pilot-programme" element={<JoinPilotProgrammePage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
       </Routes>
       <Footer />
     </div>
