@@ -92,6 +92,7 @@ interface FormState {
   name: string;
   email: string;
   phone: string;
+  privacyAccepted: boolean;
 }
 
 type FormErrors = Partial<Record<keyof FormState, string>>;
@@ -169,6 +170,7 @@ export default function JoinPilotProgrammePage() {
     name: "",
     email: "",
     phone: "",
+    privacyAccepted: false,
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitError, setSubmitError] = useState("");
@@ -213,6 +215,9 @@ export default function JoinPilotProgrammePage() {
     if (!form.name.trim()) e.name = "Required";
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email))
       e.email = "Valid email required";
+    if (!form.privacyAccepted)
+      e.privacyAccepted =
+        "Please confirm you agree before joining the waitlist.";
     return e;
   }
 
@@ -229,7 +234,11 @@ export default function JoinPilotProgrammePage() {
     setIsSubmitting(true);
 
     try {
-      await submitDemoRequest(form);
+      await submitDemoRequest({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+      });
       setWaitlistCount((count) => (count === null ? count : count + 1));
       setSubmitted(true);
     } catch (error) {
@@ -431,6 +440,37 @@ export default function JoinPilotProgrammePage() {
                   onChange={set("phone")}
                   error={errors.phone}
                 />
+
+                <div className="rounded-lg border border-[#E5E7EB] bg-[#F8FAFB] px-4 py-3">
+                  <label className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      checked={form.privacyAccepted}
+                      onChange={(event) =>
+                        setForm((current) => ({
+                          ...current,
+                          privacyAccepted: event.target.checked,
+                        }))
+                      }
+                      className="mt-[3px] h-4 w-4 accent-[#74C7A7]"
+                    />
+                    <span className="text-fluid-sm leading-[1.65] text-[#6B7280]">
+                      I agree to be contacted about Avail and have read the{" "}
+                      <Link
+                        to="/privacy"
+                        className="font-semibold text-[#2E6E8E] underline decoration-[#4FA3C7]/45 underline-offset-4 transition-colors duration-150 hover:text-[#4FA3C7]"
+                      >
+                        Privacy Policy
+                      </Link>
+                      .
+                    </span>
+                  </label>
+                  {errors.privacyAccepted && (
+                    <p className="mt-2 pl-7 text-fluid-xs text-red-400">
+                      {errors.privacyAccepted}
+                    </p>
+                  )}
+                </div>
 
                 {submitError && (
                   <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-fluid-sm text-red-700">
