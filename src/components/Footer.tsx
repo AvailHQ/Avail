@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { COOKIE_SETTINGS_EVENT } from "../lib/cookieConsent";
 
 // ─── Social icons ──────────────────────────────────────────────────────────
 const IconLinkedIn = () => (
@@ -54,11 +55,16 @@ const NAV_LINKS = [
   { label: "Overview", to: "/" },
   { label: "How it works", to: "/how-it-works" },
   { label: "Privacy Policy", to: "/privacy" },
+  { label: "Cookie settings", action: "cookie-settings" },
   { label: "Contact", href: "mailto:miaoyulun380@gmail.com" },
 ];
 
 // ─── Footer ────────────────────────────────────────────────────────────────
 export default function Footer() {
+  const openCookieSettings = () => {
+    window.dispatchEvent(new Event(COOKIE_SETTINGS_EVENT));
+  };
+
   return (
     <footer className="bg-[#F5F5F5]">
       <motion.div
@@ -98,7 +104,7 @@ export default function Footer() {
           style={{ borderTop: "1px solid #E8ECF0" }}
         >
           <ul className="flex flex-row flex-wrap items-center gap-y-3">
-            {NAV_LINKS.map(({ label, to, href }, i) => (
+            {NAV_LINKS.map(({ label, to, href, action }, i) => (
               <li key={label} className="flex items-center">
                 {i > 0 && (
                   <span
@@ -106,7 +112,15 @@ export default function Footer() {
                     aria-hidden="true"
                   />
                 )}
-                {to ? (
+                {action === "cookie-settings" ? (
+                  <button
+                    type="button"
+                    onClick={openCookieSettings}
+                    className="text-fluid-sm font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150"
+                  >
+                    {label}
+                  </button>
+                ) : to ? (
                   <Link
                     to={to}
                     className="text-fluid-sm font-medium text-[#6B7280] hover:text-[#111318] transition-colors duration-150"

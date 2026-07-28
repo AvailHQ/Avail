@@ -21,6 +21,7 @@ const TABLE_OF_CONTENTS = [
   { label: "Retention of personal data", id: "retention" },
   { label: "Security of personal data", id: "security" },
   { label: "Your personal data rights", id: "rights" },
+  { label: "Cookies and behaviour analytics", id: "cookies-analytics" },
   { label: "Medical and welfare boundary", id: "medical-boundary" },
   { label: "Applicable law and contact", id: "law-contact" },
 ];
@@ -106,20 +107,31 @@ const POLICY_SECTIONS = [
     ],
   },
   {
-    heading: "9. Medical and welfare boundary",
-    id: "medical-boundary",
+    heading: "9. Cookies and behaviour analytics",
+    id: "cookies-analytics",
     paragraphs: [
-      "9.1 Avail does not diagnose, treat, prescribe, or replace professional medical advice. The Load Score is physiological context for human decision-making, not a medical instruction.",
-      "9.2 Avail may identify patterns that suggest an athlete could benefit from a welfare or medical conversation. These patterns are not diagnoses.",
-      "9.3 Where welfare-related prompts are used, the athlete should be prompted first. Sensitive reasons should not be automatically shown to the coach. Any medical or welfare routing should follow consent, protocol, and professional review.",
+      "9.1 Avail uses essential cookies and local storage where needed to keep the website working, remember privacy preferences, protect forms, and maintain basic site functionality.",
+      "9.2 With permission, Avail may use analytics and behaviour measurement technologies, including Vercel Web Analytics, to understand how visitors use the website, including page views, referral sources, scroll depth, button clicks, and interactions with forms or calls to action.",
+      "9.3 Analytics and behaviour measurement are optional and should not run unless the visitor has accepted non-essential cookies or similar technologies.",
+      "9.4 Website behaviour analytics are separate from athlete physiological data. They are not used to generate Load Scores, make coaching decisions, or infer athlete health status.",
+      "9.5 Visitors can update cookie preferences through the Cookie settings link in the website footer.",
     ],
   },
   {
-    heading: "10. Applicable law and contact",
+    heading: "10. Medical and welfare boundary",
+    id: "medical-boundary",
+    paragraphs: [
+      "10.1 Avail does not diagnose, treat, prescribe, or replace professional medical advice. The Load Score is physiological context for human decision-making, not a medical instruction.",
+      "10.2 Avail may identify patterns that suggest an athlete could benefit from a welfare or medical conversation. These patterns are not diagnoses.",
+      "10.3 Where welfare-related prompts are used, the athlete should be prompted first. Sensitive reasons should not be automatically shown to the coach. Any medical or welfare routing should follow consent, protocol, and professional review.",
+    ],
+  },
+  {
+    heading: "11. Applicable law and contact",
     id: "law-contact",
     paragraphs: [
-      "10.1 This policy is written for Avail's current UK-focused website, waitlist, and pilot planning context. It is intended to reflect UK GDPR and GDPR principles, but it should be reviewed by a GDPR specialist before production athlete data is processed.",
-      "10.2 For privacy questions, data requests, or concerns, contact Avail at ",
+      "11.1 This policy is written for Avail's current UK-focused website, waitlist, and pilot planning context. It is intended to reflect UK GDPR and GDPR principles, but it should be reviewed by a GDPR specialist before production athlete data is processed.",
+      "11.2 For privacy questions, data requests, or concerns, contact Avail at ",
     ],
   },
 ];

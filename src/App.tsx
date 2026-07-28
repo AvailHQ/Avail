@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import CookieConsent from './components/CookieConsent'
+import ConsentAwareVercelAnalytics from './components/ConsentAwareVercelAnalytics'
 
 import HomePage from './pages/HomePage'
 import HowItWorksPage from './pages/HowItWorksPage'
@@ -20,6 +22,8 @@ export default function App() {
         <Route path="/privacy" element={<PrivacyPage />} />
       </Routes>
       <Footer />
+      <CookieConsent />
+      <ConsentAwareVercelAnalytics />
     </div>
   )
 }
